@@ -17,7 +17,7 @@ namespace youShouldCheckOutThisBand
             {
                 //we have found the uri you are looking fro but you have to use https instead of http
                 actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Found);
-                actionContext.Response.Content = new StringContent("<p>Use HTTPS instead of HTTP");
+                actionContext.Response.Content = new StringContent("<p>Use HTTPS instead of HTTP</p>");
 
                 UriBuilder uriBuilder = new UriBuilder(actionContext.Request.RequestUri);
                 uriBuilder.Scheme = Uri.UriSchemeHttps;

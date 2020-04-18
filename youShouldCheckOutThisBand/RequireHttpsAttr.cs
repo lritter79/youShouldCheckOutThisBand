@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 //see here: https://www.youtube.com/watch?v=xIzlD-frEw4
 namespace youShouldCheckOutThisBand
 {
+
+
+    //notes:
+    /*
+     * to use this class, add it to the HttpConfiguration as a filter
+     * ex. config.Filters.Add(new RequireHttpsAttribute());
+     * if you only want it for some come controllers, use it as a decorator
+     * ex. [RequireHttps]
+     */
+
     public class RequireHttpsAttr :AuthorizationFilterAttribute
     {
         //override = changes method from a baseclass
@@ -17,7 +28,7 @@ namespace youShouldCheckOutThisBand
             {
                 //we have found the uri you are looking fro but you have to use https instead of http
                 actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Found);
-                actionContext.Response.Content = new StringContent("<p>Use HTTPS instead of HTTP</p>");
+                actionContext.Response.Content = new StringContent("<p>Use HTTPS instead of HTTP</p>", Encoding.UTF8, "text/html");
 
                 UriBuilder uriBuilder = new UriBuilder(actionContext.Request.RequestUri);
                 uriBuilder.Scheme = Uri.UriSchemeHttps;

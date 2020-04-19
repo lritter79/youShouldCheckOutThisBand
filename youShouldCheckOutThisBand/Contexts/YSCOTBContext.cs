@@ -3,7 +3,7 @@ using youShouldCheckOutThisBand.Entities;
 
 namespace youShouldCheckOutThisBand.Contexts
 {
-    public class AppContext:DbContext
+    public class YSCOTBContext:DbContext
     {
 
         
@@ -18,13 +18,13 @@ namespace youShouldCheckOutThisBand.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //point to local sql server instance and says that database will be called "AppData"
-            optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSSQLLocalDB; Initial Catalog = AppData");
+            optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = YSCOTBAppData");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //getting the keys for join tables for many to many relationships
-            modelBuilder.Entity<ArtistAlbumJoinEntity>().HasKey(s => new { s.ArtistSpotifyId, s.AlbumSpotifyId });
+            modelBuilder.Entity<ArtistAlbumJoinEntity>().ToTable("ArtistAlbumJoinTable").HasKey(s => new { s.ArtistSpotifyId, s.AlbumSpotifyId });
             modelBuilder.Entity<TrackArtistJoinEntity>().HasKey(s => new { s.ArtistSpotifyId, s.TrackSpotifyId });
             modelBuilder.Entity<GenreArtistJoinEntity>().HasKey(s => new { s.ArtistSpotifyId, s.GenreId });
             modelBuilder.Entity<GenreAlbumJoinEntity>().HasKey(s => new { s.AlbumSpotifyId, s.GenreId });

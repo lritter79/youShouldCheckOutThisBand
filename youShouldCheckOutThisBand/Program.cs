@@ -7,14 +7,20 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using youShouldCheckOutThisBand.Contexts;
 
 namespace youShouldCheckOutThisBand
 {
     public class Program
     {
+        private static YSCOTBContext context = new YSCOTBContext();
+
         public static void Main(string[] args)
         {
+            //temporary code for setting up database
+            context.Database.EnsureCreated();
             CreateWebHostBuilder(args).Build().Run();
+            
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

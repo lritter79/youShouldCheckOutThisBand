@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200419191932_first migration.cs" />
+    <Compile Remove="Migrations\20200419191932_first migration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.2.8" />

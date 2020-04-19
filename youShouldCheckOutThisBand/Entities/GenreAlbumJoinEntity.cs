@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Entities
 {
+    [Table("GenreAlbumJoinTable")]
     public class GenreAlbumJoinEntity
     {
         public int GenreId { get; set; }

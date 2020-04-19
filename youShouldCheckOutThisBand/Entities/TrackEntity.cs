@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Entities
 {
-    public class SongEntity
+    public class TrackEntity
     {
         /// <summary>
         /// The Spotify ID for the track.

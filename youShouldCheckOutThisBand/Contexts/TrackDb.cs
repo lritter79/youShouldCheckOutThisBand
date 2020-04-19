@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace youShouldCheckOutThisBand.Contexts
 {
-    public class SongDb : DbContext
+    public class TrackDb : DbContext
     {
-        public DbSet<SongEntity> Songs { get; set; }
+        public DbSet<TrackEntity> Tracks { get; set; }
     }
 }

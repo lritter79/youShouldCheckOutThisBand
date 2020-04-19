@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +13,8 @@ namespace youShouldCheckOutThisBand.Entities
         /// <summary>
         /// The Spotify ID for the artist.
         /// </summary>
-        public string Id { get; set; }
+        [Key]
+        public string SpotifyId { get; set; }
 
         /// <summary>
         /// The name of the artist
@@ -23,5 +25,9 @@ namespace youShouldCheckOutThisBand.Entities
         /// The Spotify URI for the artist.
         /// </summary>
         public string Uri { get; set; }
+
+        public ICollection<ImageEntity> Images { get; set; } = new List<ImageEntity>();
+        public ICollection<AlbumEntity> Artists { get; set; } = new List<AlbumEntity>();
+        public ICollection<GenreEntity> Genres { get; set; } = new List<GenreEntity>();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +11,8 @@ namespace youShouldCheckOutThisBand.Entities
         /// <summary>
         /// The Spotify ID for the album.
         /// </summary>
-        public string Id { get; set; }
+        [Key]
+        public string SpotifyId { get; set; }
         /// <summary>
         /// The type of the album: one of "album" , "single" , or "compilation".
         /// </summary>
@@ -21,6 +23,11 @@ namespace youShouldCheckOutThisBand.Entities
         //artists, tracks, and genres
 
         //albums also have multiple images that they are attached to because the cover can come in different sizes
+
+        public ICollection<ImageEntity> Images { get; set; } = new List<ImageEntity>();
+        public ICollection<ArtistEntity> Artists { get; set; } = new List<ArtistEntity>();
+        public ICollection<GenreEntity> Genres { get; set; } = new List<GenreEntity>();
+
 
         /// <summary>
         /// A link to the Web API endpoint providing full details of the album.

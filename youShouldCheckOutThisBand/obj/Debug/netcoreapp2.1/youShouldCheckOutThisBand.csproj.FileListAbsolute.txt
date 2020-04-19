@@ -32,3 +32,6 @@ C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\you
 C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\obj\Debug\netcoreapp2.1\youShouldCheckOutThisBand.dll
 C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\obj\Debug\netcoreapp2.1\youShouldCheckOutThisBand.pdb
 C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\obj\Debug\netcoreapp2.1\youShouldCheckOutThisBand.csproj.CopyComplete
+C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\bin\Debug\netcoreapp2.1\Web.config
+C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\obj\Debug\netcoreapp2.1\youShouldCheckOutThisBand.csproj.CoreCompileInputs.cache
+C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\obj\Debug\netcoreapp2.1\youShouldCheckOutThisBand.genruntimeconfig.cache

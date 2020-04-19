@@ -11,15 +11,15 @@ namespace youShouldCheckOutThisBand.Entities
         public ArtistEntity ()
         {
             Images = new List<ArtistImageEntity>();
-            Genres = new List<GenreEntity>();
-            Albums = new List<AlbumEntity>();
-            Tracks = new List<TrackEntity>();
+            ArtistsGenres = new List<GenreArtistJoinEntity>();
+            ArtistsAlbums = new List<ArtistAlbumJoinEntity>();
+            ArtistsTracks = new List<TrackArtistJoinEntity>();
         }
         //artists can have a one to many relationship with genres and images
         public ICollection<ArtistImageEntity> Images { get; set; }
-        public ICollection<GenreEntity> Genres { get; set; }
-        public ICollection<AlbumEntity> Albums { get; set; }
-        public ICollection<TrackEntity> Tracks { get; set; }
+        public ICollection<GenreArtistJoinEntity> ArtistsGenres { get; set; }
+        public ICollection<ArtistAlbumJoinEntity> ArtistsAlbums { get; set; }
+        public ICollection<TrackArtistJoinEntity> ArtistsTracks { get; set; }
         /// <summary>
         /// The Spotify ID for the artist.
         /// </summary>

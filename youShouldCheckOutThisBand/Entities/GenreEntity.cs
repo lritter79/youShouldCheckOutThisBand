@@ -12,8 +12,8 @@ namespace youShouldCheckOutThisBand.Entities
 
         public GenreEntity ()
         {
-            Albums = new List<AlbumEntity>();
-            Artists = new List<ArtistEntity>();
+            GenresAlbums = new List<GenreAlbumJoinEntity>();
+            GenresArtists = new List<GenreArtistJoinEntity>();
         }
 
         [Key]
@@ -22,9 +22,9 @@ namespace youShouldCheckOutThisBand.Entities
 
         public string Name { get; set; }
 
-        public ICollection<ArtistEntity> Artists { get; set; }
+        public ICollection<GenreArtistJoinEntity> GenresArtists { get; set; }
 
-        public ICollection<AlbumEntity> Albums { get; set; }
+        public ICollection<GenreAlbumJoinEntity> GenresAlbums { get; set; }
     }
 
 }

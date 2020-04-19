@@ -11,7 +11,7 @@ namespace youShouldCheckOutThisBand.Entities
         
         public TrackEntity()
         {
-            Artists = new List<ArtistEntity>();
+            TracksArtists = new List<TrackArtistJoinEntity>();
         }
         /// <summary>
         /// The Spotify ID for the track.
@@ -23,7 +23,7 @@ namespace youShouldCheckOutThisBand.Entities
         public AlbumEntity Album { get; set; }
 
         //tracks can have a one to many relationship with artists
-        public ICollection<ArtistEntity> Artists { get; set; }
+        public ICollection<TrackArtistJoinEntity> TracksArtists { get; set; }
 
         /// <summary>
         /// A link to the Web API endpoint providing full details of the track.

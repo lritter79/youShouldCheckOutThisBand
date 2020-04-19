@@ -12,8 +12,8 @@ namespace youShouldCheckOutThisBand.Entities
         public AlbumEntity ()
         {
             Images = new List<AlbumCoverEntity>();
-            Artists = new List<ArtistEntity>();
-            Genres = new List<GenreEntity>();
+            AlbumsArtists = new List<ArtistAlbumJoinEntity>();
+            AlbumsGenres = new List<GenreAlbumJoinEntity>();
             Tracks = new List<TrackEntity>();
         }
 
@@ -24,8 +24,8 @@ namespace youShouldCheckOutThisBand.Entities
         //albums also have multiple images that they are attached to because the cover can come in different sizes
 
         public ICollection<AlbumCoverEntity> Images { get; set; }
-        public ICollection<ArtistEntity> Artists { get; set; } 
-        public ICollection<GenreEntity> Genres { get; set; }
+        public ICollection<ArtistAlbumJoinEntity> AlbumsArtists { get; set; }
+        public ICollection<GenreAlbumJoinEntity> AlbumsGenres { get; set; }
         public ICollection<TrackEntity> Tracks { get; set; } 
 
 

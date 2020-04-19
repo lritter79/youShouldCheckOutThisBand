@@ -8,6 +8,27 @@ namespace youShouldCheckOutThisBand.Entities
 {
     public class AlbumEntity
     {
+
+        public AlbumEntity ()
+        {
+            Images = new List<AlbumCoverEntity>();
+            Artists = new List<ArtistEntity>();
+            Genres = new List<GenreEntity>();
+            Tracks = new List<TrackEntity>();
+        }
+
+        //genres, tracks, and artists are to be stored as ids in join tables
+        //since albums have a one to many relationship with
+        //artists, tracks, and genres
+
+        //albums also have multiple images that they are attached to because the cover can come in different sizes
+
+        public ICollection<AlbumCoverEntity> Images { get; set; }
+        public ICollection<ArtistEntity> Artists { get; set; } 
+        public ICollection<GenreEntity> Genres { get; set; }
+        public ICollection<TrackEntity> Tracks { get; set; } 
+
+
         /// <summary>
         /// The Spotify ID for the album.
         /// </summary>
@@ -18,16 +39,7 @@ namespace youShouldCheckOutThisBand.Entities
         /// </summary>
         public string AlbumType { get; set; }
 
-        //genres, tracks, and artists are to be stored as ids in join tables
-        //since albums have a one to many relationship with
-        //artists, tracks, and genres
-
-        //albums also have multiple images that they are attached to because the cover can come in different sizes
-
-        public ICollection<ImageEntity> Images { get; set; } = new List<ImageEntity>();
-        public ICollection<ArtistEntity> Artists { get; set; } = new List<ArtistEntity>();
-        public ICollection<GenreEntity> Genres { get; set; } = new List<GenreEntity>();
-
+        
 
         /// <summary>
         /// A link to the Web API endpoint providing full details of the album.

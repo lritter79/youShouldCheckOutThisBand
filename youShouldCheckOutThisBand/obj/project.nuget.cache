@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yojGA4XeU6hT/DzcVkzfPcjYm6IZLVU9/38vnsYPY4mMh/pwUgpok5r/FBjiztUa3W2L1jRv/qmZIkrUi1PCew==",
+  "dgSpecHash": "szUtTP3VGkVDnO5pKXiPHetwg/d/Gg5uWkZ6YXMtzZcffqQjV2ScX3MDlpG6HExxfjOWTWuvoGDhFgZafCAq1g==",
   "success": true,
   "projectFilePath": "C:\\Users\\lritter\\Desktop\\youShouldCheckOutThisBand\\youShouldCheckOutThisBand\\youShouldCheckOutThisBand\\youShouldCheckOutThisBand.csproj",
   "expectedPackageFiles": [
@@ -55,6 +55,7 @@
     "C:\\Users\\lritter\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.3\\microsoft.entityframeworkcore.design.3.1.3.nupkg.sha512",
     "C:\\Users\\lritter\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.3\\microsoft.entityframeworkcore.relational.3.1.3.nupkg.sha512",
     "C:\\Users\\lritter\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.3\\microsoft.entityframeworkcore.sqlserver.3.1.3.nupkg.sha512",
+    "C:\\Users\\lritter\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.3\\microsoft.entityframeworkcore.tools.3.1.3.nupkg.sha512",
     "C:\\Users\\lritter\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.3\\microsoft.extensions.caching.abstractions.3.1.3.nupkg.sha512",
     "C:\\Users\\lritter\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.3\\microsoft.extensions.caching.memory.3.1.3.nupkg.sha512",
     "C:\\Users\\lritter\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.3\\microsoft.extensions.configuration.3.1.3.nupkg.sha512",

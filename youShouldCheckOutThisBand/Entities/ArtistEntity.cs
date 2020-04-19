@@ -8,8 +8,18 @@ namespace youShouldCheckOutThisBand.Entities
 {
     public class ArtistEntity
     {
+        public ArtistEntity ()
+        {
+            Images = new List<ArtistImageEntity>();
+            Genres = new List<GenreEntity>();
+            Albums = new List<AlbumEntity>();
+            Tracks = new List<TrackEntity>();
+        }
         //artists can have a one to many relationship with genres and images
-
+        public ICollection<ArtistImageEntity> Images { get; set; }
+        public ICollection<GenreEntity> Genres { get; set; }
+        public ICollection<AlbumEntity> Albums { get; set; }
+        public ICollection<TrackEntity> Tracks { get; set; }
         /// <summary>
         /// The Spotify ID for the artist.
         /// </summary>
@@ -26,8 +36,6 @@ namespace youShouldCheckOutThisBand.Entities
         /// </summary>
         public string Uri { get; set; }
 
-        public ICollection<ImageEntity> Images { get; set; } = new List<ImageEntity>();
-        public ICollection<AlbumEntity> Artists { get; set; } = new List<AlbumEntity>();
-        public ICollection<GenreEntity> Genres { get; set; } = new List<GenreEntity>();
+        
     }
 }

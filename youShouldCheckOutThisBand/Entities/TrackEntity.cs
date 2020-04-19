@@ -8,16 +8,22 @@ namespace youShouldCheckOutThisBand.Entities
 {
     public class TrackEntity
     {
+        
+        public TrackEntity()
+        {
+            Artists = new List<ArtistEntity>();
+        }
         /// <summary>
         /// The Spotify ID for the track.
         /// </summary>
         [Key]
         public string SpotifyId { get; set; }
 
-        //fk for an albums table 
-        public int AlbumId { get; set; }
+        //track has a one to one relationship to album
+        public AlbumEntity Album { get; set; }
 
-        //don't include artist ad because a track can have a one to many relationship with artists, so that would require a jointable with song id and artist ids
+        //tracks can have a one to many relationship with artists
+        public ICollection<ArtistEntity> Artists { get; set; }
 
         /// <summary>
         /// A link to the Web API endpoint providing full details of the track.

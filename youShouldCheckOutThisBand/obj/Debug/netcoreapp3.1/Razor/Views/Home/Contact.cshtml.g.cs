@@ -13,21 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\Views\_ViewImports.cshtml"
+using youShouldCheckOutThisBand.Controllers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\Views\_ViewImports.cshtml"
 using youShouldCheckOutThisBand;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\Views\_ViewImports.cshtml"
 using youShouldCheckOutThisBand.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b93df4061ff384cf01ca37cf92dff41c251f235f", @"/Views/Home/Contact.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0ab99670eab079c3d02905e9e0862c764123365a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"911a988bdeecca90091b1724db719889d63244c4", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Contact : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

@@ -44,5 +44,10 @@ namespace youShouldCheckOutThisBand.Entities
         /// The name of the track.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// The down/upvotes a track gets 
+        /// </summary>
+        public int Votes { get; set; }
     }
 }

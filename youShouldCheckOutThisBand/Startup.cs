@@ -28,8 +28,8 @@ namespace youShouldCheckOutThisBand
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-            _ = services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllersWithViews();
+           // _ = services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,22 +44,24 @@ namespace youShouldCheckOutThisBand
                 app.UseExceptionHandler("/Home/Error");
                 
             }
-
-            
-            
             
             app.UseCookiePolicy();
 
             app.UseStaticFiles();
 
+            //turns on generic routing to find indivual views and controllers
             app.UseRouting();
 
+            //end points allows a bunch of different technogoies to use different end points
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                
+                    "default",
+                    //pattern to look for to tell the system to find a controller
+                    pattern: "{controller}/{action}/{id?}",
+                    //anonymous objects with defaults if pattern isnt specified
+                    new { controller = "Home", action = "Index" });
+              
             });
         }
     }

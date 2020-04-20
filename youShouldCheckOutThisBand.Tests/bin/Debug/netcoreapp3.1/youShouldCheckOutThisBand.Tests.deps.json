@@ -33,8 +33,8 @@
           "Microsoft.Extensions.Configuration.Json": "2.2.0",
           "Microsoft.Extensions.Configuration.UserSecrets": "2.2.0",
           "Microsoft.Extensions.Logging": "3.1.3",
-          "Microsoft.Extensions.Logging.Configuration": "2.2.0",
-          "Microsoft.Extensions.Logging.Console": "2.2.0",
+          "Microsoft.Extensions.Logging.Configuration": "3.1.0",
+          "Microsoft.Extensions.Logging.Console": "3.1.0",
           "Microsoft.Extensions.Logging.Debug": "2.2.0",
           "Microsoft.Extensions.Logging.EventSource": "2.2.0"
         }
@@ -677,17 +677,17 @@
           }
         }
       },
-      "Microsoft.Extensions.Logging.Configuration/2.2.0": {
+      "Microsoft.Extensions.Logging.Configuration/3.1.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "3.1.3",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "2.2.0"
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "3.1.0"
         }
       },
-      "Microsoft.Extensions.Logging.Console/2.2.0": {
+      "Microsoft.Extensions.Logging.Console/3.1.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "3.1.3",
           "Microsoft.Extensions.Logging": "3.1.3",
-          "Microsoft.Extensions.Logging.Configuration": "2.2.0"
+          "Microsoft.Extensions.Logging.Configuration": "3.1.0"
         }
       },
       "Microsoft.Extensions.Logging.Debug/2.2.0": {
@@ -714,7 +714,7 @@
           }
         }
       },
-      "Microsoft.Extensions.Options.ConfigurationExtensions/2.2.0": {
+      "Microsoft.Extensions.Options.ConfigurationExtensions/3.1.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "3.1.3",
           "Microsoft.Extensions.Configuration.Binder": "3.1.3",
@@ -1815,7 +1815,8 @@
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.2.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.3"
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.3",
+          "Microsoft.Extensions.Logging.Console": "3.1.0"
         },
         "runtime": {
           "youShouldCheckOutThisBand.dll": {}
@@ -2340,19 +2341,19 @@
       "path": "microsoft.extensions.logging.abstractions/3.1.3",
       "hashPath": "microsoft.extensions.logging.abstractions.3.1.3.nupkg.sha512"
     },
-    "Microsoft.Extensions.Logging.Configuration/2.2.0": {
+    "Microsoft.Extensions.Logging.Configuration/3.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ukU1mQGX9+xBsEzpNd13yl4deFVYI+fxxnmKpOhvNZsF+/trCrAUQh+9QM5pPGHbfYkz3lLQ4BXfKCP0502dLw==",
-      "path": "microsoft.extensions.logging.configuration/2.2.0",
-      "hashPath": "microsoft.extensions.logging.configuration.2.2.0.nupkg.sha512"
+      "sha512": "sha512-yW3nIoNM3T5iZg8bRViiCN4+vIU/02l+mlWSvKqWnr0Fd5Uk1zKdT9jBWKEcJhRIWKVWWSpFWXnM5yWoIAy1Eg==",
+      "path": "microsoft.extensions.logging.configuration/3.1.0",
+      "hashPath": "microsoft.extensions.logging.configuration.3.1.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Logging.Console/2.2.0": {
+    "Microsoft.Extensions.Logging.Console/3.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1eGgcOJ++PMxW6sn++j6U7wsWvhEBm/5ScqBUUBGLRE8M7AHahi9tsxivDMqEXVM3F0/pshHl3kEpMXtw4BeFg==",
-      "path": "microsoft.extensions.logging.console/2.2.0",
-      "hashPath": "microsoft.extensions.logging.console.2.2.0.nupkg.sha512"
+      "sha512": "sha512-lkqVlnQqfqr8nmrpy7EnISXy192NEaIb0Xh4zaO8XS/QMiC3RqOAxxeq89JPSmjw+YfecwcikV8UB+NacdgRDg==",
+      "path": "microsoft.extensions.logging.console/3.1.0",
+      "hashPath": "microsoft.extensions.logging.console.3.1.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging.Debug/2.2.0": {
       "type": "package",
@@ -2382,12 +2383,12 @@
       "path": "microsoft.extensions.options/3.1.3",
       "hashPath": "microsoft.extensions.options.3.1.3.nupkg.sha512"
     },
-    "Microsoft.Extensions.Options.ConfigurationExtensions/2.2.0": {
+    "Microsoft.Extensions.Options.ConfigurationExtensions/3.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-d4WS6yVXaw43ffiUnHj8oG1t2B6RbDDiQcgdA+Eq//NlPa3Wd+GTJFKj4OM4eDF3GjVumGr/CEVRS/jcYoF5LA==",
-      "path": "microsoft.extensions.options.configurationextensions/2.2.0",
-      "hashPath": "microsoft.extensions.options.configurationextensions.2.2.0.nupkg.sha512"
+      "sha512": "sha512-tx6gMKE3rDspA1YZT8SlQJmyt1BaBSl6mNjB3g0ZO6m3NnoavCifXkGeBuDk9Ae4XjW8C+dty52p+0u38jPRIQ==",
+      "path": "microsoft.extensions.options.configurationextensions/3.1.0",
+      "hashPath": "microsoft.extensions.options.configurationextensions.3.1.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Primitives/3.1.3": {
       "type": "package",

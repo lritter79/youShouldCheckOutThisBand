@@ -8,8 +8,10 @@ using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Controllers
 {
+    //home controller will look for views in the "home" folder in the view folder
     public class HomeController : Controller
     {
+        //the action is where the logic happens, the controller maps to the action so it can return that view
         public IActionResult Index()
         {
             return View();

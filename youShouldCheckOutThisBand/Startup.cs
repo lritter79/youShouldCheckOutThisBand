@@ -35,14 +35,14 @@ namespace youShouldCheckOutThisBand
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //environemn variables in properties determine environment
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                
+                app.UseExceptionHandler("/Error");              
             }
             
             app.UseCookiePolicy();
@@ -60,7 +60,7 @@ namespace youShouldCheckOutThisBand
                     //pattern to look for to tell the system to find a controller
                     pattern: "{controller}/{action}/{id?}",
                     //anonymous objects with defaults if pattern isnt specified
-                    new { controller = "Home", action = "Index" });
+                    new { controller = "App", action = "Index" });
               
             });
         }

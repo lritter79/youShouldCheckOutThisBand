@@ -15,6 +15,7 @@ namespace youShouldCheckOutThisBand
     {
         private static YSCOTBContext context = new YSCOTBContext();
 
+        //this whole prgram is just a console app with webpages
         public static void Main(string[] args)
         {
             //temporary code for setting up database
@@ -24,6 +25,8 @@ namespace youShouldCheckOutThisBand
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            /*when this console app is run, 
+            build a host, create a web host and run that host*/
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }

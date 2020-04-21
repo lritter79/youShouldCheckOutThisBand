@@ -1,13 +1,18 @@
-﻿
+﻿@model AddRecommendationViewModel
 @{
     ViewBag.Title = "Add Recommendation";
-    @* the benefit of storing the title here is that it sets everything including the stuff in the layout here *@
+    @* the benefit of storing the title her@mode is that it sets everything including the stuff in the layout here *@
 }
 
-    <h1>Add a song</h1>
+
+<h1>Add a song</h1>
+@*asp-validation-summary shows all errors we get if this is submitted wrong*@
+<div asp-validation-summary="All"></div>
 <form method="post">
-    <p>Song spotify URI:</p>
-    <input id="inputSongUri" name="SpotifyUri"/>
-    <input type="submit" value="submit song"/>
+    <label asp-for="SpotifyUri">Enter the spotify URI for the song you'd like to recommend</label>
+    <span asp-validation-for="SpotifyUri"></span>
+    <input id="inputSongUri" name="SpotifyUri" />
+    <br />
+    <input type="submit" value="submit song" />
 </form>
 

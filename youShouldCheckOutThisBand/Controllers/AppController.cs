@@ -7,9 +7,10 @@ using youShouldCheckOutThisBand.ViewModel;
 
 namespace youShouldCheckOutThisBand.Controllers
 {
+    //app controller will look for views in the "app" folder in the view folder
     public class AppController : Controller
     {
-        
+        //the action is where the logic happens, the controller maps to the action so it can return that view
         public IActionResult Index()
         {
             ViewBag.Title = "You Should Check Out This Band";
@@ -27,8 +28,16 @@ namespace youShouldCheckOutThisBand.Controllers
         [HttpPost("AddRecommendation")]
         public IActionResult AddRecommendation(AddRecommendationViewModel model)
         {
-            //this is where we have to get the song by uri, get album and artits, and images
-            //add them to the db and display that it's been added to the user
+            
+            if (ModelState.IsValid)
+            {
+                //this is where we have to get the song by uri, get album and artits, and images
+                //add them to the db and display that it's been added to the user
+            }
+            else
+            {
+                //show errors
+            }
             return View();
         }
     }

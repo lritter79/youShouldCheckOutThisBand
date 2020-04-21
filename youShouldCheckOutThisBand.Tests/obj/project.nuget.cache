@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1AgkthWakVkpbcuV/ivJTXjGt5HyFsoMl/HkZWLknwhmHGWjcHee01HZOwWrk1eXgRbuJTrM4elKI+23q7qn/Q==",
+  "dgSpecHash": "yW7Vjj0zsqOE5F5THZggnUyix9JRRGDeG554CPSz7ex5k63u2StiwM50STPj0twtuzSVNK7Y3HTLczarxDv83w==",
   "success": true,
   "projectFilePath": "C:\\Users\\lritter\\Desktop\\youShouldCheckOutThisBand\\youShouldCheckOutThisBand\\youShouldCheckOutThisBand.Tests\\youShouldCheckOutThisBand.Tests.csproj",
   "expectedPackageFiles": [
@@ -118,6 +118,7 @@
     "C:\\Users\\lritter\\.nuget\\packages\\nuget.frameworks\\5.0.0\\nuget.frameworks.5.0.0.nupkg.sha512",
     "C:\\Users\\lritter\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
     "C:\\Users\\lritter\\.nuget\\packages\\nunit3testadapter\\3.15.1\\nunit3testadapter.3.15.1.nupkg.sha512",
+    "C:\\Users\\lritter\\.nuget\\packages\\odetocode.usenodemodules\\3.0.0\\odetocode.usenodemodules.3.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

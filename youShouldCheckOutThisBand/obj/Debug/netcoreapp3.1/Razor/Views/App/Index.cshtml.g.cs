@@ -33,8 +33,15 @@ using youShouldCheckOutThisBand.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\lritter\Desktop\youShouldCheckOutThisBand\youShouldCheckOutThisBand\youShouldCheckOutThisBand\Views\_ViewImports.cshtml"
+using youShouldCheckOutThisBand.ViewModel;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ab1884cad8a3036ffa68caff5bb9127b335b3fbc", @"/Views/App/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"911a988bdeecca90091b1724db719889d63244c4", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3d3398ec6a31eea9717a9cd03fbe219b02a68d4b", @"/Views/_ViewImports.cshtml")]
     public class Views_App_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "App", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -81,7 +88,7 @@ using youShouldCheckOutThisBand.Models;
 #line hidden
 #nullable disable
             WriteLiteral("</h1>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ab1884cad8a3036ffa68caff5bb9127b335b3fbc4690", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ab1884cad8a3036ffa68caff5bb9127b335b3fbc4943", async() => {
                 WriteLiteral("Suggest a song");
             }
             );

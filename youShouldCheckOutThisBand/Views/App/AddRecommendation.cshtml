@@ -5,14 +5,24 @@
 }
 
 
-<h1>Add a song</h1>
 @*asp-validation-summary shows all errors we get if this is submitted wrong*@
-<div asp-validation-summary="All"></div>
-<form method="post">
-    <label asp-for="SpotifyUri">Enter the spotify URI for the song you'd like to recommend</label>
-    <span asp-validation-for="SpotifyUri"></span>
-    <input id="inputSongUri" name="SpotifyUri" />
-    <br />
-    <input type="submit" value="submit song"  class="btn btn-success"/>
-</form>
+
+<div class="col-md-6 offset-md-3">
+    <div class="card card-body bg-light">
+        <h1>Add a song</h1>
+        <div asp-validation-summary="All"></div>
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="SpotifyUri">Enter the spotify URI for the song you'd like to recommend</label>
+                <span asp-validation-for="SpotifyUri" class="text-danger"></span>
+                <input id="inputSongUri" name="SpotifyUri" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="submit song" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
 

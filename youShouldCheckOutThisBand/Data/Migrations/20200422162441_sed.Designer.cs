@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using youShouldCheckOutThisBand.Contexts;
 
 namespace youShouldCheckOutThisBand.Migrations
 {
     [DbContext(typeof(YSCOTBContext))]
-    partial class YSCOTBContextModelSnapshot : ModelSnapshot
+    [Migration("20200422162441_sed")]
+    partial class sed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,6 +106,14 @@ namespace youShouldCheckOutThisBand.Migrations
                     b.HasKey("SpotifyId");
 
                     b.ToTable("Artists");
+
+                    b.HasData(
+                        new
+                        {
+                            SpotifyId = "6DPYiyq5kWVQS4RGwxzPC7",
+                            Name = "Dr. Dre",
+                            Uri = "6DPYiyq5kWVQS4RGwxzPC7"
+                        });
                 });
 
             modelBuilder.Entity("youShouldCheckOutThisBand.Entities.ArtistImageEntity", b =>

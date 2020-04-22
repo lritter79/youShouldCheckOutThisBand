@@ -12,5 +12,6 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <RazorPage_SelectedScaffolderID>Microsoft.WebTools.Scaffolding.Core.RazorPageScaffolder</RazorPage_SelectedScaffolderID>
     <RazorPage_SelectedScaffolderCategoryPath>root/RazorPage</RazorPage_SelectedScaffolderCategoryPath>
+    <WebStackScaffolding_DbContextTypeFullName>youShouldCheckOutThisBand.Contexts.YSCOTBContext</WebStackScaffolding_DbContextTypeFullName>
   </PropertyGroup>
 </Project>

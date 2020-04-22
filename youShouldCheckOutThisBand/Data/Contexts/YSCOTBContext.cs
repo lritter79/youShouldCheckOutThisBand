@@ -14,6 +14,13 @@ namespace youShouldCheckOutThisBand.Contexts
         public DbSet<AlbumCoverEntity> AlbumCovers { get; set; }
         public DbSet<GenreEntity> Genres { get; set; }
 
+
+        //passes options down to the baseclass
+        public YSCOTBContext(DbContextOptions<YSCOTBContext> options): base(options)
+        {
+
+        }
+
         public static readonly ILoggerFactory ConsoleLoggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddFilter((category, level) =>
@@ -26,13 +33,15 @@ namespace youShouldCheckOutThisBand.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //point to local sql server instance and says that database will be called "AppData"
-            optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = YSCOTBAppData")
-                .UseLoggerFactory(ConsoleLoggerFactory);
+            optionsBuilder.UseLoggerFactory(ConsoleLoggerFactory);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+            //this is where you can set properties for models
+
             //getting the keys for join tables for many to many relationships
             modelBuilder.Entity<ArtistAlbumJoinEntity>().ToTable("ArtistAlbumJoinTable").HasKey(s => new { s.ArtistSpotifyId, s.AlbumSpotifyId });
             modelBuilder.Entity<TrackArtistJoinEntity>().HasKey(s => new { s.ArtistSpotifyId, s.TrackSpotifyId });
@@ -43,8 +52,17 @@ namespace youShouldCheckOutThisBand.Contexts
             modelBuilder.Entity<TrackEntity>()
                 .Property(t => t.Votes)
                 .HasDefaultValue(1);
-        }
 
+            //this is one way to seed, but it's not efficient because it runs everytime dbcontext is instatiated
+            //    modelBuilder.Entity<ArtistEntity>()
+            //        .HasData(new ArtistEntity()
+            //        {
+            //            SpotifyId = "6DPYiyq5kWVQS4RGwxzPC7",
+            //            Name = "Dr. Dre",
+            //            Uri = "6DPYiyq5kWVQS4RGwxzPC7"
+            //        });
+            //}
+        }
         
     }
 }

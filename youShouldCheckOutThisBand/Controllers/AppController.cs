@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using youShouldCheckOutThisBand.Contexts;
+using youShouldCheckOutThisBand.Entities;
 using youShouldCheckOutThisBand.ViewModel;
 
 namespace youShouldCheckOutThisBand.Controllers
@@ -10,6 +12,13 @@ namespace youShouldCheckOutThisBand.Controllers
     //app controller will look for views in the "app" folder in the view folder
     public class AppController : Controller
     {
+        private readonly YSCOTBContext _context;
+
+        public AppController (YSCOTBContext ctx)
+        {
+            _context = ctx;
+        }
+
         //the action is where the logic happens, the controller maps to the action so it can return that view
         public IActionResult Index()
         {
@@ -39,6 +48,14 @@ namespace youShouldCheckOutThisBand.Controllers
                 //show errors
             }
             return View();
+        }
+
+        [HttpGet("Bands")]
+        public IActionResult Bands()
+        {
+            //return the bands people suggested
+            var results = _context.Artists.OrderBy(b => b.Name).ToList();
+            return View(results.ToList());
         }
     }
 }

@@ -1,1 +1,6 @@
 .vs/
+appsetting.json
+youShouldCheckOutThisBand.Tests/bin/
+youShouldCheckOutThisBand/bin/
+youShouldCheckOutThisBand/obj/
+youShouldCheckOutThisBand.Tests/obj/

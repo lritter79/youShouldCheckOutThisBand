@@ -44,7 +44,9 @@ namespace youShouldCheckOutThisBand
             {
                 app.UseExceptionHandler("/Error");              
             }
-            
+
+            app.UseNodeModules();
+
             app.UseCookiePolicy();
 
             app.UseStaticFiles();

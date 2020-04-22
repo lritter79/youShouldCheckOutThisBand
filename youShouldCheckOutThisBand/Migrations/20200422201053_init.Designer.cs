@@ -9,8 +9,8 @@ using youShouldCheckOutThisBand.Contexts;
 namespace youShouldCheckOutThisBand.Migrations
 {
     [DbContext(typeof(YSCOTBContext))]
-    [Migration("20200419202140_fix table name")]
-    partial class fixtablename
+    [Migration("20200422201053_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -213,6 +213,11 @@ namespace youShouldCheckOutThisBand.Migrations
 
                     b.Property<string>("Uri")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Votes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.HasKey("SpotifyId");
 

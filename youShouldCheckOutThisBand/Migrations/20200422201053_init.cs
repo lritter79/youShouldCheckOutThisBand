@@ -2,7 +2,7 @@
 
 namespace youShouldCheckOutThisBand.Migrations
 {
-    public partial class fixtablename : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,7 +81,8 @@ namespace youShouldCheckOutThisBand.Migrations
                     Href = table.Column<string>(nullable: true),
                     PreviewUrl = table.Column<string>(nullable: true),
                     Uri = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Votes = table.Column<int>(nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {

@@ -4,6 +4,21 @@
 }
 
 
-    <h1>@ViewBag.Title</h1>
-    <a asp-controller="App" asp-action="AddRecommendation">Suggest a song</a>
+
+    <div class="row">
+        @* trying out bootstrap columns *@
+        @* col-md-6 = on tablet sized and larger, let's split the plage in half because 12/6 = 2  *@
+        <div class="col-md-4">
+            <a asp-controller="App" asp-action="AddRecommendation">Suggest a song</a>
+        </div>
+        <div class="col-md-4">
+            <a>Find a new band to get into</a>
+        </div>
+        <div class="col-md-4">
+            <p style="text-align:center" >Rock n' Roll</p>
+        </div>
+    </div>
+
+
+
 

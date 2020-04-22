@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <link href="~/node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         body {
-            color:blueviolet;
+            color: blueviolet;
         }
     </style>
     <script src="~/node_modules/jquery/dist/jquery.js"></script>
@@ -15,21 +16,21 @@
 </head>
 <body>
     @*building a header with the bs class container*@ 
-    <header class="container">      
+    <header class="container-fluid">      
         @* navbar is a bootstrap class that makes a navbar that's good on desktop and mobile *@
         @* navbar brand is a special class *@
-        <nav class="navbar-dark bg-dark navbar-expand-md">
-            <h1>You Should Check Out This Band</h1>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+            <h1 class="navbar-brand">You Should Check Out This Band <i class="fa fa-music"></i></h1>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#theMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="theMenu" class="navbar-collapse collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="navbar-link" asp-controller="App" asp-action="AddRecommendation">Suggest a song</a>
+                        <a class="nav-link" asp-controller="App" asp-action="AddRecommendation">Suggest a song</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-link" asp-controller="App" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-controller="App" asp-action="Index">Home</a>
                     </li>
                 </ul>
             </div>        

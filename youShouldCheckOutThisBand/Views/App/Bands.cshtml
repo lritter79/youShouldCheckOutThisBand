@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ArtistEntity>
+@{
+    ViewBag.Title = "Bands";
+}
+
+<p>Counts: @Model.Count()</p>
+@foreach (var b in Model)
+{
+    <li>
+        @b.Name
+        <img src="@((b.Images.Count != 0) ? b.Images.First().Url : "")" />
+    </li>
+    <br />
+}

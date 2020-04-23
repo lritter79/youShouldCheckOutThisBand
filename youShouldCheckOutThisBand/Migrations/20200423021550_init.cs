@@ -10,7 +10,8 @@ namespace youShouldCheckOutThisBand.Migrations
                 name: "Albums",
                 columns: table => new
                 {
-                    SpotifyId = table.Column<string>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AlbumType = table.Column<string>(nullable: true),
                     Href = table.Column<string>(nullable: true),
                     Label = table.Column<string>(nullable: true),
@@ -21,20 +22,21 @@ namespace youShouldCheckOutThisBand.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Albums", x => x.SpotifyId);
+                    table.PrimaryKey("PK_Albums", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Artists",
                 columns: table => new
                 {
-                    SpotifyId = table.Column<string>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Uri = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Artists", x => x.SpotifyId);
+                    table.PrimaryKey("PK_Artists", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,16 +61,16 @@ namespace youShouldCheckOutThisBand.Migrations
                     Height = table.Column<int>(nullable: false),
                     Width = table.Column<int>(nullable: false),
                     Url = table.Column<string>(nullable: true),
-                    AlbumSpotifyId = table.Column<string>(nullable: true)
+                    AlbumId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AlbumCovers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AlbumCovers_Albums_AlbumSpotifyId",
-                        column: x => x.AlbumSpotifyId,
+                        name: "FK_AlbumCovers_Albums_AlbumId",
+                        column: x => x.AlbumId,
                         principalTable: "Albums",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -76,8 +78,9 @@ namespace youShouldCheckOutThisBand.Migrations
                 name: "Tracks",
                 columns: table => new
                 {
-                    SpotifyId = table.Column<string>(nullable: false),
-                    AlbumSpotifyId = table.Column<string>(nullable: true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AlbumId = table.Column<int>(nullable: true),
                     Href = table.Column<string>(nullable: true),
                     PreviewUrl = table.Column<string>(nullable: true),
                     Uri = table.Column<string>(nullable: true),
@@ -86,12 +89,12 @@ namespace youShouldCheckOutThisBand.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tracks", x => x.SpotifyId);
+                    table.PrimaryKey("PK_Tracks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tracks_Albums_AlbumSpotifyId",
-                        column: x => x.AlbumSpotifyId,
+                        name: "FK_Tracks_Albums_AlbumId",
+                        column: x => x.AlbumId,
                         principalTable: "Albums",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -99,23 +102,23 @@ namespace youShouldCheckOutThisBand.Migrations
                 name: "ArtistAlbumJoinTable",
                 columns: table => new
                 {
-                    ArtistSpotifyId = table.Column<string>(nullable: false),
-                    AlbumSpotifyId = table.Column<string>(nullable: false)
+                    ArtistId = table.Column<int>(nullable: false),
+                    AlbumId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArtistAlbumJoinTable", x => new { x.ArtistSpotifyId, x.AlbumSpotifyId });
+                    table.PrimaryKey("PK_ArtistAlbumJoinTable", x => new { x.ArtistId, x.AlbumId });
                     table.ForeignKey(
-                        name: "FK_ArtistAlbumJoinTable_Albums_AlbumSpotifyId",
-                        column: x => x.AlbumSpotifyId,
+                        name: "FK_ArtistAlbumJoinTable_Albums_AlbumId",
+                        column: x => x.AlbumId,
                         principalTable: "Albums",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ArtistAlbumJoinTable_Artists_ArtistSpotifyId",
-                        column: x => x.ArtistSpotifyId,
+                        name: "FK_ArtistAlbumJoinTable_Artists_ArtistId",
+                        column: x => x.ArtistId,
                         principalTable: "Artists",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -128,16 +131,16 @@ namespace youShouldCheckOutThisBand.Migrations
                     Height = table.Column<int>(nullable: false),
                     Width = table.Column<int>(nullable: false),
                     Url = table.Column<string>(nullable: true),
-                    ArtistSpotifyId = table.Column<string>(nullable: true)
+                    ArtistId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ArtistImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ArtistImages_Artists_ArtistSpotifyId",
-                        column: x => x.ArtistSpotifyId,
+                        name: "FK_ArtistImages_Artists_ArtistId",
+                        column: x => x.ArtistId,
                         principalTable: "Artists",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -146,16 +149,16 @@ namespace youShouldCheckOutThisBand.Migrations
                 columns: table => new
                 {
                     GenreId = table.Column<int>(nullable: false),
-                    AlbumSpotifyId = table.Column<string>(nullable: false)
+                    AlbumId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GenreAlbumJoinTable", x => new { x.AlbumSpotifyId, x.GenreId });
+                    table.PrimaryKey("PK_GenreAlbumJoinTable", x => new { x.AlbumId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_GenreAlbumJoinTable_Albums_AlbumSpotifyId",
-                        column: x => x.AlbumSpotifyId,
+                        name: "FK_GenreAlbumJoinTable_Albums_AlbumId",
+                        column: x => x.AlbumId,
                         principalTable: "Albums",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GenreAlbumJoinTable_Genres_GenreId",
@@ -170,16 +173,16 @@ namespace youShouldCheckOutThisBand.Migrations
                 columns: table => new
                 {
                     GenreId = table.Column<int>(nullable: false),
-                    ArtistSpotifyId = table.Column<string>(nullable: false)
+                    ArtistId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GenreArtistJoinEntity", x => new { x.ArtistSpotifyId, x.GenreId });
+                    table.PrimaryKey("PK_GenreArtistJoinEntity", x => new { x.ArtistId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_GenreArtistJoinEntity_Artists_ArtistSpotifyId",
-                        column: x => x.ArtistSpotifyId,
+                        name: "FK_GenreArtistJoinEntity_Artists_ArtistId",
+                        column: x => x.ArtistId,
                         principalTable: "Artists",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GenreArtistJoinEntity_Genres_GenreId",
@@ -193,40 +196,40 @@ namespace youShouldCheckOutThisBand.Migrations
                 name: "TrackArtistJoinEntity",
                 columns: table => new
                 {
-                    ArtistSpotifyId = table.Column<string>(nullable: false),
-                    TrackSpotifyId = table.Column<string>(nullable: false)
+                    ArtistId = table.Column<int>(nullable: false),
+                    TrackId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TrackArtistJoinEntity", x => new { x.ArtistSpotifyId, x.TrackSpotifyId });
+                    table.PrimaryKey("PK_TrackArtistJoinEntity", x => new { x.ArtistId, x.TrackId });
                     table.ForeignKey(
-                        name: "FK_TrackArtistJoinEntity_Artists_ArtistSpotifyId",
-                        column: x => x.ArtistSpotifyId,
+                        name: "FK_TrackArtistJoinEntity_Artists_ArtistId",
+                        column: x => x.ArtistId,
                         principalTable: "Artists",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TrackArtistJoinEntity_Tracks_TrackSpotifyId",
-                        column: x => x.TrackSpotifyId,
+                        name: "FK_TrackArtistJoinEntity_Tracks_TrackId",
+                        column: x => x.TrackId,
                         principalTable: "Tracks",
-                        principalColumn: "SpotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AlbumCovers_AlbumSpotifyId",
+                name: "IX_AlbumCovers_AlbumId",
                 table: "AlbumCovers",
-                column: "AlbumSpotifyId");
+                column: "AlbumId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArtistAlbumJoinTable_AlbumSpotifyId",
+                name: "IX_ArtistAlbumJoinTable_AlbumId",
                 table: "ArtistAlbumJoinTable",
-                column: "AlbumSpotifyId");
+                column: "AlbumId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArtistImages_ArtistSpotifyId",
+                name: "IX_ArtistImages_ArtistId",
                 table: "ArtistImages",
-                column: "ArtistSpotifyId");
+                column: "ArtistId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GenreAlbumJoinTable_GenreId",
@@ -239,14 +242,14 @@ namespace youShouldCheckOutThisBand.Migrations
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TrackArtistJoinEntity_TrackSpotifyId",
+                name: "IX_TrackArtistJoinEntity_TrackId",
                 table: "TrackArtistJoinEntity",
-                column: "TrackSpotifyId");
+                column: "TrackId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tracks_AlbumSpotifyId",
+                name: "IX_Tracks_AlbumId",
                 table: "Tracks",
-                column: "AlbumSpotifyId");
+                column: "AlbumId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -8,7 +8,7 @@ namespace youShouldCheckOutThisBand.Entities
     public class GenreArtistJoinEntity
     {
         public int GenreId { get; set; }
-        public string ArtistSpotifyId { get; set; }
+        public int ArtistId { get; set; }
         public ArtistEntity Artist{ get; set; }
         public GenreEntity Genre { get; set; }
     }

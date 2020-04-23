@@ -29,7 +29,6 @@ namespace youShouldCheckOutThisBand.Data
 
                 var sampleArtist = new ArtistEntity()
                 {
-                    SpotifyId = "6DPYiyq5kWVQS4RGwxzPC7",
                     Name = "Dr. Dre",
                     Uri = "6DPYiyq5kWVQS4RGwxzPC7"
                 };

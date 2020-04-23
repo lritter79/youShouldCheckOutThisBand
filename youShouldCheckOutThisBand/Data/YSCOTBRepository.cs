@@ -21,7 +21,15 @@ namespace youShouldCheckOutThisBand.Data
 
         public IEnumerable<ArtistEntity> GetAllArtistEntities()
         {
-            return _context.Artists.ToList();
+            var artists = _context.Artists.ToList();
+
+            foreach (ArtistEntity a in artists)
+            {
+                a.Images = _context.ArtistImages.Where(img => img.Artist.Id == a.Id).ToList();
+            }
+
+            return artists;
+
         }
 
         public IEnumerable<ArtistEntity> GetArtistsByGenre(string genre)
@@ -36,7 +44,7 @@ namespace youShouldCheckOutThisBand.Data
             return _context.SaveChanges() > 1;
         }
 
-        //public ArtistEntity GetArtistById(string genre)
+        //public ArtistEntity GetArtistById(9string genre)
         //{
         //    return _context.Artists.Where(a => a.ArtistsGenres
         //                                        .Any(g => g.Genre.Name == genre));

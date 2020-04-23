@@ -27,15 +27,42 @@ namespace youShouldCheckOutThisBand.Data
             {
                 //if artists is empty, create sample data
 
-                var sampleArtist = new ArtistEntity()
+                var sampleArtists = new List<ArtistEntity>()
                 {
-                    Name = "Dr. Dre",
-                    Uri = "6DPYiyq5kWVQS4RGwxzPC7"
+                    new ArtistEntity()
+                    {
+                        Name = "Dr. Dre",
+                        Uri = "6DPYiyq5kWVQS4RGwxzPC7",
+                        Images = new List<ArtistImageEntity>()
+                    }
                 };
 
-                _context.Artists.Add(sampleArtist);
-            }
+                foreach (ArtistEntity a in sampleArtists)
+                {
+                    _context.Artists.Add(a);
+                }
 
+                var sampleImages = new List<ArtistImageEntity>()
+                {
+                    new ArtistImageEntity()
+                    {
+                        Url = "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTQ3NTI3MDgzNTIwNjk3ODM4/dr_dre_photo_by_christopher_pol_getty_images_entertainment_getty_120919208.jpg",
+                        Height=100,
+                        Width=100,
+                        Artist = sampleArtists.FirstOrDefault(a => a.Id == 1)
+                    }
+                };
+
+                foreach (ArtistImageEntity a in sampleImages)
+                {
+                    _context.ArtistImages.Add(a);
+                }
+
+
+
+                sampleArtists[0].Images.Add(sampleImages[0]);
+            }
+            
             _context.SaveChanges();
         }
     }

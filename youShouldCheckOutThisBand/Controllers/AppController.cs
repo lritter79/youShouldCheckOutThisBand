@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using youShouldCheckOutThisBand.Contexts;
+using youShouldCheckOutThisBand.Data;
 using youShouldCheckOutThisBand.Entities;
 using youShouldCheckOutThisBand.ViewModel;
 
@@ -12,11 +13,11 @@ namespace youShouldCheckOutThisBand.Controllers
     //app controller will look for views in the "app" folder in the view folder
     public class AppController : Controller
     {
-        private readonly YSCOTBContext _context;
+        private readonly IYSCOTBRepository _reposity;
 
-        public AppController (YSCOTBContext ctx)
+        public AppController (IYSCOTBRepository repo)
         {
-            _context = ctx;
+            _reposity = repo;
         }
 
         //the action is where the logic happens, the controller maps to the action so it can return that view
@@ -54,7 +55,7 @@ namespace youShouldCheckOutThisBand.Controllers
         public IActionResult Bands()
         {
             //return the bands people suggested
-            var results = _context.Artists.OrderBy(b => b.Name).ToList();
+            var results = _reposity.GetAllArtistEntities();
             return View(results.ToList());
         }
     }

@@ -3,9 +3,11 @@ using youShouldCheckOutThisBand.Entities;
 
 namespace youShouldCheckOutThisBand.Data
 {
+    //the interface can be good for testing
     public interface IYSCOTBRepository
     {
         IEnumerable<ArtistEntity> GetAllArtistEntities();
         IEnumerable<ArtistEntity> GetArtistsByGenre(string genre);
+        bool SaveAll();
     }
 }

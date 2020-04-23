@@ -9,9 +9,11 @@ namespace youShouldCheckOutThisBand.Entities
     public class ArtistAlbumJoinEntity
     {
         
-        public int ArtistId { get; set; }       
+        public int ArtistId { get; set; }        
         public int AlbumId { get; set; }
-        public AlbumEntity Album { get; set; }
-        public ArtistEntity Artist { get; set; }
+        [ForeignKey("AlbumId")]
+        public virtual AlbumEntity Album { get; set; }
+        [ForeignKey("ArtistId")]
+        public virtual ArtistEntity Artist { get; set; }
     }
 }

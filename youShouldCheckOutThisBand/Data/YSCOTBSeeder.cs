@@ -58,9 +58,35 @@ namespace youShouldCheckOutThisBand.Data
                     _context.ArtistImages.Add(a);
                 }
 
+                var sampleGenres = new List<GenreEntity>()
+                {
+                    new GenreEntity()
+                    {
+                        Name = "Hip Hop"
+                    }
+                };
 
+                foreach(var g in sampleGenres)
+                {
+                    _context.Genres.Add(g);
+                }
+
+                var sampleGenreArtistJoin = new GenreArtistJoinEntity
+                {
+                    ArtistId = sampleArtists[0].Id,
+                    GenreId = sampleGenres[0].Id,
+                    Artist = sampleArtists[0],
+                    Genre = sampleGenres[0]
+                };
+
+                
+
+                sampleArtists[0].ArtistsGenres.Add(sampleGenreArtistJoin);
 
                 sampleArtists[0].Images.Add(sampleImages[0]);
+
+                _context.GenresArtists.Add(sampleGenreArtistJoin);
+
             }
             
             _context.SaveChanges();

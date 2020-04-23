@@ -13,6 +13,10 @@ namespace youShouldCheckOutThisBand.Contexts
         public DbSet<ArtistEntity> Artists { get; set; }
         public DbSet<AlbumCoverEntity> AlbumCovers { get; set; }
         public DbSet<GenreEntity> Genres { get; set; }
+        public DbSet<GenreAlbumJoinEntity> GenresAlbums { get; set; }
+        public DbSet<GenreArtistJoinEntity> GenresArtists { get; set; }
+        public DbSet<ArtistAlbumJoinEntity> ArtistsAlbums { get; set; }
+        public DbSet<TrackArtistJoinEntity> ArtistsTracks { get; set; }
 
 
         //passes options down to the baseclass

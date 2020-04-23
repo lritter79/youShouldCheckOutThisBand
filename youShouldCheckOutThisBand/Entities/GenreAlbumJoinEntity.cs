@@ -11,7 +11,9 @@ namespace youShouldCheckOutThisBand.Entities
     {
         public int GenreId { get; set; }
         public int AlbumId { get; set; }
-        public AlbumEntity Album { get; set; }
-        public GenreEntity Genre { get; set; }
+        [ForeignKey("AlbumId")]
+        public virtual AlbumEntity Album { get; set; }
+        [ForeignKey("GenreId")]
+        public virtual GenreEntity Genre { get; set; }
     }
 }

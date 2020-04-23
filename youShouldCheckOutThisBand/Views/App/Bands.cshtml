@@ -4,11 +4,28 @@
 }
 
 <p>Counts: @Model.Count()</p>
-@foreach (var b in Model)
-{
-    <li>
-        @b.Name
-        <img src="@((b.Images.Count != 0) ? b.Images.First().Url : "")" />
-    </li>
-    <br />
-}
+@*rows will treat ehats in a row as a  grid of 12*@
+<div class="row">
+    @foreach (var b in Model)
+    {
+    <div class="col-md-3">
+        <div class="table-bordered bg-info rounded p-1">
+            <p>
+                @b.Name
+            <p>
+
+
+            <p>Genres:</p>
+            <ul>
+                @foreach (var g in b.ArtistsGenres)
+                {
+                    <li>@g.Genre.Name</li>
+                }
+            </ul>
+            <br />
+            @*image-fluid is for dealing with image sizing*@
+            <img src="@((b.Images.Count != 0) ? b.Images.First().Url : "")" class="image-fluid" />
+        </div>       
+     </div>
+    }
+</div>

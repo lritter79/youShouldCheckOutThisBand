@@ -10,8 +10,8 @@ using youShouldCheckOutThisBand.Contexts;
 namespace youShouldCheckOutThisBand.Migrations
 {
     [DbContext(typeof(YSCOTBContext))]
-    [Migration("20200423044926_pp -force")]
-    partial class ppforce
+    [Migration("20200423141020_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace youShouldCheckOutThisBand.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlbumId")
+                    b.Property<int>("AlbumId")
                         .HasColumnType("int");
 
                     b.Property<int>("Height")
@@ -166,7 +166,7 @@ namespace youShouldCheckOutThisBand.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("GenreArtistJoinEntity");
+                    b.ToTable("GenresArtists");
                 });
 
             modelBuilder.Entity("youShouldCheckOutThisBand.Entities.GenreEntity", b =>
@@ -196,7 +196,7 @@ namespace youShouldCheckOutThisBand.Migrations
 
                     b.HasIndex("TrackId");
 
-                    b.ToTable("TrackArtistJoinEntity");
+                    b.ToTable("ArtistsTracks");
                 });
 
             modelBuilder.Entity("youShouldCheckOutThisBand.Entities.TrackEntity", b =>
@@ -237,7 +237,9 @@ namespace youShouldCheckOutThisBand.Migrations
                 {
                     b.HasOne("youShouldCheckOutThisBand.Entities.AlbumEntity", "Album")
                         .WithMany("Images")
-                        .HasForeignKey("AlbumId");
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("youShouldCheckOutThisBand.Entities.ArtistAlbumJoinEntity", b =>

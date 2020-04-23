@@ -10,8 +10,8 @@ using youShouldCheckOutThisBand.Contexts;
 namespace youShouldCheckOutThisBand.Migrations
 {
     [DbContext(typeof(YSCOTBContext))]
-    [Migration("20200423021550_init")]
-    partial class init
+    [Migration("20200423044926_pp -force")]
+    partial class ppforce
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

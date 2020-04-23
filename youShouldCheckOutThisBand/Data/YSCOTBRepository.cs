@@ -21,18 +21,46 @@ namespace youShouldCheckOutThisBand.Data
 
         public IEnumerable<ArtistEntity> GetAllArtistEntities()
         {
-            var artists = _context.Artists.ToList();
+            //var artists = _context.Artists.ToList();
 
-            foreach (ArtistEntity a in artists)
-            {
-                a.Images = _context.ArtistImages.Where(img => img.Artist.Id == a.Id).ToList();
-                a.ArtistsGenres = _context.GenresArtists.Where(g => g.ArtistId == a.Id).ToList();
-                foreach (var ag in a.ArtistsGenres)
-                {
-                    ag.Genre = _context.Genres.Where(g => g.Id == ag.GenreId).FirstOrDefault();
-                }
-                a.ArtistsAlbums = _context.ArtistsAlbums.Where(alb => alb.ArtistId == a.Id).ToList();
-            }
+            //foreach (ArtistEntity a in artists)
+            //{
+            //    a.Images = _context.ArtistImages.Where(img => img.Artist.Id == a.Id).ToList();
+            //    a.ArtistsGenres = _context.GenresArtists.Where(g => g.ArtistId == a.Id).ToList();
+            //    foreach (var ag in a.ArtistsGenres)
+            //    {
+            //        ag.Genre = _context.Genres.Where(g => g.Id == ag.GenreId).FirstOrDefault();
+            //    }
+            //    a.ArtistsAlbums = _context.ArtistsAlbums.Where(alb => alb.ArtistId == a.Id).ToList();
+            //}
+
+            var artists = (from a in _context.Artists
+                           select new ArtistEntity
+                           {
+                               Id = a.Id,
+                               Name = a.Name,
+                               Uri = a.Uri,
+                               Images = (from i in _context.ArtistImages
+                                         where i.Artist.Id == a.Id
+                                         select new ArtistImageEntity
+                                         {
+                                             Id = i.Id,
+                                             Height = i.Height,
+                                             Width = i.Width,
+                                             Url = i.Url,
+                                             Artist = i.Artist
+                                         }).ToList(),
+                               ArtistsGenres = (from ag in _context.GenresArtists
+                                                where a.Id == ag.Artist.Id
+                                                select new GenreArtistJoinEntity
+                                                {
+                                                    Artist = ag.Artist,
+                                                    Genre = ag.Genre,
+                                                    ArtistId = ag.ArtistId,
+                                                    GenreId = ag.GenreId
+                                                }).ToList()
+
+                           }); 
 
             return artists;
 

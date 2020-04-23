@@ -7,6 +7,9 @@ using youShouldCheckOutThisBand.Entities;
 
 namespace youShouldCheckOutThisBand.Data
 {
+    /*
+     * 
+     */
     public class YSCOTBRepository : IYSCOTBRepository
     {
         private readonly YSCOTBContext _context;
@@ -24,7 +27,13 @@ namespace youShouldCheckOutThisBand.Data
         public IEnumerable<ArtistEntity> GetArtistsByGenre(string genre)
         {
             return _context.Artists.Where(a => a.ArtistsGenres
-                                                .Any(g => g.Genre.Name == genre));
+                                                .Any(g => g.Genre.Name == genre))
+                                                .ToList();
+        }
+
+        public bool SaveAll()
+        {
+            return _context.SaveChanges() > 1;
         }
 
         //public ArtistEntity GetArtistById(string genre)

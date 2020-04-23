@@ -35,6 +35,10 @@ namespace youShouldCheckOutThisBand
             //makes it so that appseeder can be created through the service layer
             services.AddTransient<YSCOTBSeeder>();
 
+            //add IYSCOTBRepository as a service
+            //but use YSCOTBRepository as the implementation
+            services.AddScoped<IYSCOTBRepository, YSCOTBRepository>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

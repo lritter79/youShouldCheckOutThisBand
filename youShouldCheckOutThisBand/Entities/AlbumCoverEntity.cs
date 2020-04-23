@@ -31,7 +31,9 @@ namespace youShouldCheckOutThisBand.Entities
         /// </summary>
         public string Url { get; set; }
 
+        public int AlbumId { get; set; }
 
-        public AlbumEntity Album { get; set; }
+        [ForeignKey("AlbumId")]
+        public virtual AlbumEntity Album { get; set; }
     }
 }

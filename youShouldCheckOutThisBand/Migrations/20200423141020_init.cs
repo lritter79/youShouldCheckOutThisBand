@@ -61,7 +61,7 @@ namespace youShouldCheckOutThisBand.Migrations
                     Height = table.Column<int>(nullable: false),
                     Width = table.Column<int>(nullable: false),
                     Url = table.Column<string>(nullable: true),
-                    AlbumId = table.Column<int>(nullable: true)
+                    AlbumId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,7 +71,7 @@ namespace youShouldCheckOutThisBand.Migrations
                         column: x => x.AlbumId,
                         principalTable: "Albums",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,7 +169,7 @@ namespace youShouldCheckOutThisBand.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GenreArtistJoinEntity",
+                name: "GenresArtists",
                 columns: table => new
                 {
                     GenreId = table.Column<int>(nullable: false),
@@ -177,15 +177,15 @@ namespace youShouldCheckOutThisBand.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GenreArtistJoinEntity", x => new { x.ArtistId, x.GenreId });
+                    table.PrimaryKey("PK_GenresArtists", x => new { x.ArtistId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_GenreArtistJoinEntity_Artists_ArtistId",
+                        name: "FK_GenresArtists_Artists_ArtistId",
                         column: x => x.ArtistId,
                         principalTable: "Artists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GenreArtistJoinEntity_Genres_GenreId",
+                        name: "FK_GenresArtists_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "Id",
@@ -193,7 +193,7 @@ namespace youShouldCheckOutThisBand.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TrackArtistJoinEntity",
+                name: "ArtistsTracks",
                 columns: table => new
                 {
                     ArtistId = table.Column<int>(nullable: false),
@@ -201,15 +201,15 @@ namespace youShouldCheckOutThisBand.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TrackArtistJoinEntity", x => new { x.ArtistId, x.TrackId });
+                    table.PrimaryKey("PK_ArtistsTracks", x => new { x.ArtistId, x.TrackId });
                     table.ForeignKey(
-                        name: "FK_TrackArtistJoinEntity_Artists_ArtistId",
+                        name: "FK_ArtistsTracks_Artists_ArtistId",
                         column: x => x.ArtistId,
                         principalTable: "Artists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TrackArtistJoinEntity_Tracks_TrackId",
+                        name: "FK_ArtistsTracks_Tracks_TrackId",
                         column: x => x.TrackId,
                         principalTable: "Tracks",
                         principalColumn: "Id",
@@ -232,19 +232,19 @@ namespace youShouldCheckOutThisBand.Migrations
                 column: "ArtistId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ArtistsTracks_TrackId",
+                table: "ArtistsTracks",
+                column: "TrackId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GenreAlbumJoinTable_GenreId",
                 table: "GenreAlbumJoinTable",
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GenreArtistJoinEntity_GenreId",
-                table: "GenreArtistJoinEntity",
+                name: "IX_GenresArtists_GenreId",
+                table: "GenresArtists",
                 column: "GenreId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrackArtistJoinEntity_TrackId",
-                table: "TrackArtistJoinEntity",
-                column: "TrackId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tracks_AlbumId",
@@ -264,22 +264,22 @@ namespace youShouldCheckOutThisBand.Migrations
                 name: "ArtistImages");
 
             migrationBuilder.DropTable(
+                name: "ArtistsTracks");
+
+            migrationBuilder.DropTable(
                 name: "GenreAlbumJoinTable");
 
             migrationBuilder.DropTable(
-                name: "GenreArtistJoinEntity");
+                name: "GenresArtists");
 
             migrationBuilder.DropTable(
-                name: "TrackArtistJoinEntity");
-
-            migrationBuilder.DropTable(
-                name: "Genres");
+                name: "Tracks");
 
             migrationBuilder.DropTable(
                 name: "Artists");
 
             migrationBuilder.DropTable(
-                name: "Tracks");
+                name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Albums");

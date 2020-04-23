@@ -41,8 +41,6 @@ namespace youShouldCheckOutThisBand.Entities
         /// </summary>
         public string AlbumType { get; set; }
 
-        
-
         /// <summary>
         /// A link to the Web API endpoint providing full details of the album.
         /// </summary>

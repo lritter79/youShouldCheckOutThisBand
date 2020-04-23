@@ -26,6 +26,12 @@ namespace youShouldCheckOutThisBand.Data
             foreach (ArtistEntity a in artists)
             {
                 a.Images = _context.ArtistImages.Where(img => img.Artist.Id == a.Id).ToList();
+                a.ArtistsGenres = _context.GenresArtists.Where(g => g.ArtistId == a.Id).ToList();
+                foreach (var ag in a.ArtistsGenres)
+                {
+                    ag.Genre = _context.Genres.Where(g => g.Id == ag.GenreId).FirstOrDefault();
+                }
+                a.ArtistsAlbums = _context.ArtistsAlbums.Where(alb => alb.ArtistId == a.Id).ToList();
             }
 
             return artists;

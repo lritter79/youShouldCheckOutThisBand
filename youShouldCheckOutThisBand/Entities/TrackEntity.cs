@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,7 +18,8 @@ namespace youShouldCheckOutThisBand.Entities
         /// The Spotify ID for the track.
         /// </summary>
         [Key]
-        public string SpotifyId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         //track has a one to one relationship to album
         public AlbumEntity Album { get; set; }

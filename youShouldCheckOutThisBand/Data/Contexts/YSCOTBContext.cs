@@ -43,10 +43,10 @@ namespace youShouldCheckOutThisBand.Contexts
             //this is where you can set properties for models
 
             //getting the keys for join tables for many to many relationships
-            modelBuilder.Entity<ArtistAlbumJoinEntity>().ToTable("ArtistAlbumJoinTable").HasKey(s => new { s.ArtistSpotifyId, s.AlbumSpotifyId });
-            modelBuilder.Entity<TrackArtistJoinEntity>().HasKey(s => new { s.ArtistSpotifyId, s.TrackSpotifyId });
-            modelBuilder.Entity<GenreArtistJoinEntity>().HasKey(s => new { s.ArtistSpotifyId, s.GenreId });
-            modelBuilder.Entity<GenreAlbumJoinEntity>().HasKey(s => new { s.AlbumSpotifyId, s.GenreId });
+            modelBuilder.Entity<ArtistAlbumJoinEntity>().ToTable("ArtistAlbumJoinTable").HasKey(s => new { s.ArtistId, s.AlbumId });
+            modelBuilder.Entity<TrackArtistJoinEntity>().HasKey(s => new { s.ArtistId, s.TrackId });
+            modelBuilder.Entity<GenreArtistJoinEntity>().HasKey(s => new { s.ArtistId, s.GenreId });
+            modelBuilder.Entity<GenreAlbumJoinEntity>().HasKey(s => new { s.AlbumId, s.GenreId });
 
             //set votes on a track to 1 as the default
             modelBuilder.Entity<TrackEntity>()
@@ -57,7 +57,7 @@ namespace youShouldCheckOutThisBand.Contexts
             //    modelBuilder.Entity<ArtistEntity>()
             //        .HasData(new ArtistEntity()
             //        {
-            //            SpotifyId = "6DPYiyq5kWVQS4RGwxzPC7",
+            //            Id = "6DPYiyq5kWVQS4RGwxzPC7",
             //            Name = "Dr. Dre",
             //            Uri = "6DPYiyq5kWVQS4RGwxzPC7"
             //        });

@@ -7,8 +7,8 @@ namespace youShouldCheckOutThisBand.Entities
 {
     public class TrackArtistJoinEntity
     {
-        public string ArtistSpotifyId { get; set; }
-        public string TrackSpotifyId { get; set; }
+        public int ArtistId { get; set; }
+        public int TrackId { get; set; }
         public TrackEntity Track { get; set; }
         public ArtistEntity Artist {get;set;}
     }

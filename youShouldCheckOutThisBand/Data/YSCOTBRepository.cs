@@ -66,11 +66,38 @@ namespace youShouldCheckOutThisBand.Data
 
         }
 
-        public IEnumerable<ArtistEntity> GetArtistsByGenre(string genre)
+        public IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId)
         {
-            return _context.Artists.Where(a => a.ArtistsGenres
-                                                .Any(g => g.Genre.Name == genre))
-                                                .ToList();
+            var artists = (from a in _context.Artists
+                           where a.ArtistsGenres.Any(a => a.GenreId == genreId)
+                           select new ArtistEntity
+                           {
+                               Id = a.Id,
+                               Name = a.Name,
+                               Uri = a.Uri,
+                               Images = (from i in _context.ArtistImages
+                                         where i.Artist.Id == a.Id
+                                         select new ArtistImageEntity
+                                         {
+                                             Id = i.Id,
+                                             Height = i.Height,
+                                             Width = i.Width,
+                                             Url = i.Url,
+                                             Artist = i.Artist
+                                         }).ToList(),
+                               ArtistsGenres = (from ag in _context.GenresArtists
+                                                where a.Id == ag.Artist.Id
+                                                select new GenreArtistJoinEntity
+                                                {
+                                                    Artist = ag.Artist,
+                                                    Genre = ag.Genre,
+                                                    ArtistId = ag.ArtistId,
+                                                    GenreId = ag.GenreId
+                                                }).ToList()
+
+                           });
+
+            return artists;
         }
 
         public bool SaveAll()

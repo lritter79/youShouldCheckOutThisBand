@@ -7,6 +7,12 @@ namespace youShouldCheckOutThisBand.Models
 {
     public class Album
     {
+        public Album()
+        {
+            Artists = new List<Artist>();
+            Images = new List<Image>();
+        }
+
         public string AlbumType { get; set; }
         public ICollection<Artist> Artists{ get; set; }
         public string Href { get; set; }

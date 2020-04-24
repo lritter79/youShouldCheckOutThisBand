@@ -9,12 +9,10 @@ namespace youShouldCheckOutThisBand.Models
     {
         public Track()
         {
-            Images = new List<Image>();
             Artists = new List<Artist>();
         }
 
         public Album Album { get; set; }
-        public ICollection<Image> Images { get; set; }
         public ICollection<Artist> Artists { get; set; }
         public string Href { get; set; }
         public string Id { get; set; }

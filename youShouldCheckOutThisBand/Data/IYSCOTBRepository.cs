@@ -7,7 +7,7 @@ namespace youShouldCheckOutThisBand.Data
     public interface IYSCOTBRepository
     {
         IEnumerable<ArtistEntity> GetAllArtistEntities();
-        IEnumerable<ArtistEntity> GetArtistsByGenre(string genre);
+        IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId);
         bool SaveAll();
     }
 }

@@ -19,12 +19,13 @@ namespace youShouldCheckOutThisBand.Controllers
     public class ApiController : ControllerBase
     {
         private readonly IYSCOTBRepository _repo;
-        private readonly SpotifyToken _token;
+        private readonly ISpotifyApiRepository _spotify;
+        
 
-        public ApiController(IYSCOTBRepository repo, SpotifyToken token)
+        public ApiController(IYSCOTBRepository repo, ISpotifyApiRepository spotifyApi)
         {
             _repo = repo;
-            _token = token;
+            _spotify = spotifyApi;
         }
 
         [Route("~/api/Artists/{id}")]
@@ -80,14 +81,16 @@ namespace youShouldCheckOutThisBand.Controllers
             
         }
 
-        [Route("~/api/AddSongRecommendation")]
-        [HttpPost]
-        public IActionResult AddSongRecommendation([FromBody] TrackEntity track)
+        [Route("~/api/AddSongRecommendation/{id}")]
+        [HttpPost("{id:alpha}")]
+        public IActionResult AddSongRecommendation(string id)
         {
             //try adding logic here to get data via spotify api
             try
             {
-                
+                var s = _spotify.GetTrackInfo(id);
+
+                var track = new TrackEntity();
                 //c# does not let you return interface types without being wrapped in an okay
                 _repo.AddTrack(track);
                 _repo.SaveAll();
@@ -97,7 +100,7 @@ namespace youShouldCheckOutThisBand.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("failed to get artists: " + ex.Message);
+                return BadRequest("failed to get track " + ex.Message);
             }
         }
 

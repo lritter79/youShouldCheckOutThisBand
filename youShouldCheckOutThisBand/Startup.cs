@@ -41,7 +41,9 @@ namespace youShouldCheckOutThisBand
             //but use YSCOTBRepository as the implementation
             services.AddScoped<IYSCOTBRepository, YSCOTBRepository>();
 
-            services.AddTransient<SpotifyToken>();
+            services.AddScoped<SpotifyToken>();
+
+            services.AddScoped<ISpotifyApiRepository, SpotifyApiRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

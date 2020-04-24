@@ -13,8 +13,9 @@ namespace youShouldCheckOutThisBand.Models
 
     public class SpotifyToken
     {
-        private string _ClientId;
-        private string _ClientSecret;
+        private string _ClientId { get; set; }
+        private string _ClientSecret { get; set; }
+        public string _MarketCode { get; set; }
         public string AccessToken { get; set; }
         public string TokenType { get; set; }
         public int ExpiresIn { get; set; }
@@ -24,6 +25,7 @@ namespace youShouldCheckOutThisBand.Models
         {
             _ClientId = config.GetValue<string>("SpotifyApiTokens:ClientId");
             _ClientSecret = config.GetValue<string>("SpotifyApiTokens:ClientSecret");
+            _MarketCode = config.GetValue<string>("MarketCode");
             //SpotifyToken token = new SpotifyToken();
 
             string url5 = "https://accounts.spotify.com/api/token";
@@ -74,13 +76,5 @@ namespace youShouldCheckOutThisBand.Models
             
         }
 
-
-        public string GetAccessToken()
-        {      
-            return AccessToken;
-        }
-
     }
-
-
 }

@@ -20,8 +20,7 @@ namespace youShouldCheckOutThisBand.Data
             _token = spotifyToken;
         }
 
-
-        public ArtistEntity GetTrackInfo(string trackId)
+        public Track GetTrackInfo(string trackId)
         {
 
             var requestUrl = "https://api.spotify.com/v1/tracks/" + trackId + "?market=" + _token._MarketCode;
@@ -61,7 +60,7 @@ namespace youShouldCheckOutThisBand.Data
                 Console.WriteLine("Track Request Error: " + tex.Message);
             }
 
-            var track = JsonConvert.DeserializeObject<ArtistEntity>(webResponse);
+            var track = JsonConvert.DeserializeObject<Track>(webResponse);
 
             return track;
         }

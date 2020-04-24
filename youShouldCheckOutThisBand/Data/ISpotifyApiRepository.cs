@@ -1,9 +1,10 @@
 ﻿using youShouldCheckOutThisBand.Entities;
+using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Data
 {
     public interface ISpotifyApiRepository
     {
-        ArtistEntity GetTrackInfo(string trackId);
+        Track GetTrackInfo(string trackId);
     }
 }

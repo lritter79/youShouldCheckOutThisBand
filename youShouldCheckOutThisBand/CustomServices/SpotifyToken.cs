@@ -54,7 +54,7 @@ namespace youShouldCheckOutThisBand.Models
 
 
             HttpWebResponse resp = (HttpWebResponse)webRequest.GetResponse();
-            String json = "";
+            string json = "";
             using (Stream respStr = resp.GetResponseStream())
             {
                 using (StreamReader rdr = new StreamReader(respStr, Encoding.UTF8))

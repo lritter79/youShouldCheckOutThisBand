@@ -9,5 +9,7 @@ namespace youShouldCheckOutThisBand.Data
         IEnumerable<ArtistEntity> GetAllArtistEntities();
         IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId);
         bool SaveAll();
+        ArtistEntity GetArtistById(int id);
+        void AddTrack(TrackEntity track);
     }
 }

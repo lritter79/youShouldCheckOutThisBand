@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using youShouldCheckOutThisBand.Data;
+using Newtonsoft.Json;
+using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand
 {
@@ -39,6 +41,8 @@ namespace youShouldCheckOutThisBand
             //but use YSCOTBRepository as the implementation
             services.AddScoped<IYSCOTBRepository, YSCOTBRepository>();
 
+            services.AddTransient<SpotifyToken>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -49,8 +53,14 @@ namespace youShouldCheckOutThisBand
             //services.AddControllersWithViews();
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(options =>
+                {
+                    //this is to get rid of self referencing loops that can happen with ef core because of object nestings
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
+
+
 
         }
 

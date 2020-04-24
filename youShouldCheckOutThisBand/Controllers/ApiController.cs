@@ -13,6 +13,8 @@ namespace youShouldCheckOutThisBand.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+    //says that we're returning application.json with this controller
+    [Produces("application/json")]
     public class ApiController : ControllerBase
     {
         private readonly IYSCOTBRepository _repo;
@@ -23,9 +25,22 @@ namespace youShouldCheckOutThisBand.Controllers
 
         [Route("~/api/Artists")]
         [HttpGet]
-        public IEnumerable<ArtistEntity> Artists()
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult<IEnumerable<ArtistEntity>> Artists()
         {
-            return _repo.GetAllArtistEntities();
+            try
+            {
+                //c# does not let you return interface types without being wrapped in an okay
+                return Ok(_repo.GetAllArtistEntities());
+                //okay converts whatever you return into a 200 code with the objects
+                
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("failed to get artists: " + ex.Message);
+            }
+            
         }
     }
 }

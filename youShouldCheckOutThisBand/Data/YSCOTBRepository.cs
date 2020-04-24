@@ -40,27 +40,34 @@ namespace youShouldCheckOutThisBand.Data
                                Id = a.Id,
                                Name = a.Name,
                                Uri = a.Uri,
-                               Images = (from i in _context.ArtistImages
-                                         where i.Artist.Id == a.Id
-                                         select new ArtistImageEntity
-                                         {
-                                             Id = i.Id,
-                                             Height = i.Height,
-                                             Width = i.Width,
-                                             Url = i.Url,
-                                             Artist = i.Artist
-                                         }).ToList(),
+                               Images = a.Images,
                                ArtistsGenres = (from ag in _context.GenresArtists
-                                                where a.Id == ag.Artist.Id
+                                                where ag.ArtistId == a.Id
                                                 select new GenreArtistJoinEntity
                                                 {
-                                                    Artist = ag.Artist,
-                                                    Genre = ag.Genre,
-                                                    ArtistId = ag.ArtistId,
-                                                    GenreId = ag.GenreId
+                                                    Genre = ag.Genre
                                                 }).ToList()
+                               //Images = (from i in _context.ArtistImages
+                               //          where i.Artist.Id == a.Id
+                               //          select new ArtistImageEntity
+                               //          {
+                               //              Id = i.Id,
+                               //              Height = i.Height,
+                               //              Width = i.Width,
+                               //              Url = i.Url,
+                               //              Artist = i.Artist
+                               //          }).ToList(),
+                               //ArtistsGenres = (from ag in _context.GenresArtists
+                               //                 where a.Id == ag.Artist.Id
+                               //                 select new GenreArtistJoinEntity
+                               //                 {
+                               //                     Artist = ag.Artist,
+                               //                     Genre = ag.Genre,
+                               //                     ArtistId = ag.ArtistId,
+                               //                     GenreId = ag.GenreId
+                               //                 }).ToList()
 
-                           }); 
+                           });
 
             return artists;
 
@@ -75,26 +82,13 @@ namespace youShouldCheckOutThisBand.Data
                                Id = a.Id,
                                Name = a.Name,
                                Uri = a.Uri,
-                               Images = (from i in _context.ArtistImages
-                                         where i.Artist.Id == a.Id
-                                         select new ArtistImageEntity
-                                         {
-                                             Id = i.Id,
-                                             Height = i.Height,
-                                             Width = i.Width,
-                                             Url = i.Url,
-                                             Artist = i.Artist
-                                         }).ToList(),
+                               Images = a.Images,
                                ArtistsGenres = (from ag in _context.GenresArtists
-                                                where a.Id == ag.Artist.Id
+                                                where ag.ArtistId == a.Id
                                                 select new GenreArtistJoinEntity
                                                 {
-                                                    Artist = ag.Artist,
-                                                    Genre = ag.Genre,
-                                                    ArtistId = ag.ArtistId,
-                                                    GenreId = ag.GenreId
-                                                }).ToList()
-
+                                                    Genre = ag.Genre
+                                                }).ToList()                                                   
                            });
 
             return artists;

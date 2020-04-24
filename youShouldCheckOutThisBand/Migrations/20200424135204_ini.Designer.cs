@@ -10,8 +10,8 @@ using youShouldCheckOutThisBand.Contexts;
 namespace youShouldCheckOutThisBand.Migrations
 {
     [DbContext(typeof(YSCOTBContext))]
-    [Migration("20200423141020_init")]
-    partial class init
+    [Migration("20200424135204_ini")]
+    partial class ini
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

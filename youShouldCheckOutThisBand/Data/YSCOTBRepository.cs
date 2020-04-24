@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace youShouldCheckOutThisBand.Data
             _context = ctx;
         }
 
+        public void AddTrack(TrackEntity track)
+        {
+            
+        }
+
         public IEnumerable<ArtistEntity> GetAllArtistEntities()
         {
             //var artists = _context.Artists.ToList();
@@ -34,43 +40,55 @@ namespace youShouldCheckOutThisBand.Data
             //    a.ArtistsAlbums = _context.ArtistsAlbums.Where(alb => alb.ArtistId == a.Id).ToList();
             //}
 
-            var artists = (from a in _context.Artists
-                           select new ArtistEntity
-                           {
-                               Id = a.Id,
-                               Name = a.Name,
-                               Uri = a.Uri,
-                               Images = a.Images,
-                               ArtistsGenres = (from ag in _context.GenresArtists
-                                                where ag.ArtistId == a.Id
-                                                select new GenreArtistJoinEntity
-                                                {
-                                                    Genre = ag.Genre
-                                                }).ToList()
-                               //Images = (from i in _context.ArtistImages
-                               //          where i.Artist.Id == a.Id
-                               //          select new ArtistImageEntity
-                               //          {
-                               //              Id = i.Id,
-                               //              Height = i.Height,
-                               //              Width = i.Width,
-                               //              Url = i.Url,
-                               //              Artist = i.Artist
-                               //          }).ToList(),
-                               //ArtistsGenres = (from ag in _context.GenresArtists
-                               //                 where a.Id == ag.Artist.Id
-                               //                 select new GenreArtistJoinEntity
-                               //                 {
-                               //                     Artist = ag.Artist,
-                               //                     Genre = ag.Genre,
-                               //                     ArtistId = ag.ArtistId,
-                               //                     GenreId = ag.GenreId
-                               //                 }).ToList()
+            //var artists = (from a in _context.Artists
+            //               select new ArtistEntity
+            //               {
+            //                   Id = a.Id,
+            //                   Name = a.Name,
+            //                   Uri = a.Uri,
+            //                   Images = a.Images,
+            //                   ArtistsGenres = (from ag in _context.GenresArtists
+            //                                    where ag.ArtistId == a.Id
+            //                                    select new GenreArtistJoinEntity
+            //                                    {
+            //                                        Genre = ag.Genre
+            //                                    }).ToList()
+            //                   //Images = (from i in _context.ArtistImages
+            //                   //          where i.Artist.Id == a.Id
+            //                   //          select new ArtistImageEntity
+            //                   //          {
+            //                   //              Id = i.Id,
+            //                   //              Height = i.Height,
+            //                   //              Width = i.Width,
+            //                   //              Url = i.Url,
+            //                   //              Artist = i.Artist
+            //                   //          }).ToList(),
+            //                   //ArtistsGenres = (from ag in _context.GenresArtists
+            //                   //                 where a.Id == ag.Artist.Id
+            //                   //                 select new GenreArtistJoinEntity
+            //                   //                 {
+            //                   //                     Artist = ag.Artist,
+            //                   //                     Genre = ag.Genre,
+            //                   //                     ArtistId = ag.ArtistId,
+            //                   //                     GenreId = ag.GenreId
+            //                   //                 }).ToList()
 
-                           });
+            //               });
 
-            return artists;
+            //return artists;
 
+            return _context.Artists.Include(g => g.ArtistsGenres).ThenInclude(ag => ag.Genre).Include(g => g.Images).ToList();
+
+        }
+
+        public ArtistEntity GetArtistById(int id)
+        {
+            return _context.Artists
+                .Include(g => g.ArtistsGenres)
+                .ThenInclude(ag => ag.Genre)
+                .Include(g => g.Images)
+                .Where(a => a.Id == id)
+                .FirstOrDefault();
         }
 
         public IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId)

@@ -10,8 +10,8 @@ using youShouldCheckOutThisBand.Contexts;
 namespace youShouldCheckOutThisBand.Migrations
 {
     [DbContext(typeof(YSCOTBContext))]
-    [Migration("20200424135204_ini")]
-    partial class ini
+    [Migration("20200425090846_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,10 +66,12 @@ namespace youShouldCheckOutThisBand.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReleaseDate")
+                    b.Property<string>("Release_Date")
+                        .HasColumnName("ReleaseDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReleaseDatePrecision")
+                    b.Property<string>("Release_Date_Precision")
+                        .HasColumnName("ReleaseDatePrecision")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Uri")
@@ -102,7 +104,13 @@ namespace youShouldCheckOutThisBand.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Href")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Uri")
@@ -219,7 +227,8 @@ namespace youShouldCheckOutThisBand.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Uri")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Votes")
                         .ValueGeneratedOnAdd()
@@ -227,6 +236,8 @@ namespace youShouldCheckOutThisBand.Migrations
                         .HasDefaultValue(1);
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("Uri");
 
                     b.HasIndex("AlbumId");
 

@@ -2,7 +2,7 @@
 
 namespace youShouldCheckOutThisBand.Migrations
 {
-    public partial class ini : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,9 +16,9 @@ namespace youShouldCheckOutThisBand.Migrations
                     Href = table.Column<string>(nullable: true),
                     Label = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    ReleaseDate = table.Column<string>(nullable: true),
+                    Uri = table.Column<string>(nullable: true),
                     ReleaseDatePrecision = table.Column<string>(nullable: true),
-                    Uri = table.Column<string>(nullable: true)
+                    ReleaseDate = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,6 +31,8 @@ namespace youShouldCheckOutThisBand.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(nullable: true),
+                    Href = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Uri = table.Column<string>(nullable: true)
                 },
@@ -80,16 +82,17 @@ namespace youShouldCheckOutThisBand.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AlbumId = table.Column<int>(nullable: true),
                     Href = table.Column<string>(nullable: true),
                     PreviewUrl = table.Column<string>(nullable: true),
-                    Uri = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Votes = table.Column<int>(nullable: false, defaultValue: 1)
+                    Votes = table.Column<int>(nullable: false, defaultValue: 1),
+                    Uri = table.Column<string>(nullable: false),
+                    AlbumId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tracks", x => x.Id);
+                    table.UniqueConstraint("AK_Tracks_Uri", x => x.Uri);
                     table.ForeignKey(
                         name: "FK_Tracks_Albums_AlbumId",
                         column: x => x.AlbumId,
@@ -128,9 +131,9 @@ namespace youShouldCheckOutThisBand.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Height = table.Column<int>(nullable: false),
-                    Width = table.Column<int>(nullable: false),
                     Url = table.Column<string>(nullable: true),
+                    Width = table.Column<int>(nullable: false),
+                    Height = table.Column<int>(nullable: false),
                     ArtistId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

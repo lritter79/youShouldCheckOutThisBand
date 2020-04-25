@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using youShouldCheckOutThisBand.Data;
 using youShouldCheckOutThisBand.Entities;
 using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Controllers
 {
-    //attributed route
+    //this api is all about getting data
     
     [Route("api/[controller]")]
     [ApiController]
@@ -87,7 +88,7 @@ namespace youShouldCheckOutThisBand.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<IEnumerable<TrackEntity>> Tracks()
+        public ActionResult<IEnumerable<Track>> Tracks()
         {
             //try adding logic here to get data via spotify api
             try
@@ -105,7 +106,7 @@ namespace youShouldCheckOutThisBand.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<IEnumerable<ArtistImageEntity>> ArtistImages()
+        public ActionResult<IEnumerable<Image>> ArtistImages()
         {
             try
             {
@@ -124,30 +125,43 @@ namespace youShouldCheckOutThisBand.Controllers
 
         [Route("~/api/AddSongRecommendation/{id}")]
         [HttpPost("{id:alpha}")]
-        public IActionResult AddSongRecommendation(string id)
+        public ActionResult<TrackEntity> AddSongRecommendation(string id)
         {
             //try adding logic here to get data via spotify api
             try
             {
                 var s = _spotify.GetTrackInfo(id);
 
-                var track = _mapper.Map<TrackDto, TrackEntity>(s);
+                var track = _mapper.Map<Track, TrackDto>(s);
+
+                var trackEntity = _mapper.Map<TrackDto, TrackEntity>(track);
                 
                 //c# does not let you return interface types without being wrapped in an okay
-                _repo.AddTrack(track);
-                if (_repo.SaveAll())
+                _repo.AddTrack(trackEntity);
+
+                bool isSaved = _repo.SaveAll();
+
+                if (isSaved)
                 {
-                    return Created($"api/Tracks/{track.Uri}", track);
+
+                    return Created($"api/Tracks/{trackEntity.Uri}", trackEntity);
                 }
                 else
                 {
                     return BadRequest("track was not added cussessfully");
                 }
 
+            }           
+            catch (DbUpdateException ex)
+            {
+                return BadRequest("This song has already been recommended");
             }
             catch (Exception ex)
             {
-                return BadRequest("failed to add track:  " + ex.Message);
+                string error = $"failed to add track: {ex.InnerException.Message}, {ex.Message}";
+                error = error.Replace(System.Environment.NewLine, " ");
+
+                return BadRequest(error);
             }
         }
 

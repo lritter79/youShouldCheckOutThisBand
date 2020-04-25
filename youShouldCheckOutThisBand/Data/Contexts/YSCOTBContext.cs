@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Logging;
 using youShouldCheckOutThisBand.Entities;
 
@@ -56,6 +57,9 @@ namespace youShouldCheckOutThisBand.Contexts
             modelBuilder.Entity<TrackEntity>()
                 .Property(t => t.Votes)
                 .HasDefaultValue(1);
+
+            modelBuilder.Entity<TrackEntity>()
+                 .HasAlternateKey(t => t.Uri);
 
             //this is one way to seed, but it's not efficient because it runs everytime dbcontext is instatiated
             //    modelBuilder.Entity<ArtistEntity>()

@@ -22,7 +22,7 @@ namespace youShouldCheckOutThisBand.Data
 
         public void AddTrack(TrackEntity track)
         {
-            
+            _context.Tracks.Add(track);
         }
 
         public IEnumerable<ArtistEntity> GetAllArtistEntities()
@@ -79,6 +79,12 @@ namespace youShouldCheckOutThisBand.Data
 
             return _context.Artists.Include(g => g.ArtistsGenres).ThenInclude(ag => ag.Genre).Include(g => g.Images).ToList();
 
+        }
+
+        public IEnumerable<TrackEntity> GetAllTracks()
+        {
+            return _context.Tracks
+                .Include(t => t.Album).Include(ta => ta.TracksArtists).ThenInclude(a => a.Artist).ToList();
         }
 
         public ArtistEntity GetArtistById(int id)

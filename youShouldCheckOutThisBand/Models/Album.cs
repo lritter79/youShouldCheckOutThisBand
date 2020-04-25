@@ -16,7 +16,6 @@ namespace youShouldCheckOutThisBand.Models
         public string AlbumType { get; set; }
         public ICollection<Artist> Artists{ get; set; }
         public string Href { get; set; }
-        public string Id { get; set; }
         public ICollection<Image> Images { get; set; }
         public string Name { get; set; }
         public string Release_Date { get; set; }

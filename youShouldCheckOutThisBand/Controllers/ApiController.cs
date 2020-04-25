@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using youShouldCheckOutThisBand.Data;
@@ -20,10 +21,11 @@ namespace youShouldCheckOutThisBand.Controllers
     {
         private readonly IYSCOTBRepository _repo;
         private readonly ISpotifyApiRepository _spotify;
-        
+        private readonly IMapper _mapper;
 
-        public ApiController(IYSCOTBRepository repo, ISpotifyApiRepository spotifyApi)
+        public ApiController(IYSCOTBRepository repo, ISpotifyApiRepository spotifyApi, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
             _spotify = spotifyApi;
         }
@@ -81,6 +83,25 @@ namespace youShouldCheckOutThisBand.Controllers
             
         }
 
+        [Route("~/api/Tracks")]
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult<IEnumerable<TrackEntity>> Tracks()
+        {
+            //try adding logic here to get data via spotify api
+            try
+            {
+
+                return Ok(_repo.GetAllTracks());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("failed to get track " + ex.Message);
+            }
+        }
+
+
         [Route("~/api/AddSongRecommendation/{id}")]
         [HttpPost("{id:alpha}")]
         public IActionResult AddSongRecommendation(string id)
@@ -90,17 +111,23 @@ namespace youShouldCheckOutThisBand.Controllers
             {
                 var s = _spotify.GetTrackInfo(id);
 
-                var track = new TrackEntity();
+                var track = _mapper.Map<Track, TrackEntity>(s);
+                
                 //c# does not let you return interface types without being wrapped in an okay
                 _repo.AddTrack(track);
-                _repo.SaveAll();
-                return Created($"api/Tracks/{track.Uri}", track);
-                //okay converts whatever you return into a 200 code with the objects
+                if (_repo.SaveAll())
+                {
+                    return Created($"api/Tracks/{track.Uri}", track);
+                }
+                else
+                {
+                    return BadRequest("track was not added cussessfully");
+                }
 
             }
             catch (Exception ex)
             {
-                return BadRequest("failed to get track " + ex.Message);
+                return BadRequest("failed to add track:  " + ex.Message);
             }
         }
 

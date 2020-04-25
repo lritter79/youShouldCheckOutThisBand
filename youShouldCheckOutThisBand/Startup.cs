@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using youShouldCheckOutThisBand.Data;
 using Newtonsoft.Json;
 using youShouldCheckOutThisBand.Models;
+using AutoMapper;
+using System.Reflection;
 
 namespace youShouldCheckOutThisBand
 {
@@ -53,6 +55,9 @@ namespace youShouldCheckOutThisBand
             });
 
             //services.AddControllersWithViews();
+
+            //this tell automapper to look for prfiles for mapping that we need
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)

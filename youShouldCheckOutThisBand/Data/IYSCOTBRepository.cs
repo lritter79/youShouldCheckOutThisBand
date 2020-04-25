@@ -11,5 +11,6 @@ namespace youShouldCheckOutThisBand.Data
         bool SaveAll();
         ArtistEntity GetArtistById(int id);
         void AddTrack(TrackEntity track);
+        IEnumerable<TrackEntity> GetAllTracks();
     }
 }

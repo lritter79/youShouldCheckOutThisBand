@@ -9,11 +9,14 @@ namespace youShouldCheckOutThisBand.Models
     {
         public TrackDto()
         {
-            Artists = new List<ArtistDto>();
+            ArtistIds = new List<int>();
+            AlbumUris = new List<string>();
         }
 
-        public AlbumDto Album { get; set; }
-        public ICollection<ArtistDto> Artists { get; set; }
+        public int AlbumId { get; set; }
+        public string AlbumUri { get; set; }
+        public ICollection<int> ArtistIds { get; set; }
+        public ICollection<string> ArtistUris { get; set; }
         public string Href { get; set; }
         public string PreviewUrl { get; set; }
         public string Name { get; set; }

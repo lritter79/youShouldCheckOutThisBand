@@ -101,6 +101,26 @@ namespace youShouldCheckOutThisBand.Controllers
             }
         }
 
+        [Route("~/api/ArtistImages")]
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult<IEnumerable<ArtistImageEntity>> ArtistImages()
+        {
+            try
+            {
+                //var t = _token.GetAccessToken();
+                //c# does not let you return interface types without being wrapped in an okay
+                return Ok(_repo.GetAllArtistEntities());
+                //okay converts whatever you return into a 200 code with the objects
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("failed to get artists: " + ex.Message);
+            }
+
+        }
 
         [Route("~/api/AddSongRecommendation/{id}")]
         [HttpPost("{id:alpha}")]

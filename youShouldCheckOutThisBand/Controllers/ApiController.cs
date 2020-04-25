@@ -131,9 +131,10 @@ namespace youShouldCheckOutThisBand.Controllers
             //try adding logic here to get data via spotify api
             try
             {
-                var s = _spotify.GetTrackInfo(uri);
-                var albumUri = s.Album.Uri.Split(':')[2];
-                s.Album = _spotify.GetAlbum(albumUri);
+                string id = Helpers.GetIdFromUri(uri);
+                var s = _spotify.GetTrackInfo(id);
+                var albumId = Helpers.GetIdFromUri(s.Album.Uri);
+                s.Album = _spotify.GetAlbum(albumId);
                 var track = _mapper.Map<Track, TrackDto>(s);
 
                 var trackEntity = _mapper.Map<TrackDto, TrackEntity>(track);

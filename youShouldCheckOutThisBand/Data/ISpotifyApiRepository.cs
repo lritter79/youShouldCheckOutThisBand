@@ -5,6 +5,6 @@ namespace youShouldCheckOutThisBand.Data
 {
     public interface ISpotifyApiRepository
     {
-        Track GetTrackInfo(string trackId);
+        TrackDto GetTrackInfo(string trackId);
     }
 }

@@ -18,9 +18,9 @@ namespace youShouldCheckOutThisBand.Entities
         }
         //artists can have a one to many relationship with genres and images
         public ICollection<ArtistImageEntity> Images { get; set; }
-        public ICollection<GenreArtistJoinEntity> ArtistsGenres { get; set; }
-        public ICollection<ArtistAlbumJoinEntity> ArtistsAlbums { get; set; }
-        public ICollection<TrackArtistJoinEntity> ArtistsTracks { get; set; }
+        public virtual ICollection<GenreArtistJoinEntity> ArtistsGenres { get; set; }
+        public virtual ICollection<ArtistAlbumJoinEntity> ArtistsAlbums { get; set; }
+        public virtual ICollection<TrackArtistJoinEntity> ArtistsTracks { get; set; }
         /// <summary>
         /// The Spotify ID for the artist.
         /// </summary>

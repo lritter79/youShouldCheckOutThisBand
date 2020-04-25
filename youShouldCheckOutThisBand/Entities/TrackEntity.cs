@@ -51,5 +51,10 @@ namespace youShouldCheckOutThisBand.Entities
         /// The down/upvotes a track gets 
         /// </summary>
         public int Votes { get; set; }
+
+        /// <summary>
+        /// Type of track
+        /// </summary>
+        public string Type { get; set; }
     }
 }

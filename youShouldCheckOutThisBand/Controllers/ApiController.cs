@@ -111,7 +111,7 @@ namespace youShouldCheckOutThisBand.Controllers
             {
                 var s = _spotify.GetTrackInfo(id);
 
-                var track = _mapper.Map<Track, TrackEntity>(s);
+                var track = _mapper.Map<TrackDto, TrackEntity>(s);
                 
                 //c# does not let you return interface types without being wrapped in an okay
                 _repo.AddTrack(track);

@@ -12,9 +12,8 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
     {
         public YSCOTBMappingProfile()
         {
-            CreateMap<Track, TrackEntity>()
-                .ForMember(te => te.Album, tm => tm.MapFrom(t => t.Album))
-                .ReverseMap();
+            CreateMap<ImageDto, AlbumCoverEntity>();
+            CreateMap<ImageDto, ArtistImageEntity>();
         }
 
 

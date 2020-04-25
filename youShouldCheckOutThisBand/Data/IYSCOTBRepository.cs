@@ -3,14 +3,19 @@ using youShouldCheckOutThisBand.Entities;
 
 namespace youShouldCheckOutThisBand.Data
 {
-    //the interface can be good for testing
     public interface IYSCOTBRepository
     {
+        void AddAlbum(AlbumEntity album);
+        void AddAlbumCovers(IEnumerable<AlbumCoverEntity> albumCoverEntities);
+        void AddArtist(ArtistEntity artist);
+        void AddArtistAlbumJoinEntity(ArtistAlbumJoinEntity artistAlbumJoinEntity);
+        void AddArtistImages(IEnumerable<ArtistImageEntity> artistImageEntities);
+        void AddGenreAlbumJoinEntity(GenreAlbumJoinEntity genreAlbumJoinEntity);
+        void AddTrack(TrackEntity track);
         IEnumerable<ArtistEntity> GetAllArtistEntities();
+        IEnumerable<TrackEntity> GetAllTracks();
+        ArtistEntity GetArtistById(int id);
         IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId);
         bool SaveAll();
-        ArtistEntity GetArtistById(int id);
-        void AddTrack(TrackEntity track);
-        IEnumerable<TrackEntity> GetAllTracks();
     }
 }

@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using youShouldCheckOutThisBand.Models;
 using AutoMapper;
 using System.Reflection;
+using youShouldCheckOutThisBand.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace youShouldCheckOutThisBand
 {
@@ -30,6 +32,15 @@ namespace youShouldCheckOutThisBand
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //identity roll is incase we're configuring roles, it can be a type of data that's about a user
+            services.AddIdentity<AppUser, IdentityRole>(cfg => 
+            {
+                //let's you set reuls for user logins and such
+                //cfg.User.RequireUniqueEmail = true;
+            })
+                //maps the users to our contexts
+                .AddEntityFrameworkStores<YSCOTBContext>();
+
             //make db context part of services collection so we can inject it where we need it
             services.AddDbContext<YSCOTBContext>(cfg =>
             {
@@ -74,6 +85,8 @@ namespace youShouldCheckOutThisBand
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
+
             //environemn variables in properties determine environment
             if (env.IsDevelopment())
             {
@@ -90,8 +103,16 @@ namespace youShouldCheckOutThisBand
 
             app.UseStaticFiles();
 
+            //must be called before routing and endpoints
+            //authentication is about identifying the user
+            app.UseAuthentication();
+            
+
             //turns on generic routing to find indivual views and controllers
             app.UseRouting();
+
+            //authorization is about what they have access to
+            app.UseAuthorization();
 
             //end points allows a bunch of different technogoies to use different end points
             app.UseEndpoints(endpoints =>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using youShouldCheckOutThisBand.Contexts;
 using youShouldCheckOutThisBand.Data;
@@ -34,6 +35,7 @@ namespace youShouldCheckOutThisBand.Controllers
 
         //specify routing
         [HttpGet("AddRecommendation")]
+        [Authorize]
         public IActionResult AddRecommendation()
         {
             return View();
@@ -41,6 +43,7 @@ namespace youShouldCheckOutThisBand.Controllers
         
         //this is for when the user makes a suggestion post
         [HttpPost("AddRecommendation")]
+        [Authorize]
         public IActionResult AddRecommendation([FromBody]AddRecommendationViewModel model)
         {
             try

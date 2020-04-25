@@ -44,7 +44,8 @@ namespace youShouldCheckOutThisBand
             using (var scope = scopeFactory.CreateScope())
             {
                 var seeder = scope.ServiceProvider.GetService<YSCOTBSeeder>();
-                seeder.Seed();
+                //wait makes an asynchronous method synchronous
+                seeder.SeedAsync().Wait();
             }           
 
         }

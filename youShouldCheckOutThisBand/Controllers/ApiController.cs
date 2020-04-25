@@ -68,7 +68,7 @@ namespace youShouldCheckOutThisBand.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<IEnumerable<ArtistEntity>> Artists()
+        public ActionResult<IEnumerable<ArtistEntity>> Get()
         {
             try
             {
@@ -85,23 +85,7 @@ namespace youShouldCheckOutThisBand.Controllers
             
         }
 
-        [Route("~/api/Tracks")]
-        [HttpGet]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        public ActionResult<IEnumerable<Track>> Tracks()
-        {
-            //try adding logic here to get data via spotify api
-            try
-            {
-
-                return Ok(_repo.GetAllTracks());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("failed to get track " + ex.Message);
-            }
-        }
+        
 
         [Route("~/api/ArtistImages")]
         [HttpGet]

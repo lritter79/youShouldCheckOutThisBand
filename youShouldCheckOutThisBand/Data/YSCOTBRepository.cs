@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,11 +66,24 @@ namespace youShouldCheckOutThisBand.Data
 
         }
 
-        public IEnumerable<TrackEntity> GetAllTracks()
+        public IEnumerable<TrackEntity> GetAllTracks(bool includeArtist = true)
         {
-            return _context.Tracks
-                .Include(t => t.Album).Include(ta => ta.TracksArtists).ThenInclude(a => a.Artist).ToList();
+            if (includeArtist)
+            {
+                return _context.Tracks
+                .Include(t => t.Album)
+                .Include(ta => ta.TracksArtists)
+                .ThenInclude(a => a.Artist).ToList();
+            }
+            else
+            {
+                return _context.Tracks
+                    .Include(t => t.Album).ToList();
+            }
+            
         }
+        
+
 
         public ArtistEntity GetArtistById(int id)
         {

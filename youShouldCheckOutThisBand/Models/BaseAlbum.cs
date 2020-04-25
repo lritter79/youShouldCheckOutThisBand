@@ -7,7 +7,7 @@ namespace youShouldCheckOutThisBand.Models
 {
     public abstract class BaseAlbum
     {
-        public int Id { get; set; }
+
         /// <summary>
         /// The type of the album: one of "album" , "single" , or "compilation".
         /// </summary>
@@ -32,12 +32,12 @@ namespace youShouldCheckOutThisBand.Models
         /// <summary>
         /// The date the album was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12".
         /// </summary>
-        public string ReleaseDate { get; set; }
+        public string Release_Date { get; set; }
 
         /// <summary>
         /// The precision with which release_date value is known: "year" , "month" , or "day".
         /// </summary>
-        public string ReleaseDatePrecision { get; set; }
+        public string Release_Date_Precision { get; set; }
 
         /// <summary>
         /// The Spotify URI for the album.

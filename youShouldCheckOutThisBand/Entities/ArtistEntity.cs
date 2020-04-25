@@ -29,15 +29,9 @@ namespace youShouldCheckOutThisBand.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        /// <summary>
-        /// The name of the artist
-        /// </summary>
-        public string Name { get; set; }
 
-        /// <summary>
-        /// The Spotify URI for the artist.
-        /// </summary>
-        public string Uri { get; set; }
+
+
 
         
     }

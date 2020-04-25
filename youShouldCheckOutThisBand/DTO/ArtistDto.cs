@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 namespace youShouldCheckOutThisBand.Models
 {
     public class ArtistDto:BaseArtist
-    { 
-        
-        
+    {
+
+        public int Id { get; set; }
     }
 }

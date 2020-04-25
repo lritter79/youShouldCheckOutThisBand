@@ -9,14 +9,15 @@ namespace youShouldCheckOutThisBand.Models
     {
         public AlbumDto()
         {
-            Artists = new List<ArtistDto>();
-            Images = new List<ImageDto>();
+            ArtistIds = new List<int>();
+            ArtistUris = new List<string>();
         }
 
         public string AlbumType { get; set; }
-        public ICollection<ArtistDto> Artists{ get; set; }
+        public ICollection<int> ArtistIds { get; set; }
+        public ICollection<string> ArtistUris{ get; set; }
         public string Href { get; set; }
-        public ICollection<ImageDto> Images { get; set; }
+        public ICollection<int> ImageIds { get; set; }
         public string Name { get; set; }
         public string Release_Date { get; set; }
         public string Release_Date_Precision { get; set; }

@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Models
 {
-    public class GenreDto:Genre
-    { 
-
+    public class Artist:BaseArtist
+    {
     }
 }

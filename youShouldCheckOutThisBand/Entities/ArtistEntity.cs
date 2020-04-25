@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Entities
 {
-    public class ArtistEntity
+    public class ArtistEntity:BaseArtist
     {
         public ArtistEntity ()
         {

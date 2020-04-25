@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Models
 {
-    public class ArtistDto
+    public class ArtistDto:BaseArtist
     { 
-        public string Type { get; set; }
-        public string Href { get; set; }
-        public string Name { get; set; }
-        public string Uri { get; set; }
+        
         
     }
 }

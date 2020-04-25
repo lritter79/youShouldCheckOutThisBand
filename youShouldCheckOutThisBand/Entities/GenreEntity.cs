@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Entities
 {
-    public class GenreEntity
+    public class GenreEntity:Genre
     {
 
         public GenreEntity ()
@@ -18,9 +19,7 @@ namespace youShouldCheckOutThisBand.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
-        public string Name { get; set; }
+        public new int Id { get; set; }
 
         public ICollection<GenreArtistJoinEntity> GenresArtists { get; set; }
 

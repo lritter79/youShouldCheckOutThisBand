@@ -13,7 +13,7 @@ namespace youShouldCheckOutThisBand.Data
         void AddGenreAlbumJoinEntity(GenreAlbumJoinEntity genreAlbumJoinEntity);
         void AddTrack(TrackEntity track);
         IEnumerable<ArtistEntity> GetAllArtistEntities();
-        IEnumerable<TrackEntity> GetAllTracks();
+        IEnumerable<TrackEntity> GetAllTracks(bool includeArtist = true);
         ArtistEntity GetArtistById(int id);
         IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId);
         bool SaveAll();

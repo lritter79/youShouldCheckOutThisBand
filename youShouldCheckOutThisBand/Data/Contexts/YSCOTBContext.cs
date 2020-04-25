@@ -1,14 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Logging;
 using youShouldCheckOutThisBand.Entities;
 
 namespace youShouldCheckOutThisBand.Contexts
 {
-    public class YSCOTBContext:DbContext
+    public class YSCOTBContext:IdentityDbContext<AppUser>
     {
 
         public DbSet<ArtistImageEntity> ArtistImages { get; set; }
+        public DbSet<RecommendationEntity> Recommendations { get; set; }
         public DbSet<TrackEntity> Tracks { get; set; }
         public DbSet<AlbumEntity> Albums { get; set; }
         public DbSet<ArtistEntity> Artists { get; set; }

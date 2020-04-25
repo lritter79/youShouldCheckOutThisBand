@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,39 @@ namespace youShouldCheckOutThisBand.Data
     {
         private readonly YSCOTBContext _context;
         private readonly IWebHostEnvironment _hosting;
+        private readonly UserManager<AppUser> _userManager;
 
-        public YSCOTBSeeder(YSCOTBContext ctx, IWebHostEnvironment hosting)
+        public YSCOTBSeeder(YSCOTBContext ctx, IWebHostEnvironment hosting, UserManager<AppUser> userManager)
         {
             _context = ctx;
             _hosting = hosting;
+            _userManager = userManager;
         }
 
-        public void Seed()
+        //make seed asynchronous by making it a task
+        public async Task SeedAsync()
         {
             _context.Database.EnsureCreated();
+
+            //await makes it async
+            AppUser user = await _userManager.FindByNameAsync("test");
+            //create user
+            if (user == null)
+            {
+                user = new AppUser()
+                {
+                    FirstName = "Biff",
+                    LastName = "Boof",                 
+                };
+
+                //asyncly created user
+                var result = await _userManager.CreateAsync(user, "passwordexample");
+                //if new user isnt created
+                if (result != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("Could not create new user");
+                }
+            }
 
             if (!_context.Artists.Any())
             {

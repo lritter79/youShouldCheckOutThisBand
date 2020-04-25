@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Models
 {
-    public class Album
+    public class AlbumDto
     {
-        public Album()
+        public AlbumDto()
         {
-            Artists = new List<Artist>();
-            Images = new List<Image>();
+            Artists = new List<ArtistDto>();
+            Images = new List<ImageDto>();
         }
 
         public string AlbumType { get; set; }
-        public ICollection<Artist> Artists{ get; set; }
+        public ICollection<ArtistDto> Artists{ get; set; }
         public string Href { get; set; }
-        public ICollection<Image> Images { get; set; }
+        public ICollection<ImageDto> Images { get; set; }
         public string Name { get; set; }
         public string Release_Date { get; set; }
         public string Release_Date_Precision { get; set; }

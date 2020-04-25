@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Models
 {
-    public class Genre
+    public class ImageDto
     {
+        public int Height { get; set; }
+        public string Url { get; set; }
+        public int Width { get; set; }
     }
 }

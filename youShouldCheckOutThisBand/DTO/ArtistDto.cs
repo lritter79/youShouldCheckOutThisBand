@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Models
 {
-    public class Artist
+    public class ArtistDto
     { 
         public string Type { get; set; }
         public string Href { get; set; }

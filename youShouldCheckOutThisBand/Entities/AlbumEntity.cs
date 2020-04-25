@@ -24,9 +24,9 @@ namespace youShouldCheckOutThisBand.Entities
 
         //albums also have multiple images that they are attached to because the cover can come in different sizes
 
-        public ICollection<AlbumCoverEntity> Images { get; set; }
-        public ICollection<ArtistAlbumJoinEntity> AlbumsArtists { get; set; }
-        public ICollection<GenreAlbumJoinEntity> AlbumsGenres { get; set; }
+        public virtual ICollection<AlbumCoverEntity> Images { get; set; }
+        public virtual ICollection<ArtistAlbumJoinEntity> AlbumsArtists { get; set; }
+        public virtual ICollection<GenreAlbumJoinEntity> AlbumsGenres { get; set; }
         public ICollection<TrackEntity> Tracks { get; set; } 
 
 

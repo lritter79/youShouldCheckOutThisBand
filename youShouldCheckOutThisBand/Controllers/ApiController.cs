@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using youShouldCheckOutThisBand.Data;
 using youShouldCheckOutThisBand.Entities;
+using youShouldCheckOutThisBand.Extensions;
 using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Controllers
@@ -143,6 +144,7 @@ namespace youShouldCheckOutThisBand.Controllers
 
                 if (isSaved)
                 {
+                    
 
                     return Created($"api/Tracks/{trackEntity.Uri}", trackEntity);
                 }

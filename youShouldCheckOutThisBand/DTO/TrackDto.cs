@@ -12,8 +12,7 @@ namespace youShouldCheckOutThisBand.Models
             ArtistIds = new List<int>();
             ArtistUris = new List<string>();
         }
-
-        public AlbumDto Album { get; set; }
+        
         public int AlbumId { get; set; }
         public string AlbumUri { get; set; }
         public ICollection<int> ArtistIds { get; set; }

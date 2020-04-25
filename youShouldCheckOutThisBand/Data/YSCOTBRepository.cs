@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using youShouldCheckOutThisBand.Contexts;
 using youShouldCheckOutThisBand.Entities;
+using youShouldCheckOutThisBand.Extensions;
 
 namespace youShouldCheckOutThisBand.Data
 {
@@ -20,7 +21,7 @@ namespace youShouldCheckOutThisBand.Data
             _context = ctx;
         }
 
-        
+
 
         public void AddTrack(TrackEntity track)
         {
@@ -41,7 +42,7 @@ namespace youShouldCheckOutThisBand.Data
         {
             _context.ArtistImages.AddRange(artistImageEntities);
         }
-        
+
         public void AddAlbumCovers(IEnumerable<AlbumCoverEntity> albumCoverEntities)
         {
             _context.AlbumCovers.AddRange(albumCoverEntities);
@@ -51,7 +52,7 @@ namespace youShouldCheckOutThisBand.Data
         {
             _context.ArtistsAlbums.Add(artistAlbumJoinEntity);
         }
-        
+
         public void AddGenreAlbumJoinEntity(GenreAlbumJoinEntity genreAlbumJoinEntity)
         {
             _context.GenresAlbums.Add(genreAlbumJoinEntity);
@@ -95,7 +96,7 @@ namespace youShouldCheckOutThisBand.Data
                                                 select new GenreArtistJoinEntity
                                                 {
                                                     Genre = ag.Genre
-                                                }).ToList()                                                   
+                                                }).ToList()
                            });
 
             return artists;

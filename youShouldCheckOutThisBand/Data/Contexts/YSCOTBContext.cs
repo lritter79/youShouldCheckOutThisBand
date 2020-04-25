@@ -60,6 +60,11 @@ namespace youShouldCheckOutThisBand.Contexts
 
             modelBuilder.Entity<TrackEntity>()
                  .HasAlternateKey(t => t.Uri);
+            modelBuilder.Entity<ArtistEntity>()
+                 .HasAlternateKey(t => t.Uri);
+            modelBuilder.Entity<AlbumEntity>()
+                 .HasAlternateKey(t => t.Uri);
+            
 
             //this is one way to seed, but it's not efficient because it runs everytime dbcontext is instatiated
             //    modelBuilder.Entity<ArtistEntity>()

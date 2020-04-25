@@ -22,6 +22,5 @@ namespace youShouldCheckOutThisBand.Models
         /// </summary>
         public string Url { get; set; }
 
-        public int Id { get; set; }
     }
 }

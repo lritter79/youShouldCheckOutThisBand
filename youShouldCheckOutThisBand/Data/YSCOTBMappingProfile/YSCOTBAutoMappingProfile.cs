@@ -8,9 +8,9 @@ using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
 {
-    public class YSCOTBMappingProfile : Profile
+    public class YSCOTBAutoMappingProfile : Profile
     {
-        public YSCOTBMappingProfile()
+        public YSCOTBAutoMappingProfile()
         {
             CreateMap<AlbumCoverEntity, ImageDto>()
                 .ReverseMap();
@@ -36,8 +36,6 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
                 .ReverseMap();
 
             CreateMap<Artist, ArtistDto>()
-                .ForMember(ArtistDto => ArtistDto.ImageIds, opts => opts.MapFrom((Artist => Artist.Images
-                                                                              .Select(img => img.Id))))
                 .ReverseMap();
             
             CreateMap<ArtistEntity, ArtistDto>()
@@ -46,7 +44,6 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
                 .ReverseMap();
 
             CreateMap<Album, AlbumDto>()
-                .ForPath(Adto => Adto.Tracks, opts => opts.MapFrom(a => a.Tracks))
                 .ForPath(Adto => Adto.Images, opts => opts.MapFrom(a => a.Images))
                 .ReverseMap();
 

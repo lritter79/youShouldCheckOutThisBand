@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nancy.Json;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ namespace youShouldCheckOutThisBand.Models
 
         public IEnumerable<Artist> Artists { get; set; }
         public IEnumerable<Image> Images { get; set; }
+        [JsonIgnore]
         public IEnumerable<Track> Tracks { get; set; }
     }
 }

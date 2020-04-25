@@ -124,22 +124,23 @@ namespace youShouldCheckOutThisBand.Controllers
 
         }
 
-        [Route("~/api/AddSongRecommendation/{id}")]
-        [HttpPost("{id:alpha}")]
-        public ActionResult<TrackEntity> AddSongRecommendation(string id)
+        [Route("~/api/AddSongRecommendation/{uri}")]
+        [HttpPost("{uri:alpha}")]
+        public ActionResult<TrackEntity> AddSongRecommendation(string uri)
         {
             //try adding logic here to get data via spotify api
             try
             {
-                var s = _spotify.GetTrackInfo(id);
-
+                var s = _spotify.GetTrackInfo(uri);
+                var albumUri = s.Album.Uri.Split(':')[2];
+                s.Album = _spotify.GetAlbum(albumUri);
                 var track = _mapper.Map<Track, TrackDto>(s);
 
                 var trackEntity = _mapper.Map<TrackDto, TrackEntity>(track);
-                
+                //var albumEntity = _mapper.Map<Album, A>
                 //c# does not let you return interface types without being wrapped in an okay
                 _repo.AddTrack(trackEntity);
-
+                //_repo.AddAlbum();
                 bool isSaved = _repo.SaveAll();
 
                 if (isSaved)

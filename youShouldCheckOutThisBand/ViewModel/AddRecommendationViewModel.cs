@@ -8,6 +8,7 @@ namespace youShouldCheckOutThisBand.ViewModel
 {
     public class AddRecommendationViewModel
     {
+        //the user must always supply a uri
         [Required]
         public string SpotifyUri { get; set; }
     }

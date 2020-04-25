@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using youShouldCheckOutThisBand.Contexts;
 using youShouldCheckOutThisBand.Data;
@@ -14,10 +15,14 @@ namespace youShouldCheckOutThisBand.Controllers
     public class AppController : Controller
     {
         private readonly IYSCOTBRepository _reposity;
+        private readonly ISpotifyApiRepository _spotify;
+        private readonly IMapper _mapper;
 
-        public AppController (IYSCOTBRepository repo)
+        public AppController (IYSCOTBRepository repo, ISpotifyApiRepository spotify, IMapper mapper)
         {
             _reposity = repo;
+            _spotify = spotify;
+            _mapper = mapper;
         }
 
         //the action is where the logic happens, the controller maps to the action so it can return that view
@@ -36,18 +41,28 @@ namespace youShouldCheckOutThisBand.Controllers
         
         //this is for when the user makes a suggestion post
         [HttpPost("AddRecommendation")]
-        public IActionResult AddRecommendation(AddRecommendationViewModel model)
+        public IActionResult AddRecommendation([FromBody]AddRecommendationViewModel model)
         {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //this is where we have to get the song by uri, get album and artits, and images
+                    //add them to the db and display that it's been added to the user
+                    var trackToAdd = _spotify.GetTrackInfo(Helpers.GetIdFromUri(model.SpotifyUri));
+
+                }
+                else
+                {
+                    var errors = ModelState;
+                    //show errors
+                }
+            }
+            catch
+            {
+                
+            }
             
-            if (ModelState.IsValid)
-            {
-                //this is where we have to get the song by uri, get album and artits, and images
-                //add them to the db and display that it's been added to the user
-            }
-            else
-            {
-                //show errors
-            }
             return View();
         }
 

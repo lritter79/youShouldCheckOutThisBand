@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ArtistEntity>
 @{
-    ViewBag.Title = "Bands";
+    ViewBag.Title = "Artists";
 }
 
 <p>Counts: @Model.Count()</p>
@@ -9,7 +9,7 @@
     @foreach (var b in Model)
     {
     <div class="col-md-3">
-        <div class="table-bordered bg-info rounded p-1">
+        <div class="table-bordered bg-info rounded p-1 artist">
             <p>
                 @b.Name
             <p>

@@ -57,8 +57,12 @@ namespace youShouldCheckOutThisBand.Contexts
 
             //set votes on a track to 1 as the default
             modelBuilder.Entity<TrackEntity>()
-                .Property(t => t.Votes)
+                .Property(t => t.UpVotes)
                 .HasDefaultValue(1);
+            
+            modelBuilder.Entity<TrackEntity>()
+                .Property(t => t.DownVotes)
+                .HasDefaultValue(0);
 
             modelBuilder.Entity<TrackEntity>()
                  .HasAlternateKey(t => t.Uri);

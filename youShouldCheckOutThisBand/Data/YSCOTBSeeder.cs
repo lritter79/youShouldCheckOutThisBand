@@ -28,18 +28,20 @@ namespace youShouldCheckOutThisBand.Data
             _context.Database.EnsureCreated();
 
             //await makes it async
-            AppUser user = await _userManager.FindByNameAsync("test");
-            //create user
+            AppUser user = await _userManager.FindByEmailAsync("foo@bar.com");
+            //create user if user hasnt been created already
             if (user == null)
             {
                 user = new AppUser()
                 {
                     FirstName = "Biff",
-                    LastName = "Boof",                 
+                    LastName = "Boof",
+                    Email = "foo@bar.com",
+                    UserName = "Test"
                 };
 
                 //asyncly created user
-                var result = await _userManager.CreateAsync(user, "passwordexample");
+                var result = await _userManager.CreateAsync(user, "Dummy1794!");
                 //if new user isnt created
                 if (result != IdentityResult.Success)
                 {

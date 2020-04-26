@@ -16,6 +16,9 @@ using youShouldCheckOutThisBand.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace youShouldCheckOutThisBand
 {
@@ -114,11 +117,22 @@ namespace youShouldCheckOutThisBand
                 app.UseExceptionHandler("/Error");              
             }
 
-            app.UseNodeModules();
+            app.UseHttpsRedirection();
 
-            //.UseCookiePolicy();
+            var provider = new FileExtensionContentTypeProvider();
+            provider.Mappings[".scss"] = "text/css";
 
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+              //  FileProvider = new PhysicalFileProvider(
+              //Path.Combine(Directory.GetCurrentDirectory(), @"SassyStyles")),
+              //  RequestPath = new PathString("/SassyStyles"),
+                ContentTypeProvider = provider
+            });
+
+            app.UseNodeModules();
 
             //must be called before routing and endpoints
             //authentication is about identifying the user

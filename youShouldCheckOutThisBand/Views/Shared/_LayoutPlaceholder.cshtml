@@ -4,12 +4,15 @@
 
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/StyleSheet.scss" asp-append-version="true" />
+
     <style>
         body {
             color: blueviolet;
         }
     </style>
-   
+
     <title>
         @ViewBag.Title
     </title>
@@ -33,7 +36,7 @@
                         <a class="nav-link" asp-controller="App" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="App" asp-action="Bands">Find A Band To Listen To</a>
+                        <a class="nav-link" asp-controller="App" asp-action="Artists">Find A Band To Listen To</a>
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {

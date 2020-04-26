@@ -69,8 +69,8 @@ namespace youShouldCheckOutThisBand.Controllers
             return View();
         }
 
-        [HttpGet("Bands")]
-        public IActionResult Bands()
+        [HttpGet("Artists")]
+        public IActionResult Artists()
         {
             //return the bands people suggested
             var results = _reposity.GetAllArtistEntities();

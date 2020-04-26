@@ -452,6 +452,11 @@ namespace youShouldCheckOutThisBand.Migrations
                     b.Property<int?>("AlbumId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DownVotes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
                     b.Property<string>("Href")
                         .HasColumnType("nvarchar(max)");
 
@@ -461,14 +466,14 @@ namespace youShouldCheckOutThisBand.Migrations
                     b.Property<string>("PreviewUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Uri")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Votes")
+                    b.Property<int>("UpVotes")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(1);
+
+                    b.Property<string>("Uri")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -598,7 +603,7 @@ namespace youShouldCheckOutThisBand.Migrations
                         .HasForeignKey("TrackId");
 
                     b.HasOne("youShouldCheckOutThisBand.Entities.AppUser", "User")
-                        .WithMany()
+                        .WithMany("Recommendations")
                         .HasForeignKey("UserId1");
                 });
 

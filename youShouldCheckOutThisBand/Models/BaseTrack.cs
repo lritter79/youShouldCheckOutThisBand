@@ -28,8 +28,13 @@ namespace youShouldCheckOutThisBand.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// The down/upvotes a track gets 
+        /// The upvotes a track gets 
         /// </summary>
-        public int Votes { get; set; }
+        public int UpVotes { get; set; }
+        
+        /// <summary>
+        /// The upvotes a track gets 
+        /// </summary>
+        public int DownVotes { get; set; }
     }
 }

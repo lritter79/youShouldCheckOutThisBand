@@ -10,6 +10,13 @@ namespace youShouldCheckOutThisBand.Models
         public Album Album { get; set; }
         public IEnumerable<Artist> Artists {get;set;}     
         public string Url  {get;set;}
+        public int SumOfVotes
+        {
+            get
+            {
+                return UpVotes - DownVotes;
+            }
+        }
 
     }
 }

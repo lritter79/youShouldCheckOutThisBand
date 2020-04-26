@@ -14,6 +14,8 @@ using AutoMapper;
 using System.Reflection;
 using youShouldCheckOutThisBand.Entities;
 using Microsoft.AspNetCore.Identity;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace youShouldCheckOutThisBand
 {
@@ -35,11 +37,25 @@ namespace youShouldCheckOutThisBand
             //identity roll is incase we're configuring roles, it can be a type of data that's about a user
             services.AddIdentity<AppUser, IdentityRole>(cfg => 
             {
-                //let's you set reuls for user logins and such
-                //cfg.User.RequireUniqueEmail = true;
+                //let's you set rules for user logins and such
+                cfg.User.RequireUniqueEmail = true;
             })
                 //maps the users to our contexts
                 .AddEntityFrameworkStores<YSCOTBContext>();
+
+            //configure the tokens we want to use
+            services.AddAuthentication()
+                .AddCookie()
+                //tell start up to use our json token
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = _config["Tokens:Issuer"],
+                        ValidAudience = _config["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+                    };
+                });
 
             //make db context part of services collection so we can inject it where we need it
             services.AddDbContext<YSCOTBContext>(cfg =>
@@ -99,7 +115,7 @@ namespace youShouldCheckOutThisBand
 
             app.UseNodeModules();
 
-            app.UseCookiePolicy();
+            //.UseCookiePolicy();
 
             app.UseStaticFiles();
 

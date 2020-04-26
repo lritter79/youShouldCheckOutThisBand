@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,14 +20,15 @@ namespace youShouldCheckOutThisBand.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //says that we're returning application.json with this controller
-    [Produces("application/json")]
-    public class ApiController : ControllerBase
+    [Produces("application/json")]    
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]// = to access this at all you need to be authorized
+    public class SpotifyApiController : ControllerBase
     {
         private readonly IYSCOTBRepository _repo;
         private readonly ISpotifyApiRepository _spotify;
         private readonly IMapper _mapper;
 
-        public ApiController(IYSCOTBRepository repo, ISpotifyApiRepository spotifyApi, IMapper mapper)
+        public SpotifyApiController(IYSCOTBRepository repo, ISpotifyApiRepository spotifyApi, IMapper mapper)
         {
             _mapper = mapper;
             _repo = repo;

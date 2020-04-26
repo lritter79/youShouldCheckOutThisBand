@@ -1,22 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link href="~/node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <style>
         body {
             color: blueviolet;
         }
     </style>
-    <script src="~/node_modules/jquery/dist/jquery.js"></script>
-    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+   
     <title>
         @ViewBag.Title
     </title>
 </head>
 <body>
-    @*building a header with the bs class container*@ 
-    <header class="container-fluid">      
+    @*building a header with the bs class container*@
+    <header class="container-fluid">
         @* navbar is a bootstrap class that makes a navbar that's good on desktop and mobile *@
         @* navbar brand is a special class *@
         <nav class="navbar navbar-dark bg-dark navbar-expand-md">
@@ -35,15 +35,35 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="App" asp-action="Bands">Find A Band To Listen To</a>
                     </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                    }
+
+
                 </ul>
-            </div>        
+            </div>
         </nav>
     </header>
 
-    
-    <section>
+
+    <section class="container">
         @* takes the body of a cshtml file and renders it in the section*@
         @RenderBody()
     </section>
+    <footer class="container">
+        <div class="text-center">Copyright 2020 Levon Ritter</div>
+    </footer>
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

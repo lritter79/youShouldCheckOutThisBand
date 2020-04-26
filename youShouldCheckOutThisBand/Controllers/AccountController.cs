@@ -124,7 +124,7 @@ namespace youShouldCheckOutThisBand.Controllers
                             _configuration["Tokens:Issuer"],
                             _configuration["Tokens:Audience"],
                             claims,
-                            expires: DateTime.UtcNow.AddMinutes(30),
+                            expires: DateTime.UtcNow.AddMinutes(70),
                             signingCredentials: credentials
                             );
 

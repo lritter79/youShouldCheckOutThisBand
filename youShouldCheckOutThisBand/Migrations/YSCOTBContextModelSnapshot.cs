@@ -405,24 +405,17 @@ namespace youShouldCheckOutThisBand.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("TrackId")
+                    b.Property<int>("TrackId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TrackUri")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TrackId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Recommendations");
                 });
@@ -600,11 +593,13 @@ namespace youShouldCheckOutThisBand.Migrations
                 {
                     b.HasOne("youShouldCheckOutThisBand.Entities.TrackEntity", "Track")
                         .WithMany()
-                        .HasForeignKey("TrackId");
+                        .HasForeignKey("TrackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("youShouldCheckOutThisBand.Entities.AppUser", "User")
                         .WithMany("Recommendations")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("youShouldCheckOutThisBand.Entities.TrackArtistJoinEntity", b =>

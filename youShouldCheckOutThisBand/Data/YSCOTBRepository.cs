@@ -121,6 +121,48 @@ namespace youShouldCheckOutThisBand.Data
             return _context.SaveChanges() > 1;
         }
 
+        public IEnumerable<TrackEntity> GetByTracksByUser(string username, bool includeArtists = true)
+        {
+            if (includeArtists)
+            {
+
+
+
+                var query = from TrackEntity in _context.Tracks
+                            join RecommendationEntity in _context.Recommendations on TrackEntity.Id equals RecommendationEntity.Track.Id
+                            join AppUser in _context.Users on RecommendationEntity.UserId equals AppUser.Id
+                            where AppUser.UserName == username
+                            select new TrackEntity();
+
+                return query.ToList();
+            }
+            else
+            {
+                var tracks = from TrackEntity in _context.Tracks
+                join RecommendationEntity in _context.Recommendations on TrackEntity.Id equals RecommendationEntity.Track.Id
+                join AppUser in _context.Users on RecommendationEntity.UserId equals AppUser.Id             
+                where AppUser.UserName == username
+                select new TrackEntity();
+                
+                foreach (TrackEntity t in tracks)
+                {
+                    t.TracksArtists = (from TrackArtistJoinEntity in _context.ArtistsTracks
+                                      where TrackArtistJoinEntity.TrackId == t.Id
+                                      select new TrackArtistJoinEntity()).ToList();
+                    foreach (TrackArtistJoinEntity ta in t.TracksArtists)
+                    {
+                        ta.Artist = (from ArtistEntity in _context.Artists
+                                    where ArtistEntity.Id == ta.ArtistId
+                                    select new ArtistEntity()).FirstOrDefault();
+                    }
+                }
+                
+                return tracks.ToList();
+            }
+        }
+
+
+
         //public ArtistEntity GetArtistById(9string genre)
         //{
         //    return _context.Artists.Where(a => a.ArtistsGenres

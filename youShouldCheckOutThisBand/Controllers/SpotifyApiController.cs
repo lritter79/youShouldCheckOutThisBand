@@ -18,10 +18,10 @@ namespace youShouldCheckOutThisBand.Controllers
     //this api is all about getting data
     
     [Route("api/[controller]")]
-    [ApiController]
     //says that we're returning application.json with this controller
-    [Produces("application/json")]    
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]// = to access this at all you need to be authorized
+    [Produces("application/json")]
+    [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SpotifyApiController : ControllerBase
     {
         private readonly IYSCOTBRepository _repo;
@@ -39,7 +39,7 @@ namespace youShouldCheckOutThisBand.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [HttpGet("{id:int}")]
-        public IActionResult Artists(int id)
+        public IActionResult Get(int id)
         {
             try
             {

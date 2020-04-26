@@ -49,6 +49,7 @@ namespace youShouldCheckOutThisBand
                 //tell start up to use our json token
                 .AddJwtBearer(cfg =>
                 {
+                    //params that need to be used to validate th etoken we sent in
                     cfg.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidIssuer = _config["Tokens:Issuer"],

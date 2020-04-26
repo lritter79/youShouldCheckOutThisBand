@@ -12,9 +12,10 @@ namespace youShouldCheckOutThisBand.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
-        public string TrackUri { get; set; }
-        public int UserId { get; set; }
+        [Required]    
+        public int TrackId { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey("TrackId")]
         public virtual TrackEntity Track { get; set; }
         public virtual AppUser User { get; set; }
     }

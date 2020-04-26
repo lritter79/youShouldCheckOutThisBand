@@ -20,18 +20,19 @@ namespace youShouldCheckOutThisBand.Entities
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public new int Id { get; set; }
 
         [Required]
         public new string Uri { get; set; }
 
         //track has a one to one relationship to album
-        public AlbumEntity Album { get; set; }
+        [ForeignKey("AlbumId")]
+        public virtual Album Album { get; set; }
+
+        public int AlbumId { get; set; }
 
         //tracks can have a one to many relationship with artists
-        public ICollection<TrackArtistJoinEntity> TracksArtists { get; set; }
-
-        
+        public ICollection<TrackArtistJoinEntity> TracksArtists { get; set; }    
 
     }
 }

@@ -37,10 +37,10 @@ namespace youShouldCheckOutThisBand.Controllers
             //try adding logic here to get data via spotify api
             try
             {
-                var username = User.Identity.Name;
-
+                
                 if (getTracksByUser)
                 {
+                    var username = User.Identity.Name;
                     return Ok(_repo.GetByTracksByUser(username, includeArtists));
                 }
 

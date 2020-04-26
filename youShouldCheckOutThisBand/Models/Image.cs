@@ -7,6 +7,8 @@ namespace youShouldCheckOutThisBand.Models
 {
     public class Image
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// The image height in pixels. If unknown: null or not returned.
         /// </summary>

@@ -24,7 +24,7 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
                 .ForMember(tdto => tdto.ArtistUris, opts => opts.MapFrom(te => te.TracksArtists
                                                                               .Select(ta => ta.Artist.Uri)))
                 .ForMember(tdto => tdto.AlbumUri, opts => opts.MapFrom(te => te.Album.Uri))
-                .ForMember(tdto => tdto.AlbumId, opts => opts.MapFrom(te => te.Album.Id))
+                .ForMember(tdto => tdto.AlbumId, opts => opts.MapFrom(te => te.AlbumId))
                 .ReverseMap();
             
             CreateMap<Track, TrackDto>()

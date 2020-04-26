@@ -36,5 +36,7 @@ namespace youShouldCheckOutThisBand.Models
         /// The upvotes a track gets 
         /// </summary>
         public int DownVotes { get; set; }
+
+        public int Id { get; set; }
     }
 }

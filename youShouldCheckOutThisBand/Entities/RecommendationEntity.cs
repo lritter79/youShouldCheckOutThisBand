@@ -17,6 +17,7 @@ namespace youShouldCheckOutThisBand.Entities
         public string UserId { get; set; }
         [ForeignKey("TrackId")]
         public virtual TrackEntity Track { get; set; }
+        [ForeignKey("UserId")]
         public virtual AppUser User { get; set; }
     }
 }

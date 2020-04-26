@@ -20,7 +20,7 @@ namespace youShouldCheckOutThisBand.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IConfiguration _configuration;
 
-        public UserManager<AppUser> _userManager { get; }
+        private UserManager<AppUser> _userManager { get; }
 
         public AccountController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IConfiguration configuration)
         {

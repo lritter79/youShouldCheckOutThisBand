@@ -10,7 +10,7 @@ using youShouldCheckOutThisBand.Contexts;
 namespace youShouldCheckOutThisBand.Migrations
 {
     [DbContext(typeof(YSCOTBContext))]
-    [Migration("20200426060845_init")]
+    [Migration("20200426203010_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,32 +150,6 @@ namespace youShouldCheckOutThisBand.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("youShouldCheckOutThisBand.Entities.AlbumCoverEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AlbumId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AlbumId");
-
-                    b.ToTable("AlbumCovers");
                 });
 
             modelBuilder.Entity("youShouldCheckOutThisBand.Entities.AlbumEntity", b =>
@@ -444,7 +418,10 @@ namespace youShouldCheckOutThisBand.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlbumId")
+                    b.Property<int?>("AlbumEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AlbumId")
                         .HasColumnType("int");
 
                     b.Property<int>("DownVotes")
@@ -474,9 +451,160 @@ namespace youShouldCheckOutThisBand.Migrations
 
                     b.HasAlternateKey("Uri");
 
+                    b.HasIndex("AlbumEntityId");
+
                     b.HasIndex("AlbumId");
 
                     b.ToTable("Tracks");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Models.Album", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AlbumType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Href")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Label")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Release_Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Release_Date_Precision")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Uri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Album");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Models.Artist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AlbumId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Href")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TrackId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Uri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlbumId");
+
+                    b.HasIndex("TrackId");
+
+                    b.ToTable("Artist");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AlbumId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Width")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlbumId1");
+
+                    b.ToTable("Image");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Image");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Models.Track", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AlbumId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DownVotes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Href")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreviewUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UpVotes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Uri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlbumId");
+
+                    b.ToTable("Track");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Entities.AlbumCoverEntity", b =>
+                {
+                    b.HasBaseType("youShouldCheckOutThisBand.Models.Image");
+
+                    b.Property<int>("AlbumId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("AlbumId");
+
+                    b.HasDiscriminator().HasValue("AlbumCoverEntity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -526,15 +654,6 @@ namespace youShouldCheckOutThisBand.Migrations
                     b.HasOne("youShouldCheckOutThisBand.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("youShouldCheckOutThisBand.Entities.AlbumCoverEntity", b =>
-                {
-                    b.HasOne("youShouldCheckOutThisBand.Entities.AlbumEntity", "Album")
-                        .WithMany("Images")
-                        .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -621,9 +740,49 @@ namespace youShouldCheckOutThisBand.Migrations
 
             modelBuilder.Entity("youShouldCheckOutThisBand.Entities.TrackEntity", b =>
                 {
-                    b.HasOne("youShouldCheckOutThisBand.Entities.AlbumEntity", "Album")
+                    b.HasOne("youShouldCheckOutThisBand.Entities.AlbumEntity", null)
+                        .WithMany("Tracks")
+                        .HasForeignKey("AlbumEntityId");
+
+                    b.HasOne("youShouldCheckOutThisBand.Models.Album", "Album")
+                        .WithMany()
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Models.Artist", b =>
+                {
+                    b.HasOne("youShouldCheckOutThisBand.Models.Album", null)
+                        .WithMany("Artists")
+                        .HasForeignKey("AlbumId");
+
+                    b.HasOne("youShouldCheckOutThisBand.Models.Track", null)
+                        .WithMany("Artists")
+                        .HasForeignKey("TrackId");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Models.Image", b =>
+                {
+                    b.HasOne("youShouldCheckOutThisBand.Models.Album", null)
+                        .WithMany("Images")
+                        .HasForeignKey("AlbumId1");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Models.Track", b =>
+                {
+                    b.HasOne("youShouldCheckOutThisBand.Models.Album", "Album")
                         .WithMany("Tracks")
                         .HasForeignKey("AlbumId");
+                });
+
+            modelBuilder.Entity("youShouldCheckOutThisBand.Entities.AlbumCoverEntity", b =>
+                {
+                    b.HasOne("youShouldCheckOutThisBand.Entities.AlbumEntity", "Album")
+                        .WithMany("Images")
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

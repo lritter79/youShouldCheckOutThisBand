@@ -8,6 +8,25 @@ namespace youShouldCheckOutThisBand.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Album",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AlbumType = table.Column<string>(nullable: true),
+                    Href = table.Column<string>(nullable: true),
+                    Label = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Release_Date = table.Column<string>(nullable: true),
+                    Release_Date_Precision = table.Column<string>(nullable: true),
+                    Uri = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Album", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Albums",
                 columns: table => new
                 {
@@ -99,7 +118,33 @@ namespace youShouldCheckOutThisBand.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AlbumCovers",
+                name: "Track",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Href = table.Column<string>(nullable: true),
+                    PreviewUrl = table.Column<string>(nullable: true),
+                    Uri = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    UpVotes = table.Column<int>(nullable: false),
+                    DownVotes = table.Column<int>(nullable: false),
+                    AlbumId = table.Column<int>(nullable: true),
+                    Url = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Track", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Track_Album_AlbumId",
+                        column: x => x.AlbumId,
+                        principalTable: "Album",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Image",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -107,17 +152,25 @@ namespace youShouldCheckOutThisBand.Migrations
                     Height = table.Column<int>(nullable: false),
                     Width = table.Column<int>(nullable: false),
                     Url = table.Column<string>(nullable: true),
-                    AlbumId = table.Column<int>(nullable: false)
+                    AlbumId1 = table.Column<int>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
+                    AlbumId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AlbumCovers", x => x.Id);
+                    table.PrimaryKey("PK_Image", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AlbumCovers_Albums_AlbumId",
+                        name: "FK_Image_Albums_AlbumId",
                         column: x => x.AlbumId,
                         principalTable: "Albums",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Image_Album_AlbumId1",
+                        column: x => x.AlbumId1,
+                        principalTable: "Album",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -132,18 +185,25 @@ namespace youShouldCheckOutThisBand.Migrations
                     UpVotes = table.Column<int>(nullable: false, defaultValue: 1),
                     DownVotes = table.Column<int>(nullable: false, defaultValue: 0),
                     Uri = table.Column<string>(nullable: false),
-                    AlbumId = table.Column<int>(nullable: true)
+                    AlbumId = table.Column<int>(nullable: false),
+                    AlbumEntityId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tracks", x => x.Id);
                     table.UniqueConstraint("AK_Tracks_Uri", x => x.Uri);
                     table.ForeignKey(
-                        name: "FK_Tracks_Albums_AlbumId",
-                        column: x => x.AlbumId,
+                        name: "FK_Tracks_Albums_AlbumEntityId",
+                        column: x => x.AlbumEntityId,
                         principalTable: "Albums",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Tracks_Album_AlbumId",
+                        column: x => x.AlbumId,
+                        principalTable: "Album",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -347,6 +407,36 @@ namespace youShouldCheckOutThisBand.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Artist",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(nullable: true),
+                    Href = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Uri = table.Column<string>(nullable: true),
+                    AlbumId = table.Column<int>(nullable: true),
+                    TrackId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artist", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Artist_Album_AlbumId",
+                        column: x => x.AlbumId,
+                        principalTable: "Album",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Artist_Track_TrackId",
+                        column: x => x.TrackId,
+                        principalTable: "Track",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ArtistsTracks",
                 columns: table => new
                 {
@@ -397,9 +487,14 @@ namespace youShouldCheckOutThisBand.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AlbumCovers_AlbumId",
-                table: "AlbumCovers",
+                name: "IX_Artist_AlbumId",
+                table: "Artist",
                 column: "AlbumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Artist_TrackId",
+                table: "Artist",
+                column: "TrackId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ArtistAlbumJoinTable_AlbumId",
@@ -466,6 +561,16 @@ namespace youShouldCheckOutThisBand.Migrations
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Image_AlbumId",
+                table: "Image",
+                column: "AlbumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Image_AlbumId1",
+                table: "Image",
+                column: "AlbumId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Recommendations_TrackId",
                 table: "Recommendations",
                 column: "TrackId");
@@ -476,6 +581,16 @@ namespace youShouldCheckOutThisBand.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Track_AlbumId",
+                table: "Track",
+                column: "AlbumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tracks_AlbumEntityId",
+                table: "Tracks",
+                column: "AlbumEntityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tracks_AlbumId",
                 table: "Tracks",
                 column: "AlbumId");
@@ -484,7 +599,7 @@ namespace youShouldCheckOutThisBand.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AlbumCovers");
+                name: "Artist");
 
             migrationBuilder.DropTable(
                 name: "ArtistAlbumJoinTable");
@@ -517,7 +632,13 @@ namespace youShouldCheckOutThisBand.Migrations
                 name: "GenresArtists");
 
             migrationBuilder.DropTable(
+                name: "Image");
+
+            migrationBuilder.DropTable(
                 name: "Recommendations");
+
+            migrationBuilder.DropTable(
+                name: "Track");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -536,6 +657,9 @@ namespace youShouldCheckOutThisBand.Migrations
 
             migrationBuilder.DropTable(
                 name: "Albums");
+
+            migrationBuilder.DropTable(
+                name: "Album");
         }
     }
 }

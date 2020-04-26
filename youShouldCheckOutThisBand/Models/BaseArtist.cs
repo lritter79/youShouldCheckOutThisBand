@@ -11,6 +11,6 @@ namespace youShouldCheckOutThisBand.Models
         public string Href { get; set; }
         public string Name { get; set; }
         public string Uri { get; set; }
-        
+        public int Id { get; set; }
     }
 }

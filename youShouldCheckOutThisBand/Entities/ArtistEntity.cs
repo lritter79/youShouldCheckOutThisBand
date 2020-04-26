@@ -27,7 +27,7 @@ namespace youShouldCheckOutThisBand.Entities
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public new int Id { get; set; }
 
 
 

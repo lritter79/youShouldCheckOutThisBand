@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using youShouldCheckOutThisBand.Data;
@@ -12,6 +14,7 @@ namespace youShouldCheckOutThisBand.Controllers
 {
     [Route("api/Tracks")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TracksController : ControllerBase
     {
         private readonly IYSCOTBRepository _repo;
@@ -29,11 +32,17 @@ namespace youShouldCheckOutThisBand.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<IEnumerable<Track>> Get(bool includeArtists = true)
+        public ActionResult<IEnumerable<Track>> Get(bool includeArtists = false, bool getTracksByUser = true)
         {
             //try adding logic here to get data via spotify api
             try
             {
+                var username = User.Identity.Name;
+
+                if (getTracksByUser)
+                {
+                    return Ok(_repo.GetByTracksByUser(username, includeArtists));
+                }
 
                 return Ok(_repo.GetAllTracks(includeArtists));
             }

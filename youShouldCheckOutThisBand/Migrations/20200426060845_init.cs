@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace youShouldCheckOutThisBand.Migrations
 {
-    public partial class changedvotes : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -376,10 +376,8 @@ namespace youShouldCheckOutThisBand.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TrackUri = table.Column<string>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
-                    TrackId = table.Column<int>(nullable: true),
-                    UserId1 = table.Column<string>(nullable: true)
+                    TrackId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -389,10 +387,10 @@ namespace youShouldCheckOutThisBand.Migrations
                         column: x => x.TrackId,
                         principalTable: "Tracks",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Recommendations_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_Recommendations_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -473,9 +471,9 @@ namespace youShouldCheckOutThisBand.Migrations
                 column: "TrackId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recommendations_UserId1",
+                name: "IX_Recommendations_UserId",
                 table: "Recommendations",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tracks_AlbumId",

@@ -12,62 +12,55 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
     {
         public YSCOTBAutoMappingProfile()
         {
-            CreateMap<AlbumCoverEntity, ImageDto>()
+            CreateMap<AlbumCoverEntity, Image>()
                 .ReverseMap();
 
-            CreateMap<ImageDto, ArtistImageEntity>()
+            CreateMap<Image, ArtistImageEntity>()
                 .ReverseMap();
 
-            CreateMap<TrackEntity, TrackDto>()
-                .ForMember(tdto => tdto.ArtistIds, opts => opts.MapFrom(te => te.TracksArtists
-                                                                              .Select(ta => ta.Artist.Id)))
-                .ForMember(tdto => tdto.ArtistUris, opts => opts.MapFrom(te => te.TracksArtists
-                                                                              .Select(ta => ta.Artist.Uri)))
-                .ForMember(tdto => tdto.AlbumUri, opts => opts.MapFrom(te => te.Album.Uri))
-                .ForMember(tdto => tdto.AlbumId, opts => opts.MapFrom(te => te.AlbumId))
-                .ReverseMap();
-            
-            CreateMap<Track, TrackDto>()
-                .ForMember(tdto => tdto.ArtistUris, opts => opts.MapFrom(te => te.Artists
-                                                                              .Select(ta => ta.Uri)))               
-                .ForMember(tdto => tdto.Uri, opts => opts.MapFrom(te => te.Uri))
-                .ForMember(tdto => tdto.AlbumUri, opts => opts.MapFrom(te => te.Album.Uri))
-                .ForMember(tdto => tdto.AlbumId, opts => opts.Ignore())
+            CreateMap<Track, TrackEntity>()           
+                .ForMember(entity => entity.Album, opts => opts.MapFrom(model => model.Album))
                 .ReverseMap();
 
-            CreateMap<Artist, ArtistDto>()
-                .ReverseMap();
-            
-            CreateMap<ArtistEntity, ArtistDto>()
-                .ForMember(ArtistDto => ArtistDto.ImageIds, opts => opts.MapFrom(Artist => Artist.Images
-                                                                              .Select(img => img.Id)))
+            //CreateMap<string, GenreEntity>()
+            //    .ForMember(entity => entity.Name, opts => opts.MapFrom(model => model))
+            //    .ReverseMap();
+
+            //CreateMap<string, string>()
+            //    .ForMember(entity => entity, opts => opts.MapFrom(model => model))
+            //    .ReverseMap();
+
+            CreateMap<Artist, ArtistEntity>()
+                .ForMember(entity => entity.ArtistsAlbums, opts => opts.MapFrom(model => model.Albums
+                                                                              .Select(album => album)))
+                .ForMember(entity => entity.ArtistsTracks, opts => opts.MapFrom(model => model.Tracks
+                                                                                        .Select(track => track)))
+                .ForMember(entity => entity.Images, opts => opts.MapFrom(model => model.Images
+                                                                                       .Select(image => image)))
+
                 .ReverseMap();
 
-            CreateMap<Album, AlbumDto>()
-                .ForPath(Adto => Adto.Images, opts => opts.MapFrom(a => a.Images))
+            CreateMap<Album, AlbumEntity>()
+                .ForMember(entity => entity.Images, opts => opts.MapFrom(model => model.Images
+                                                                                       .Select(image => image)))
+                .ReverseMap();
+            //joiners
+            CreateMap<Tuple<Artist, Album>, ArtistAlbumJoinEntity>()
+                .ForMember(entity => entity.Artist, opts => opts.MapFrom(model => model.Item1))
+                .ForMember(entity => entity.ArtistId, opts => opts.MapFrom(model => model.Item1.Id))
+                .ForMember(entity => entity.Album, opts => opts.MapFrom(model => model.Item2))
+                .ForMember(entity => entity.AlbumId, opts => opts.MapFrom(model => model.Item2.Id))
                 .ReverseMap();
 
-            CreateMap<AlbumEntity, AlbumDto>()
-                .ForPath(Adto => Adto.Artists, opts => opts.MapFrom(a => a.AlbumsArtists
-                                                                              .Select(ar => ar.Artist)))
-                .ForPath(Adto => Adto.Tracks, opts => opts.MapFrom(a => a.Tracks
-                                                                              .Select(tr => tr)))
-                .ForPath(Adto => Adto.Images, opts => opts.MapFrom(a => a.Images))
+            CreateMap<Tuple<Track, Artist>, TrackArtistJoinEntity>()
+                .ForMember(entity => entity.Track, opts => opts.MapFrom(model => model.Item1))
+                .ForMember(entity => entity.TrackId, opts => opts.MapFrom(model => model.Item1.Id))
+                .ForMember(entity => entity.Artist, opts => opts.MapFrom(model => model.Item2))
+                .ForMember(entity => entity.ArtistId, opts => opts.MapFrom(model => model.Item2.Id))
                 .ReverseMap();
 
-            CreateMap<AlbumDto, ArtistAlbumJoinEntity>()
-                .ForPath(artistAlbumJoinEntity => artistAlbumJoinEntity.Album, opts => opts.MapFrom(a => a))
-                .ReverseMap();
-            
-            CreateMap<ArtistDto, ArtistAlbumJoinEntity>()
-                .ForPath(artistAlbumJoinEntity => 
-                artistAlbumJoinEntity.Artist, opts => opts.MapFrom(a => a))                                          
-                .ReverseMap();
+
 
         }
-
-
-
-
     }
 }

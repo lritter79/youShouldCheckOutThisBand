@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Annotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,8 +20,11 @@ namespace youShouldCheckOutThisBand.Entities
         }
         //artists can have a one to many relationship with genres and images
         public ICollection<ArtistImageEntity> Images { get; set; }
+        [Ignore]
         public virtual ICollection<GenreArtistJoinEntity> ArtistsGenres { get; set; }
+        [Ignore]
         public virtual ICollection<ArtistAlbumJoinEntity> ArtistsAlbums { get; set; }
+        [Ignore]
         public virtual ICollection<TrackArtistJoinEntity> ArtistsTracks { get; set; }
         /// <summary>
         /// The Spotify ID for the artist.

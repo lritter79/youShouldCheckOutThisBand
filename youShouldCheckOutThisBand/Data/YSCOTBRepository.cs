@@ -161,8 +161,54 @@ namespace youShouldCheckOutThisBand.Data
             }
         }
 
+        public void AddRecommendation(RecommendationEntity recommendation)
+        {
+            try
+            {
+                //var album = recommendation.Track.Album;
+                //if (_context.Albums.Any(album => album.Uri == album.Uri))
+                //{
+                //    recommendation.Track.Album = null;
+                //}
+
+                
+                //var trackArtists = recommendation.Track.TracksArtists;
+                
+                
+                //recommendation.Track.TracksArtists = null;
+
+                _context.Recommendations.Add(recommendation);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //foreach (TrackArtistJoinEntity artist in recommendation.Track.TracksArtists)
+            //{
+            //    if (IsItNew(ar))
+            //}
+            
 
 
+            //if (context.ObjectStateManager.GetObjectStateEntry(myEntity).State == EntityState.Detached)
+            //{
+            //    context.MyEntities.AddObject(myEntity);
+            //}
+        }
+
+
+        public static bool IsItNew(YSCOTBContext context, ArtistEntity entity)
+        {
+            if (context.Artists.Find(entity.Uri) == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+                                  
         //public ArtistEntity GetArtistById(9string genre)
         //{
         //    return _context.Artists.Where(a => a.ArtistsGenres

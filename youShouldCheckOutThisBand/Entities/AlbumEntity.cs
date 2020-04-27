@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Annotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,11 +26,13 @@ namespace youShouldCheckOutThisBand.Entities
 
         //albums also have multiple images that they are attached to because the cover can come in different sizes
 
-        public virtual ICollection<AlbumCoverEntity> Images { get; set; }
+        
+        [Ignore]
         public virtual ICollection<ArtistAlbumJoinEntity> AlbumsArtists { get; set; }
+        [Ignore]
         public virtual ICollection<GenreAlbumJoinEntity> AlbumsGenres { get; set; }
-        public ICollection<TrackEntity> Tracks { get; set; } 
-
+        public ICollection<TrackEntity> Tracks { get; set; }
+        public virtual ICollection<AlbumCoverEntity> Images { get; set; }
 
         /// <summary>
         /// The Spotify ID for the album.

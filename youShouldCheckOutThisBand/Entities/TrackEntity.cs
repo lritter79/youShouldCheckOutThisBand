@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Annotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,10 +28,11 @@ namespace youShouldCheckOutThisBand.Entities
 
         //track has a one to one relationship to album
         [ForeignKey("AlbumId")]
-        public virtual Album Album { get; set; }
+        public virtual AlbumEntity Album { get; set; }
 
         public int AlbumId { get; set; }
 
+        [Ignore]
         //tracks can have a one to many relationship with artists
         public ICollection<TrackArtistJoinEntity> TracksArtists { get; set; }    
 

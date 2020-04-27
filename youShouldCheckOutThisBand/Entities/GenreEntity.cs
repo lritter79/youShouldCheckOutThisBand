@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Annotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Entities
 {
-    public class GenreEntity:Genre
+    public class GenreEntity
     {
 
         public GenreEntity ()
@@ -19,10 +20,14 @@ namespace youShouldCheckOutThisBand.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public new int Id { get; set; }
+        public int Id { get; set; }
 
+        public string Name { get; set; }
+
+        [Ignore]
         public ICollection<GenreArtistJoinEntity> GenresArtists { get; set; }
 
+        [Ignore]
         public ICollection<GenreAlbumJoinEntity> GenresAlbums { get; set; }
     }
 

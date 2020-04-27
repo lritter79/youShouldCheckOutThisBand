@@ -2,13 +2,16 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace youShouldCheckOutThisBand.Models
 {
+    [NotMapped]
     public class Album : BaseAlbum
     {
+        
         public Album ()
         {
             Artists = new List<Artist>();
@@ -20,6 +23,7 @@ namespace youShouldCheckOutThisBand.Models
         public IEnumerable<Image> Images { get; set; }
         //using the jsonignore decorator because we dont need to get all tracks from spotify, plus the code will break up the tracks 
         //of an album getting deserialized
+        [JsonIgnore]
         public int Id { get; set; }
 
         [JsonIgnore]

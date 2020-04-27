@@ -12,6 +12,7 @@ namespace youShouldCheckOutThisBand.Data
         void AddArtistImages(IEnumerable<ArtistImageEntity> artistImageEntities);
         void AddGenreAlbumJoinEntity(GenreAlbumJoinEntity genreAlbumJoinEntity);
         void AddTrack(TrackEntity track);
+        void AddRecommendation(RecommendationEntity recommendation);
         IEnumerable<ArtistEntity> GetAllArtistEntities();
         IEnumerable<TrackEntity> GetAllTracks(bool includeArtist = true);
         ArtistEntity GetArtistById(int id);

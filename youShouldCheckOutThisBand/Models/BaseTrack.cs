@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace youShouldCheckOutThisBand.Models
         /// </summary>
         public int DownVotes { get; set; }
 
+        [JsonIgnore]
         public int Id { get; set; }
     }
 }

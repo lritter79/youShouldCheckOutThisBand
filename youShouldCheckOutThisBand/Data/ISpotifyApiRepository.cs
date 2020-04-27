@@ -7,5 +7,6 @@ namespace youShouldCheckOutThisBand.Data
     {
         Track GetTrackInfo(string trackUri);
         Album GetAlbum(string albumUri);
+        Artist GetArtist(string artistUri);
     }
 }

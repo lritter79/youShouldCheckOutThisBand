@@ -12,6 +12,6 @@ namespace youShouldCheckOutThisBand.ViewModel
         [Required]
         public string SpotifyUri { get; set; }
         //returns response code if req was added or not
-        public string Status { get; set; }
+        
     }
 }

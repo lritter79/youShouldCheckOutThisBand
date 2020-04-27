@@ -64,12 +64,14 @@ namespace youShouldCheckOutThisBand.Contexts
                 .Property(t => t.DownVotes)
                 .HasDefaultValue(0);
 
-            modelBuilder.Entity<TrackEntity>()
-                 .HasAlternateKey(t => t.Uri);
-            modelBuilder.Entity<ArtistEntity>()
-                 .HasAlternateKey(t => t.Uri);
-            modelBuilder.Entity<AlbumEntity>()
-                 .HasAlternateKey(t => t.Uri);
+            //this is for keepin values unique
+            //unfortunately, it's too hard to work with at the moment
+            //modelBuilder.Entity<TrackEntity>()
+            //     .HasAlternateKey(t => t.Uri);
+            //modelBuilder.Entity<ArtistEntity>()
+            //     .HasAlternateKey(t => t.Uri);
+            //modelBuilder.Entity<AlbumEntity>()
+            //     .HasAlternateKey(t => t.Uri);
             
 
             //this is one way to seed, but it's not efficient because it runs everytime dbcontext is instatiated

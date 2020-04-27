@@ -15,41 +15,42 @@ using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Controllers
 {
-    //this api is all about getting data
+    //this api is all about getting data back from the spotify api
     
     [Route("api/[controller]")]
     //says that we're returning application.json with this controller
     [Produces("application/json")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class SpotifyApiController : ControllerBase
+    public class SpotifyController : ControllerBase
     {
         private readonly IYSCOTBRepository _repo;
         private readonly ISpotifyApiRepository _spotify;
         private readonly IMapper _mapper;
 
-        public SpotifyApiController(IYSCOTBRepository repo, ISpotifyApiRepository spotifyApi, IMapper mapper)
+        public SpotifyController(IYSCOTBRepository repo, ISpotifyApiRepository spotifyApi, IMapper mapper)
         {
             _mapper = mapper;
             _repo = repo;
             _spotify = spotifyApi;
         }
 
-        [Route("~/api/Artists/{id}")]
+        
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        [HttpGet("{id:int}")]
-        public IActionResult Get(int id)
+        [Route("api/[controller]/[action]/{uri}")]
+        [HttpGet("{uri}")]
+        public IActionResult GetTrack(string uri)
         {
             try
             {
                 //c# does not let you return interface types without being wrapped in an okay
 
-                var artist = _repo.GetArtistById(id);
+                var track = _spotify.GetTrackInfo(uri);
 
-                if (artist != null)
+                if (track != null)
                 {
-                    return Ok(artist);
+                    return Ok(track);
                 }
                 else
                 {
@@ -67,12 +68,14 @@ namespace youShouldCheckOutThisBand.Controllers
             }
         }
 
-        [Route("~/api/Artists")]
+        [Route("~/api/[controller]/Artists")]
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public ActionResult<IEnumerable<ArtistEntity>> Get()
         {
+            
+
             try
             {
                 //var t = _token.GetAccessToken();
@@ -115,18 +118,22 @@ namespace youShouldCheckOutThisBand.Controllers
         [HttpPost("{uri:alpha}")]
         public ActionResult<TrackEntity> AddSongRecommendation(string uri)
         {
+
             //try adding logic here to get data via spotify api
             try
             {
                 string id = Helpers.GetIdFromUri(uri);
-                var s = _spotify.GetTrackInfo(id);
-                var albumId = Helpers.GetIdFromUri(s.Album.Uri);
-                s.Album = _spotify.GetAlbum(albumId);
-                var track = _mapper.Map<Track, TrackDto>(s);
+                var spotifyTrack = _spotify.GetTrackInfo(id);
 
-                var trackEntity = _mapper.Map<TrackDto, TrackEntity>(track);
+
+                var trackEntity = _mapper.Map<Track, TrackEntity>(spotifyTrack);
                 //var albumEntity = _mapper.Map<Album, A>
                 //c# does not let you return interface types without being wrapped in an okay
+                trackEntity.TracksArtists = spotifyTrack.Artists
+                                                        .Select(a => _mapper.Map<Tuple<Track, Artist>, TrackArtistJoinEntity>(new Tuple<Track, Artist>(spotifyTrack, a))).ToList();
+                
+                //.SelectMany(tuple => _mapper.Map<Tuple<Track, Artist>, TrackArtistJoinEntity>(tuple));
+
                 _repo.AddTrack(trackEntity);
                 //_repo.AddAlbum();
                 bool isSaved = _repo.SaveAll();
@@ -143,7 +150,7 @@ namespace youShouldCheckOutThisBand.Controllers
                 }
 
             }           
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 return BadRequest("This song has already been recommended");
             }

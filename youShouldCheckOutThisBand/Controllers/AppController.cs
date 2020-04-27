@@ -84,7 +84,7 @@ namespace youShouldCheckOutThisBand.Controllers
                     }
                     else
                     {
-                        ViewBag.UserMessage = "Something went wrong";
+                        ViewBag.UserMessage = "Something went wrong or you've already recommended this song";
                     }
                     
                     

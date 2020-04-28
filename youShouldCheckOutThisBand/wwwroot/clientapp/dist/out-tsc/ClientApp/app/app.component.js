@@ -8,7 +8,7 @@ let AppComponent = class AppComponent {
 };
 AppComponent = __decorate([
     Component({
-        selector: 'artists-model',
+        selector: 'app-model',
         templateUrl: "./app.component.html",
         styles: []
     })

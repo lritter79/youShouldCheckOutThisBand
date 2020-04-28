@@ -169,6 +169,7 @@ class TrackList {
     //injects it into track list
     constructor(data) {
         this.data = data;
+        //make sure that an array of tracks is getting returned
         this.tracks = [];
         this.tracks = data.tracks;
     }
@@ -181,6 +182,26 @@ class TrackList {
                 this.tracks = this.data.tracks;
             }
         });
+    }
+    getArtistNames(track) {
+        let returnString = "";
+        if (track.artists.length > 1) {
+            track.artists.forEach(function (artist) {
+                if (artist.uri == track.artists[track.artists.length - 2].uri) {
+                    returnString += artist.name + ", and ";
+                }
+                else if (artist.uri == track.artists[track.artists.length - 1].uri) {
+                    returnString += artist.name;
+                }
+                else {
+                    returnString += artist.name + ", ";
+                }
+            });
+        }
+        else {
+            returnString = track.artists[0].name;
+        }
+        return returnString;
     }
 };
 TrackList.ctorParameters = () => [
@@ -280,6 +301,7 @@ __webpack_require__.r(__webpack_exports__);
 let DataService = class DataService {
     constructor(http) {
         this.http = http;
+        //add interface for type safety
         this.tracks = [];
     }
     loadTracks() {
@@ -319,7 +341,7 @@ DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-9\">\r\n        <h3>{{  title  }}</h3>\r\n        <tracks></tracks>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <p>Rock and roll</p>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-12\">\r\n        <h3>{{  title  }}</h3>\r\n        <tracks></tracks>\r\n    </div>\r\n    \r\n</div>");
 
 /***/ }),
 
@@ -345,7 +367,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let t of tracks\">\r\n            {{  t.name  }}\r\n            <br />\r\n            <p>Up Votes: {{ t.upVotes }}  <i class=\"fa fa-arrow-up\"></i></p>\r\n            \r\n            <p>Down Votes: {{ t.downVotes }}  <i class=\"fa fa-arrow-down\"></i></p>\r\n            \r\n            <div>\r\n                <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-sm-3\" *ngFor=\"let t of tracks\">\r\n        <div class=\"card bg-light m-1\" style=\"height:625px\">\r\n            <div class=\"m-1\" style=\"height:625px\">\r\n                \r\n                <div style=\"height:142px\">\r\n                    <p>{{  t.name  }} by {{ getArtistNames(t) }}</p>\r\n                </div>\r\n                    \r\n\r\n                    <div>\r\n                        <p><button id=\"btnUpVote\" class=\"success\"><i class=\"fa fa-arrow-up\"></i></button> {{ t.upVotes }}</p>\r\n                        <p><button id=\"btnDownVote\" class=\"danger\"><i class=\"fa fa-arrow-down\"></i></button> {{ t.downVotes }}</p>\r\n                    </div>\r\n                           \r\n                    <div class=\"m-1\">\r\n                        <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\" style=\"display:block;width:100%;\"></iframe>\r\n                    </div>\r\n            </div> \r\n\r\n            \r\n        </div>      \r\n    </div>\r\n</div>\r\n\r\n");
 
 /***/ }),
 

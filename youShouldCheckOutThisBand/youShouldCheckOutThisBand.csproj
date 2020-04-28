@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\tracks\tracks.component.ts" />
+    <None Remove="ClientApp\shared\artist.ts" />
+    <None Remove="ClientApp\shared\file.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -523,6 +525,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\tracks\tracks.component.ts" />
+    <TypeScriptCompile Include="ClientApp\shared\artist.ts" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,7 @@ class TrackList {
     //injects it into track list
     constructor(data) {
         this.data = data;
+        //make sure that an array of tracks is getting returned
         this.tracks = [];
         this.tracks = data.tracks;
     }
@@ -19,6 +20,26 @@ class TrackList {
                 this.tracks = this.data.tracks;
             }
         });
+    }
+    getArtistNames(track) {
+        let returnString = "";
+        if (track.artists.length > 1) {
+            track.artists.forEach(function (artist) {
+                if (artist.uri == track.artists[track.artists.length - 2].uri) {
+                    returnString += artist.name + ", and ";
+                }
+                else if (artist.uri == track.artists[track.artists.length - 1].uri) {
+                    returnString += artist.name;
+                }
+                else {
+                    returnString += artist.name + ", ";
+                }
+            });
+        }
+        else {
+            returnString = track.artists[0].name;
+        }
+        return returnString;
     }
 };
 TrackList = __decorate([

@@ -1,16 +1,25 @@
 ﻿<div class="row">
-    <ul>
-        <li *ngFor="let t of tracks">
-            {{  t.name  }}
-            <br />
-            <p>Up Votes: {{ t.upVotes }}  <i class="fa fa-arrow-up"></i></p>
+    <div class="col-sm-3" *ngFor="let t of tracks">
+        <div class="card bg-light m-1" style="height:625px">
+            <div class="m-1" style="height:625px">
+                
+                <div style="height:142px">
+                    <p>{{  t.name  }} by {{ getArtistNames(t) }}</p>
+                </div>
+                    
+
+                    <div>
+                        <p><button id="btnUpVote" class="success"><i class="fa fa-arrow-up"></i></button> {{ t.upVotes }}</p>
+                        <p><button id="btnDownVote" class="danger"><i class="fa fa-arrow-down"></i></button> {{ t.downVotes }}</p>
+                    </div>
+                           
+                    <div class="m-1">
+                        <iframe [src]="('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" style="display:block;width:100%;"></iframe>
+                    </div>
+            </div> 
+
             
-            <p>Down Votes: {{ t.downVotes }}  <i class="fa fa-arrow-down"></i></p>
-            
-            <div>
-                <iframe [src]="('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            </div>
-        </li>
-    </ul>
+        </div>      
+    </div>
 </div>
 

@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { SafePipeModule } from 'safe-pipe';
 import { ArtistList } from './artists/artists.component';
 import { TrackList } from './tracks/tracks.component';
+import { Votes } from './tracks/votes.component';
 import { AppComponent } from './app.component';
 import { DataService } from '../shared/data/dataService';
 //support using http client module to make api requests
@@ -18,7 +19,8 @@ AppModule = __decorate([
         declarations: [
             AppComponent,
             ArtistList,
-            TrackList
+            TrackList,
+            Votes
         ],
         imports: [
             BrowserModule,

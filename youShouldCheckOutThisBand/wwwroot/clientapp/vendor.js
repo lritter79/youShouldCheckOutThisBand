@@ -94424,6 +94424,87 @@ __webpack_require__.r(__webpack_exports__);
 
 //# sourceMappingURL=index.js.map
 
+/***/ }),
+
+/***/ "./node_modules/safe-pipe/__ivy_ngcc__/fesm2015/safe-pipe.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/safe-pipe/__ivy_ngcc__/fesm2015/safe-pipe.js ***!
+  \*******************************************************************/
+/*! exports provided: SafePipeModule, ɵa */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SafePipeModule", function() { return SafePipeModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return SafePipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
+
+
+
+
+
+
+let SafePipe = class SafePipe {
+    constructor(sanitizer) {
+        this.sanitizer = sanitizer;
+    }
+    transform(value, type) {
+        switch (type) {
+            case 'html':
+                return this.sanitizer.bypassSecurityTrustHtml(value);
+            case 'style':
+                return this.sanitizer.bypassSecurityTrustStyle(value);
+            case 'script':
+                return this.sanitizer.bypassSecurityTrustScript(value);
+            case 'url':
+                return this.sanitizer.bypassSecurityTrustUrl(value);
+            case 'resourceUrl':
+                return this.sanitizer.bypassSecurityTrustResourceUrl(value);
+            default:
+                throw new Error(`SafePipe unable to bypass security for invalid type: ${type}`);
+        }
+    }
+};
+SafePipe.ɵfac = function SafePipe_Factory(t) { return new (t || SafePipe)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"])); };
+SafePipe.ɵpipe = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefinePipe"]({ name: "safe", type: SafePipe, pure: true });
+SafePipe.ctorParameters = () => [
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"] }
+];
+
+let SafePipeModule = class SafePipeModule {
+};
+SafePipeModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: SafePipeModule });
+SafePipeModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function SafePipeModule_Factory(t) { return new (t || SafePipeModule)(); } });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](SafePipe, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"],
+        args: [{
+                name: 'safe',
+                pure: true
+            }]
+    }], function () { return [{ type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"] }]; }, null); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](SafePipeModule, { declarations: [SafePipe], exports: [SafePipe] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](SafePipeModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
+        args: [{
+                declarations: [SafePipe],
+                exports: [SafePipe]
+            }]
+    }], null, null); })();
+
+/*
+ * Public API Surface of safe-pipe
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+//# sourceMappingURL=safe-pipe.js.map
+
 /***/ })
 
 }]);

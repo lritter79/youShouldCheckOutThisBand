@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\tracks\tracks.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-grid.css" />
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-grid.min.css" />
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-reboot.css" />
@@ -515,6 +519,10 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Scripts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\tracks\tracks.component.ts" />
   </ItemGroup>
 
 </Project>

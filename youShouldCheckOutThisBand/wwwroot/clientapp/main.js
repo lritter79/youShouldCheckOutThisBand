@@ -40,7 +40,7 @@ __webpack_require__.r(__webpack_exports__);
 //change this to include external template, maybe use polymer for this later
 let AppComponent = class AppComponent {
     constructor() {
-        this.title = 'Suggested Artists';
+        this.title = 'Votes on your favorite songs';
     }
 };
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -67,8 +67,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _artists_artists_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./artists/artists.component */ "./ClientApp/app/artists/artists.component.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
+/* harmony import */ var safe_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! safe-pipe */ "./node_modules/safe-pipe/__ivy_ngcc__/fesm2015/safe-pipe.js");
+/* harmony import */ var _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./artists/artists.component */ "./ClientApp/app/artists/artists.component.ts");
+/* harmony import */ var _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tracks/tracks.component */ "./ClientApp/app/tracks/tracks.component.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
+
+
 
 
 
@@ -79,14 +83,16 @@ let AppModule = class AppModule {
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-            _artists_artists_component__WEBPACK_IMPORTED_MODULE_3__["ArtistList"]
+            _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
+            _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__["ArtistList"],
+            _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__["TrackList"]
         ],
         imports: [
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"]
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+            safe_pipe__WEBPACK_IMPORTED_MODULE_3__["SafePipeModule"]
         ],
         providers: [],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
     })
 ], AppModule);
 
@@ -123,6 +129,46 @@ ArtistList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./artists.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/artists/artists.component.html")).default
     })
 ], ArtistList);
+
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/tracks/tracks.component.ts":
+/*!**************************************************!*\
+  !*** ./ClientApp/app/tracks/tracks.component.ts ***!
+  \**************************************************/
+/*! exports provided: TrackList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrackList", function() { return TrackList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+let TrackList = class TrackList {
+    constructor() {
+        this.tracks = [{
+                name: "Fi",
+                uri: "6aLfFqIT2dFbLOziB2WjZC",
+                upVotes: "",
+                downVotes: ""
+            }, {
+                name: "Fio",
+                uri: "0yYJiI2DrKydyA0U68SM7H",
+                upVotes: "",
+                downVotes: ""
+            }];
+    }
+};
+TrackList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "tracks",
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./tracks.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html")).default
+    })
+], TrackList);
 
 
 
@@ -195,7 +241,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-9\">\r\n        <h3>{{  title  }}</h3>\r\n        <artists></artists>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <p>Rock and roll</p>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-9\">\r\n        <h3>{{  title  }}</h3>\r\n        <tracks></tracks>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <p>Rock and roll</p>\r\n    </div>\r\n</div>");
 
 /***/ }),
 
@@ -209,6 +255,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let a of artists\">{{  a.name  }}: {{ 1 + 1}}</li>\r\n    </ul>\r\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let t of tracks\">\r\n            {{  t.name  }}\r\n            <br />\r\n            <p>Up Votes: {{ t.upVotes }}  <i class=\"fa fa-arrow-up\"></i></p>\r\n            \r\n            <p>Down Votes: {{ t.downVotes }}  <i class=\"fa fa-arrow-down\"></i></p>\r\n            \r\n            <div>\r\n                <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri) | safe: 'resourceUrl'\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n\r\n");
 
 /***/ }),
 

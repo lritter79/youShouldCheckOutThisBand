@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <ul>
+        <li *ngFor="let t of tracks">
+            {{  t.name  }}
+            <br />
+            <p>Up Votes: {{ t.upVotes }}  <i class="fa fa-arrow-up"></i></p>
+            
+            <p>Down Votes: {{ t.downVotes }}  <i class="fa fa-arrow-down"></i></p>
+            
+            <div>
+                <iframe [src]="('https://open.spotify.com/embed/track/' + t.uri) | safe: 'resourceUrl'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+        </li>
+    </ul>
+</div>
+

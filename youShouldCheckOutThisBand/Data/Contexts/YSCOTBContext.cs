@@ -65,14 +65,14 @@ namespace youShouldCheckOutThisBand.Contexts
                 .HasDefaultValue(0);
 
             //this is for keepin values unique
-            //unfortunately, it's too hard to work with at the moment
-            //modelBuilder.Entity<TrackEntity>()
-            //     .HasAlternateKey(t => t.Uri);
-            //modelBuilder.Entity<ArtistEntity>()
-            //     .HasAlternateKey(t => t.Uri);
-            //modelBuilder.Entity<AlbumEntity>()
-            //     .HasAlternateKey(t => t.Uri);
-            
+           // unfortunately, it's too hard to work with at the moment
+            modelBuilder.Entity<TrackEntity>()
+                 .HasAlternateKey(t => t.Uri);
+            modelBuilder.Entity<ArtistEntity>()
+                 .HasAlternateKey(t => t.Uri);
+            modelBuilder.Entity<AlbumEntity>()
+                 .HasAlternateKey(t => t.Uri);
+
 
             //this is one way to seed, but it's not efficient because it runs everytime dbcontext is instatiated
             //    modelBuilder.Entity<ArtistEntity>()
@@ -84,6 +84,6 @@ namespace youShouldCheckOutThisBand.Contexts
             //        });
             //}
         }
-        
+
     }
 }

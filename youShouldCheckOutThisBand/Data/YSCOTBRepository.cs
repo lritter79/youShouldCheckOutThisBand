@@ -121,12 +121,10 @@ namespace youShouldCheckOutThisBand.Data
             return _context.SaveChanges() > 1;
         }
 
-        public IEnumerable<TrackEntity> GetByTracksByUser(string username, bool includeArtists = true)
+        public IEnumerable<TrackEntity> GetTracksByUser(string username, bool includeArtists = true)
         {
             if (includeArtists)
             {
-
-
 
                 var query = from TrackEntity in _context.Tracks
                             join RecommendationEntity in _context.Recommendations on TrackEntity.Id equals RecommendationEntity.Track.Id

@@ -165,19 +165,53 @@ namespace youShouldCheckOutThisBand.Data
         {
             try
             {
+                if (_context.Tracks.Any(track => track.Uri == recommendation.Track.Uri))
+                {
+                    recommendation.Track = _context.Tracks.Select(track => track)
+                                                          .Include(track => track.Album)
+                                                          .Where(track => track.Uri == recommendation.Track.Uri)
+                                                          .First();
+                    recommendation.Track.UpVotes += 1;
+
+                }
+
                 //var album = recommendation.Track.Album;
-                //if (_context.Albums.Any(album => album.Uri == album.Uri))
-                //{
-                //    recommendation.Track.Album = null;
-                //}
+                if (_context.Albums.Any(album => album.Uri == recommendation.Track.Album.Uri))
+                {
+                    recommendation.Track.Album = _context.Albums.Select(album => album)
+                                                                .Where(album => album.Uri == recommendation.Track.Album.Uri).First();
+                }
+
+
+                foreach (TrackArtistJoinEntity artistJoinEntity in recommendation.Track.TracksArtists)
+                {
+                    if (_context.Artists.Any(artist => artist.Uri == artistJoinEntity.Artist.Uri))
+                    {
+                        artistJoinEntity.Artist = _context.Artists.Select(artist => artist)
+                                                                  .Where(artist => artist.Uri == artistJoinEntity.Artist.Uri).First();
+                        artistJoinEntity.ArtistId = artistJoinEntity.Artist.Id;
+                    }
+
+                    if (_context.Tracks.Any(track => track.Uri == artistJoinEntity.Track.Uri))
+                    {
+                        artistJoinEntity.Track = _context.Tracks.Select(track => track)
+                                                                  .Where(track => track.Uri == artistJoinEntity.Track.Uri).First();
+                        artistJoinEntity.Track.UpVotes += 1;
+                        artistJoinEntity.TrackId = artistJoinEntity.Track.Id;
+                    }
+                }
+
+                if (!_context.Recommendations.Any(rec => rec.User == recommendation.User && rec.Track == recommendation.Track))
+                {
+                    _context.Recommendations.Add(recommendation);
+                }
+
+                    //var trackArtists = recommendation.Track.TracksArtists;
+
+
+                    //recommendation.Track.TracksArtists = null;
 
                 
-                //var trackArtists = recommendation.Track.TracksArtists;
-                
-                
-                //recommendation.Track.TracksArtists = null;
-
-                _context.Recommendations.Add(recommendation);
             }
             catch (Exception ex)
             {

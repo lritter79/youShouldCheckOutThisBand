@@ -71,13 +71,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./artists/artists.component */ "./ClientApp/app/artists/artists.component.ts");
 /* harmony import */ var _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tracks/tracks.component */ "./ClientApp/app/tracks/tracks.component.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+
+
+//see documentation on safe pipe here: https://www.npmjs.com/package/safe-pipe
 
 
 
 
 
+//support using http client module to make api requests
 
-
+//the purpose of angular is basically dependency inejction for your site
+//so that's what a lot of this stuff pertains to
 let AppModule = class AppModule {
 };
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -89,9 +97,13 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"],
             safe_pipe__WEBPACK_IMPORTED_MODULE_3__["SafePipeModule"]
         ],
-        providers: [],
+        providers: [
+            //add data service here for dependency injection
+            _shared_data_dataService__WEBPACK_IMPORTED_MODULE_7__["DataService"]
+        ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
     })
 ], AppModule);
@@ -146,28 +158,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrackList", function() { return TrackList; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
 
 
-let TrackList = class TrackList {
-    constructor() {
-        this.tracks = [{
-                name: "Fi",
-                uri: "6aLfFqIT2dFbLOziB2WjZC",
-                upVotes: "",
-                downVotes: ""
-            }, {
-                name: "Fio",
-                uri: "0yYJiI2DrKydyA0U68SM7H",
-                upVotes: "",
-                downVotes: ""
-            }];
+
+let TrackList = 
+//interface that says once you're ready, call a method
+class TrackList {
+    //private makes private member of the class
+    //injects it into track list
+    constructor(data) {
+        this.data = data;
+        this.tracks = [];
+        this.tracks = data.tracks;
+    }
+    ngOnInit() {
+        //once the load products happens, we want to get the data that's being passed back in
+        this.data.loadTracks()
+            //calls success because the shared component returns a bool
+            .subscribe(success => {
+            if (success) {
+                this.tracks = this.data.tracks;
+            }
+        });
     }
 };
+TrackList.ctorParameters = () => [
+    { type: _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
+];
 TrackList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "tracks",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./tracks.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html")).default
     })
+    //interface that says once you're ready, call a method
 ], TrackList);
 
 
@@ -232,6 +256,60 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 
 /***/ }),
 
+/***/ "./ClientApp/shared/data/dataService.ts":
+/*!**********************************************!*\
+  !*** ./ClientApp/shared/data/dataService.ts ***!
+  \**********************************************/
+/*! exports provided: DataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+//support using http client to make api requests
+
+
+
+//we have to decorate to tell the dependency injection serivce that it's part of the chain of injection
+//this part is for if it requires other dependencies
+let DataService = class DataService {
+    constructor(http) {
+        this.http = http;
+        this.tracks = [];
+    }
+    loadTracks() {
+        //use http to get our api
+        return this.http.get("/api/Tracks")
+            // subscribe() says when this is done i want to know the response
+            // and kicks of the beginning of this request
+            //.subscribe()
+            //what we want to do is intercept the call and change the data
+            .pipe(
+        //this way we call subscribe by the client
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((data) => {
+            this.tracks = data;
+            //return true to say it did what we wanted it to do
+            return true;
+        }));
+        //this should allow us to assign the tracks tp the track list
+    }
+};
+DataService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+];
+DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])()
+], DataService);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/app.component.html":
 /*!********************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/app.component.html ***!
@@ -267,7 +345,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let t of tracks\">\r\n            {{  t.name  }}\r\n            <br />\r\n            <p>Up Votes: {{ t.upVotes }}  <i class=\"fa fa-arrow-up\"></i></p>\r\n            \r\n            <p>Down Votes: {{ t.downVotes }}  <i class=\"fa fa-arrow-down\"></i></p>\r\n            \r\n            <div>\r\n                <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri) | safe: 'resourceUrl'\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let t of tracks\">\r\n            {{  t.name  }}\r\n            <br />\r\n            <p>Up Votes: {{ t.upVotes }}  <i class=\"fa fa-arrow-up\"></i></p>\r\n            \r\n            <p>Down Votes: {{ t.downVotes }}  <i class=\"fa fa-arrow-down\"></i></p>\r\n            \r\n            <div>\r\n                <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n\r\n");
 
 /***/ }),
 

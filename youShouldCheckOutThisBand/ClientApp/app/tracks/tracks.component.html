@@ -8,7 +8,7 @@
             <p>Down Votes: {{ t.downVotes }}  <i class="fa fa-arrow-down"></i></p>
             
             <div>
-                <iframe [src]="('https://open.spotify.com/embed/track/' + t.uri) | safe: 'resourceUrl'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe [src]="('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
         </li>
     </ul>

@@ -18,6 +18,6 @@ namespace youShouldCheckOutThisBand.Data
         ArtistEntity GetArtistById(int id);
         IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId);
         bool SaveAll();
-        IEnumerable<TrackEntity> GetByTracksByUser(string username, bool includeArtists);
+        IEnumerable<TrackEntity> GetTracksByUser(string username, bool includeArtists);
     }
 }

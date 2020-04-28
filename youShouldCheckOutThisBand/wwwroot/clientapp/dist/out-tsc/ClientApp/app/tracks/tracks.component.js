@@ -1,18 +1,24 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
-let TrackList = class TrackList {
-    constructor() {
-        this.tracks = [{
-                name: "Fi",
-                uri: "6aLfFqIT2dFbLOziB2WjZC",
-                upVotes: "",
-                downVotes: ""
-            }, {
-                name: "Fio",
-                uri: "0yYJiI2DrKydyA0U68SM7H",
-                upVotes: "",
-                downVotes: ""
-            }];
+let TrackList = 
+//interface that says once you're ready, call a method
+class TrackList {
+    //private makes private member of the class
+    //injects it into track list
+    constructor(data) {
+        this.data = data;
+        this.tracks = [];
+        this.tracks = data.tracks;
+    }
+    ngOnInit() {
+        //once the load products happens, we want to get the data that's being passed back in
+        this.data.loadTracks()
+            //calls success because the shared component returns a bool
+            .subscribe(success => {
+            if (success) {
+                this.tracks = this.data.tracks;
+            }
+        });
     }
 };
 TrackList = __decorate([
@@ -21,6 +27,7 @@ TrackList = __decorate([
         templateUrl: "./tracks.component.html",
         styleUrls: []
     })
+    //interface that says once you're ready, call a method
 ], TrackList);
 export { TrackList };
 //# sourceMappingURL=tracks.component.js.map

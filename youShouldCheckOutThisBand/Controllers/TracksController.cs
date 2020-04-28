@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using youShouldCheckOutThisBand.Data;
+using youShouldCheckOutThisBand.Entities;
 using youShouldCheckOutThisBand.Models;
 
 namespace youShouldCheckOutThisBand.Controllers
 {
     [Route("api/Tracks")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TracksController : ControllerBase
     {
         private readonly IYSCOTBRepository _repo;
@@ -32,7 +33,7 @@ namespace youShouldCheckOutThisBand.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<IEnumerable<Track>> Get(bool includeArtists = false, bool getTracksByUser = true)
+        public ActionResult<IEnumerable<Track>> Get(bool includeArtists = true, bool getTracksByUser = false)
         {
             //try adding logic here to get data via spotify api
             try
@@ -41,10 +42,16 @@ namespace youShouldCheckOutThisBand.Controllers
                 if (getTracksByUser)
                 {
                     var username = User.Identity.Name;
-                    return Ok(_repo.GetByTracksByUser(username, includeArtists));
+                    return Ok(_repo.GetTracksByUser(username, includeArtists)
+                        .Select(track => _mapper.Map<TrackEntity, Track>(track))
+                        .ToList());
                 }
 
-                return Ok(_repo.GetAllTracks(includeArtists));
+                var trackList = _repo.GetAllTracks(includeArtists)
+                                .Select(track => _mapper.Map<TrackEntity, Track>(track))
+                                .ToList();
+
+                return Ok(trackList);
             }
             catch (Exception ex)
             {

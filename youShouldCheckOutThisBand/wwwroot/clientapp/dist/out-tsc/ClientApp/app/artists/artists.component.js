@@ -12,7 +12,7 @@ let ArtistList = class ArtistList {
 ArtistList = __decorate([
     Component({
         selector: "artists",
-        templateUrl: "artists.component.html",
+        templateUrl: "./artists.component.html",
         styleUrls: []
     })
 ], ArtistList);

@@ -70,13 +70,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var safe_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! safe-pipe */ "./node_modules/safe-pipe/__ivy_ngcc__/fesm2015/safe-pipe.js");
 /* harmony import */ var _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./artists/artists.component */ "./ClientApp/app/artists/artists.component.ts");
 /* harmony import */ var _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tracks/tracks.component */ "./ClientApp/app/tracks/tracks.component.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
-/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _tracks_votes_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tracks/votes.component */ "./ClientApp/app/tracks/votes.component.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 
 
 
 //see documentation on safe pipe here: https://www.npmjs.com/package/safe-pipe
+
 
 
 
@@ -91,20 +93,21 @@ let AppModule = class AppModule {
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
             _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__["ArtistList"],
-            _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__["TrackList"]
+            _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__["TrackList"],
+            _tracks_votes_component__WEBPACK_IMPORTED_MODULE_6__["Votes"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
             safe_pipe__WEBPACK_IMPORTED_MODULE_3__["SafePipeModule"]
         ],
         providers: [
             //add data service here for dependency injection
-            _shared_data_dataService__WEBPACK_IMPORTED_MODULE_7__["DataService"]
+            _shared_data_dataService__WEBPACK_IMPORTED_MODULE_8__["DataService"]
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
 ], AppModule);
 
@@ -143,6 +146,19 @@ ArtistList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 ], ArtistList);
 
 
+
+/***/ }),
+
+/***/ "./ClientApp/app/tracks/tracks.component.css":
+/*!***************************************************!*\
+  !*** ./ClientApp/app/tracks/tracks.component.css ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".divNameContainer {\r\n    height: 142px;\r\n}\r\n\r\niframe {\r\n    display: block;\r\n    width: 100%;\r\n}\r\n\r\n.card {\r\n    height: 545px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC90cmFja3MvdHJhY2tzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0FBQ2pCOztBQUVBO0lBQ0ksY0FBYztJQUNkLFdBQVc7QUFDZjs7QUFFQTtJQUNJLGFBQWE7QUFDakIiLCJmaWxlIjoiYXBwL3RyYWNrcy90cmFja3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kaXZOYW1lQ29udGFpbmVyIHtcclxuICAgIGhlaWdodDogMTQycHg7XHJcbn1cclxuXHJcbmlmcmFtZSB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgICBoZWlnaHQ6IDU0NXB4O1xyXG59Il19 */");
 
 /***/ }),
 
@@ -210,10 +226,68 @@ TrackList.ctorParameters = () => [
 TrackList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "tracks",
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./tracks.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html")).default
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./tracks.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./tracks.component.css */ "./ClientApp/app/tracks/tracks.component.css")).default]
     })
     //interface that says once you're ready, call a method
 ], TrackList);
+
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/tracks/votes.component.scss":
+/*!***************************************************!*\
+  !*** ./ClientApp/app/tracks/votes.component.scss ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("div {\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n}\n\ndiv > p {\n  margin: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC90cmFja3MvQzpcXFVzZXJzXFxscml0dGVyXFxEZXNrdG9wXFx5b3VTaG91bGRDaGVja091dFRoaXNCYW5kXFx5b3VTaG91bGRDaGVja091dFRoaXNCYW5kXFxDbGllbnRBcHAvYXBwXFx0cmFja3NcXHZvdGVzLmNvbXBvbmVudC5zY3NzIiwiYXBwL3RyYWNrcy92b3Rlcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDBCQUFBO0VBQUEsdUJBQUE7RUFBQSxrQkFBQTtBQ0NKOztBREVBO0VBQ0ksV0FBQTtBQ0NKIiwiZmlsZSI6ImFwcC90cmFja3Mvdm90ZXMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJkaXYge1xyXG4gICAgd2lkdGg6IGZpdC1jb250ZW50O1xyXG59XHJcblxyXG5kaXYgPiBwIHtcclxuICAgIG1hcmdpbjogNXB4O1xyXG59XHJcbiIsImRpdiB7XG4gIHdpZHRoOiBmaXQtY29udGVudDtcbn1cblxuZGl2ID4gcCB7XG4gIG1hcmdpbjogNXB4O1xufSJdfQ== */");
+
+/***/ }),
+
+/***/ "./ClientApp/app/tracks/votes.component.ts":
+/*!*************************************************!*\
+  !*** ./ClientApp/app/tracks/votes.component.ts ***!
+  \*************************************************/
+/*! exports provided: Votes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Votes", function() { return Votes; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
+
+
+
+//import { DataService } from '../../shared/data/dataService';
+//import track interface so we can use it
+//import { Track } from '../../shared/track';
+//import { Artist } from '../../shared/artist';
+let Votes = class Votes {
+    constructor(data) {
+        this.data = data;
+        this.upVotes = 0;
+        this.downVotes = 0;
+    }
+    ngOnInit() {
+    }
+};
+Votes.ctorParameters = () => [
+    { type: _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
+];
+Votes = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "votes",
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./votes.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/votes.component.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./votes.component.scss */ "./ClientApp/app/tracks/votes.component.scss")).default]
+    })
+], Votes);
 
 
 
@@ -367,7 +441,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-sm-3\" *ngFor=\"let t of tracks\">\r\n        <div class=\"card bg-light m-1\" style=\"height:625px\">\r\n            <div class=\"m-1\" style=\"height:625px\">\r\n                \r\n                <div style=\"height:142px\">\r\n                    <p>{{  t.name  }} by {{ getArtistNames(t) }}</p>\r\n                </div>\r\n                    \r\n\r\n                    <div>\r\n                        <p><button id=\"btnUpVote\" class=\"success\"><i class=\"fa fa-arrow-up\"></i></button> {{ t.upVotes }}</p>\r\n                        <p><button id=\"btnDownVote\" class=\"danger\"><i class=\"fa fa-arrow-down\"></i></button> {{ t.downVotes }}</p>\r\n                    </div>\r\n                           \r\n                    <div class=\"m-1\">\r\n                        <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\" style=\"display:block;width:100%;\"></iframe>\r\n                    </div>\r\n            </div> \r\n\r\n            \r\n        </div>      \r\n    </div>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-sm-3\" *ngFor=\"let t of tracks\">\r\n        <div class=\"card bg-light m-1\">\r\n            <div class=\"m-1\">\r\n                <div class=\"divCounter\" style=\"float:right\">\r\n                    {{ t.sumOfVotes  }}\r\n                </div>\r\n                <div class=\"divNameContainer\">\r\n                    <p>{{  t.name  }} by {{ getArtistNames(t) }}</p>\r\n                </div>\r\n                    \r\n                    \r\n                    <votes></votes>\r\n                           \r\n                    <div class=\"m-1\" style=\"height:300px;\">\r\n                        <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\" height=\"300\"></iframe>\r\n                    </div>\r\n            </div> \r\n\r\n            \r\n        </div>      \r\n    </div>\r\n</div>\r\n\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/votes.component.html":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/votes.component.html ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <p><button id=\"btnUpVote\" class=\"success\"><i class=\"fa fa-arrow-up\"></i></button> {{ upVotes }}</p>\r\n    <p><button id=\"btnDownVote\" class=\"danger\"><i class=\"fa fa-arrow-down\"></i></button> {{ downVotes }}</p>\r\n</div>");
 
 /***/ }),
 

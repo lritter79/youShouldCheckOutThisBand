@@ -3,12 +3,12 @@ import { DataService } from '../../shared/data/dataService';
 //import track interface so we can use it
 import { Track } from '../../shared/track';
 import { Artist } from '../../shared/artist';
-
+import { Votes } from './votes.component';
 
 @Component({
     selector: "tracks",
     templateUrl: "./tracks.component.html",
-    styleUrls: []
+    styleUrls: ["./tracks.component.css"]
 })
                       //interface that says once you're ready, call a method
 export class TrackList implements OnInit {

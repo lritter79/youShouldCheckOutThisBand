@@ -46,7 +46,7 @@ TrackList = __decorate([
     Component({
         selector: "tracks",
         templateUrl: "./tracks.component.html",
-        styleUrls: []
+        styleUrls: ["./tracks.component.css"]
     })
     //interface that says once you're ready, call a method
 ], TrackList);

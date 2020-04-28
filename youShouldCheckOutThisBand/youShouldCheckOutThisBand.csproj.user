@@ -19,6 +19,11 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\app\tracks\votes.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
     <TypeScriptCompile Update="ClientApp\shared\artist.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

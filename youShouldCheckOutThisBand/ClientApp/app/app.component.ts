@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'app-model',
     templateUrl: "./app.component.html",
-    styles: []
+    styles: [ ]
 })
 export class AppComponent {
   title = 'Votes on your favorite songs';

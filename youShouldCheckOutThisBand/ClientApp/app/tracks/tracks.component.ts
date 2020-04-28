@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../shared/data/dataService';
-
-
+//import track interface so we can use it
+import { Track } from '../../shared/track';
+import { Artist } from '../../shared/artist';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class TrackList implements OnInit {
         this.tracks = data.tracks;
     }
 
-    public tracks = [];
+                   //make sure that an array of tracks is getting returned
+    public tracks: Track[] = [];
 
     ngOnInit(): void {
         //once the load products happens, we want to get the data that's being passed back in
@@ -28,5 +30,32 @@ export class TrackList implements OnInit {
                     this.tracks = this.data.tracks;
                 }
             });
+    }
+
+    getArtistNames(track: Track): string {
+        let returnString = "";
+
+        if (track.artists.length > 1) {
+            track.artists.forEach(function (artist: Artist) {
+
+
+                if (artist.uri == track.artists[track.artists.length - 2].uri) {
+                    returnString += artist.name + ", and ";
+                }
+                else if (artist.uri == track.artists[track.artists.length - 1].uri) {
+                    returnString += artist.name;
+                }
+                else {
+                    returnString += artist.name + ", ";
+                }
+
+            });
+        }
+        else {
+            returnString = track.artists[0].name;
+        }
+        
+
+        return returnString;
     }
 }

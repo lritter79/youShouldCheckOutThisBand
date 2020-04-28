@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core";
 let DataService = class DataService {
     constructor(http) {
         this.http = http;
+        //add interface for type safety
         this.tracks = [];
     }
     loadTracks() {

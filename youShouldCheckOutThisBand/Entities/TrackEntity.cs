@@ -32,6 +32,7 @@ namespace youShouldCheckOutThisBand.Entities
 
         public int AlbumId { get; set; }
 
+        
         //tracks can have a one to many relationship with artists
         public ICollection<TrackArtistJoinEntity> TracksArtists { get; set; }    
 

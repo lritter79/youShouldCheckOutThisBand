@@ -240,26 +240,26 @@ namespace youShouldCheckOutThisBand.Data
                 return false;
             }
         }
-                                  
+
         //public ArtistEntity GetArtistById(9string genre)
         //{
         //    return _context.Artists.Where(a => a.ArtistsGenres
         //                                        .Any(g => g.Genre.Name == genre));
         //}
 
-        public int AlterTrackVotes(int votes, string trackUri)
+        public int AlterTrackVotes(bool vote, string trackUri)
         {
             var track = _context.Tracks.Select(track => track)
                 .Where(track => track.Uri == trackUri)
                 .First();
 
-            if (votes < 0)
+            if (vote)
             {
-                track.DownVotes--;
+                track.UpVotes++;
             }
             else
             {
-                track.UpVotes++;
+                track.DownVotes++;
             }
             _context.SaveChanges();
 

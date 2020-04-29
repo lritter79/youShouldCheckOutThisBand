@@ -71,7 +71,7 @@ namespace youShouldCheckOutThisBand.Controllers
             {
                 var jsonString = JsonConvert.SerializeObject(request);
                 var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
-                int vote = Int32.Parse(dict["vote"]);
+                bool vote = Boolean.Parse(dict["vote"]);
                 var newTotal = _repo.AlterTrackVotes(vote, dict["trackUri"]);
 
                 return Ok($"new total: {newTotal}");

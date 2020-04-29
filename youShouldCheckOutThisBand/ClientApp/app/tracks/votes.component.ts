@@ -1,5 +1,6 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../../shared/data/dataService';
+
 //import { DataService } from '../../shared/data/dataService';
 //import track interface so we can use it
 //import { Track } from '../../shared/track';
@@ -22,6 +23,7 @@ export class Votes implements OnInit {
     @Input() public upVotes: number;
     @Input() public downVotes: number;
     @Input() public uri: string;
+    @Output() public newVote = new EventEmitter();
 
 
     ngOnInit(): void {
@@ -29,8 +31,8 @@ export class Votes implements OnInit {
     }
 
     subtractVotes(): void {
-        this.downVotes -= 1;
-
+        this.downVotes += 1;
+        this.newVote.emit(this.)
         //return downVotes;
     }
 

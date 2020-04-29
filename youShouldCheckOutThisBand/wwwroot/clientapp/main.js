@@ -158,7 +158,7 @@ ArtistList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".divNameContainer {\r\n    height: 142px;\r\n}\r\n\r\niframe {\r\n    display: block;\r\n    width: 100%;\r\n}\r\n\r\n.card {\r\n    height: 545px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC90cmFja3MvdHJhY2tzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0FBQ2pCOztBQUVBO0lBQ0ksY0FBYztJQUNkLFdBQVc7QUFDZjs7QUFFQTtJQUNJLGFBQWE7QUFDakIiLCJmaWxlIjoiYXBwL3RyYWNrcy90cmFja3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kaXZOYW1lQ29udGFpbmVyIHtcclxuICAgIGhlaWdodDogMTQycHg7XHJcbn1cclxuXHJcbmlmcmFtZSB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgICBoZWlnaHQ6IDU0NXB4O1xyXG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".divNameContainer {\r\n    height: 142px;\r\n}\r\n\r\niframe {\r\n    display: block;\r\n    width: 100%;\r\n}\r\n\r\n.card {\r\n    height: 545px;\r\n}\r\n\r\n.divCounter {\r\n    float: right;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC90cmFja3MvdHJhY2tzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0FBQ2pCOztBQUVBO0lBQ0ksY0FBYztJQUNkLFdBQVc7QUFDZjs7QUFFQTtJQUNJLGFBQWE7QUFDakI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCIiwiZmlsZSI6ImFwcC90cmFja3MvdHJhY2tzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZGl2TmFtZUNvbnRhaW5lciB7XHJcbiAgICBoZWlnaHQ6IDE0MnB4O1xyXG59XHJcblxyXG5pZnJhbWUge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLmNhcmQge1xyXG4gICAgaGVpZ2h0OiA1NDVweDtcclxufVxyXG5cclxuLmRpdkNvdW50ZXIge1xyXG4gICAgZmxvYXQ6IHJpZ2h0O1xyXG59Il19 */");
 
 /***/ }),
 
@@ -189,6 +189,7 @@ class TrackList {
         this.tracks = [];
         this.tracks = data.tracks;
     }
+    //public totalVotes: number;
     ngOnInit() {
         //once the load products happens, we want to get the data that's being passed back in
         this.data.loadTracks()
@@ -198,6 +199,14 @@ class TrackList {
                 this.tracks = this.data.tracks;
             }
         });
+    }
+    getColor(totalVotes) {
+        if (totalVotes > 0) {
+            return "blue;";
+        }
+        else if (totalVotes < 0) {
+            return "red";
+        }
     }
     getArtistNames(track) {
         let returnString = "";
@@ -272,15 +281,30 @@ __webpack_require__.r(__webpack_exports__);
 let Votes = class Votes {
     constructor(data) {
         this.data = data;
-        this.upVotes = 0;
-        this.downVotes = 0;
     }
     ngOnInit() {
+    }
+    subtractVotes() {
+        this.downVotes -= 1;
+        //return downVotes;
+    }
+    addVotes() {
+        this.upVotes += 1;
+        //return downVotes;
     }
 };
 Votes.ctorParameters = () => [
     { type: _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
 ];
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], Votes.prototype, "upVotes", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], Votes.prototype, "downVotes", void 0);
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], Votes.prototype, "uri", void 0);
 Votes = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "votes",
@@ -441,7 +465,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-sm-3\" *ngFor=\"let t of tracks\">\r\n        <div class=\"card bg-light m-1\">\r\n            <div class=\"m-1\">\r\n                <div class=\"divCounter\" style=\"float:right\">\r\n                    {{ t.sumOfVotes  }}\r\n                </div>\r\n                <div class=\"divNameContainer\">\r\n                    <p>{{  t.name  }} by {{ getArtistNames(t) }}</p>\r\n                </div>\r\n                    \r\n                    \r\n                    <votes></votes>\r\n                           \r\n                    <div class=\"m-1\" style=\"height:300px;\">\r\n                        <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\" height=\"300\"></iframe>\r\n                    </div>\r\n            </div> \r\n\r\n            \r\n        </div>      \r\n    </div>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-3 col-md-4  col-sm-6\" *ngFor=\"let t of tracks\">\r\n        <div class=\"card bg-light m-1\">\r\n            <div class=\"m-1\">\r\n                <div class=\"divCounter\" [style.color]=\"t.sumOfVotes > 0 ? 'lightblue' : 'red'\">\r\n                    {{ t.sumOfVotes  }}\r\n                </div>\r\n                <div class=\"divNameContainer\">\r\n                    <p>{{  t.name  }} by {{ getArtistNames(t) }}</p>\r\n                </div>\r\n                    \r\n                    \r\n                    <votes [upVotes]=\"t.upVotes\"\r\n                           [downVotes]=\"t.downVotes\"\r\n                           [uri]=\"t.uri\">\r\n                    </votes>\r\n                           \r\n                    <div class=\"m-1\" style=\"height:300px;\">\r\n                        <iframe [src]=\"('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\" height=\"300\"></iframe>\r\n                    </div>\r\n            </div> \r\n\r\n            \r\n        </div>      \r\n    </div>\r\n</div>\r\n\r\n");
 
 /***/ }),
 
@@ -454,7 +478,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <p><button id=\"btnUpVote\" class=\"success\"><i class=\"fa fa-arrow-up\"></i></button> {{ upVotes }}</p>\r\n    <p><button id=\"btnDownVote\" class=\"danger\"><i class=\"fa fa-arrow-down\"></i></button> {{ downVotes }}</p>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <p><button id=\"btnUpVote\" class=\"success\" (click)=\"addVotes(uri)\"><i class=\"fa fa-arrow-up\"></i></button> {{ upVotes }}</p>\r\n    <p><button id=\"btnDownVote\" class=\"danger\" (click)=\"subtractVotes(uri)\"><i class=\"fa fa-arrow-down\"></i></button> {{ downVotes }}</p>\r\n</div>");
 
 /***/ }),
 

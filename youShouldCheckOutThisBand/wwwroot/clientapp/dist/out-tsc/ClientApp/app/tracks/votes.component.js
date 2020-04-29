@@ -1,5 +1,5 @@
 import { __decorate } from "tslib";
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 //import { DataService } from '../../shared/data/dataService';
 //import track interface so we can use it
 //import { Track } from '../../shared/track';
@@ -7,12 +7,27 @@ import { Component } from '@angular/core';
 let Votes = class Votes {
     constructor(data) {
         this.data = data;
-        this.upVotes = 0;
-        this.downVotes = 0;
     }
     ngOnInit() {
     }
+    subtractVotes() {
+        this.downVotes -= 1;
+        //return downVotes;
+    }
+    addVotes() {
+        this.upVotes += 1;
+        //return downVotes;
+    }
 };
+__decorate([
+    Input()
+], Votes.prototype, "upVotes", void 0);
+__decorate([
+    Input()
+], Votes.prototype, "downVotes", void 0);
+__decorate([
+    Input()
+], Votes.prototype, "uri", void 0);
 Votes = __decorate([
     Component({
         selector: "votes",

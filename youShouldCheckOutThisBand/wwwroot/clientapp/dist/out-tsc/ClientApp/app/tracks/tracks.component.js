@@ -11,6 +11,7 @@ class TrackList {
         this.tracks = [];
         this.tracks = data.tracks;
     }
+    //public totalVotes: number;
     ngOnInit() {
         //once the load products happens, we want to get the data that's being passed back in
         this.data.loadTracks()
@@ -20,6 +21,14 @@ class TrackList {
                 this.tracks = this.data.tracks;
             }
         });
+    }
+    getColor(totalVotes) {
+        if (totalVotes > 0) {
+            return "blue;";
+        }
+        else if (totalVotes < 0) {
+            return "red";
+        }
     }
     getArtistNames(track) {
         let returnString = "";

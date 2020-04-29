@@ -4,6 +4,7 @@ import { DataService } from '../../shared/data/dataService';
 import { Track } from '../../shared/track';
 import { Artist } from '../../shared/artist';
 import { Votes } from './votes.component';
+import * as _ from "lodash";
 
 @Component({
     selector: "tracks",
@@ -16,10 +17,12 @@ export class TrackList implements OnInit {
     //injects it into track list
     constructor(private data: DataService) {
         this.tracks = data.tracks;
+        
     }
 
                    //make sure that an array of tracks is getting returned
     public tracks: Track[] = [];
+    //public totalVotes: number;
 
     ngOnInit(): void {
         //once the load products happens, we want to get the data that's being passed back in
@@ -30,6 +33,15 @@ export class TrackList implements OnInit {
                     this.tracks = this.data.tracks;
                 }
             });
+    }
+
+    getColor(totalVotes: number): string {
+        if (totalVotes > 0) {
+            return "blue;"
+        }
+        else if (totalVotes < 0) {
+            return "red"
+        }
     }
 
     getArtistNames(track: Track): string {

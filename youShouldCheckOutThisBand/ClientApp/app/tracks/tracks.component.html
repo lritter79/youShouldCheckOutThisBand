@@ -1,27 +1,6 @@
 ﻿<div class="row">
     <div class="col-lg-3 col-md-4  col-sm-6" *ngFor="let t of tracks">
-        <div class="card bg-light m-1">
-            <div class="m-1">
-                <div class="divCounter" [style.color]="t.sumOfVotes > 0 ? 'lightblue' : 'red'">
-                    {{ t.sumOfVotes  }}
-                </div>
-                <div class="divNameContainer">
-                    <p>{{  t.name  }} by {{ getArtistNames(t) }}</p>
-                </div>
-                    
-                    
-                    <votes [upVotes]="t.upVotes"
-                           [downVotes]="t.downVotes"
-                           [uri]="t.uri">
-                    </votes>
-                           
-                    <div class="m-1" style="height:300px;">
-                        <iframe [src]="('https://open.spotify.com/embed/track/' + t.uri.substring(14)) | safe: 'resourceUrl'" frameborder="0" allowtransparency="true" allow="encrypted-media" height="300"></iframe>
-                    </div>
-            </div> 
-
-            
-        </div>      
+        <track-card [track]="t"></track-card>
     </div>
 </div>
 

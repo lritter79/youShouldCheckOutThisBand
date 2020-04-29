@@ -1,3 +1,4 @@
+import { __decorate } from "tslib";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //see documentation on safe pipe here: https://www.npmjs.com/package/safe-pipe
@@ -12,23 +13,28 @@ import { DataService } from '../shared/data/dataService';
 import { HttpClientModule } from "@angular/common/http";
 //the purpose of angular is basically dependency inejction for your site
 //so that's what a lot of this stuff pertains to
-@NgModule({
-  declarations: [
-        AppComponent,
-        ArtistList,
-        TrackList,
-        TrackCard,
-        Votes
-  ],
-  imports: [
-      BrowserModule,
-      HttpClientModule,
-      SafePipeModule
-  ],
-    providers: [
-        //add data service here for dependency injection
-        DataService
-    ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+let AppModule = class AppModule {
+};
+AppModule = __decorate([
+    NgModule({
+        declarations: [
+            AppComponent,
+            ArtistList,
+            TrackList,
+            TrackCard,
+            Votes
+        ],
+        imports: [
+            BrowserModule,
+            HttpClientModule,
+            SafePipeModule
+        ],
+        providers: [
+            //add data service here for dependency injection
+            DataService
+        ],
+        bootstrap: [AppComponent]
+    })
+], AppModule);
+export { AppModule };
+//# sourceMappingURL=app.module.js.map

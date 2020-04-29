@@ -1,10 +1,6 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../../shared/data/dataService';
 
-//import { DataService } from '../../shared/data/dataService';
-//import track interface so we can use it
-//import { Track } from '../../shared/track';
-//import { Artist } from '../../shared/artist';
 
 
 @Component({
@@ -19,27 +15,38 @@ export class Votes implements OnInit {
         
     }
 
+    public upClicked: boolean;
+    public downClicked: boolean;
 
     @Input() public upVotes: number;
     @Input() public downVotes: number;
     @Input() public uri: string;
-    @Output() public newTotal = new EventEmitter();
+    @Output() public voteEvent = new EventEmitter<number>();
 
 
     ngOnInit(): void {
-        this.newTotal.emit(this.upVotes - this.downVotes);
+        this.voteEvent.emit(this.upVotes - this.downVotes);
+        this.upClicked = false;
+        this.downClicked = false
     }
 
     subtractVotes(uri:string): void {
         this.downVotes += 1;
+        if (this.upClicked) {
+            this.upVotes--;
+        }
         this.changeVotesInRepo(false, uri);
-        this.newTotal.emit(this.changeVotesInRepo(true, uri));
+        this.voteEvent.emit(this.upVotes - this.downVotes);
         //return downVotes;
     }
 
     addVotes(uri: string): void {
         this.upVotes += 1;
-        this.newTotal.emit(this.changeVotesInRepo(true, uri));
+        if (this.downClicked) {
+            this.downVotes--;
+        }
+        this.changeVotesInRepo(true, uri)
+        this.voteEvent.emit(this.upVotes - this.downVotes);
 
     }
 
@@ -48,7 +55,6 @@ export class Votes implements OnInit {
         let newTotal = this.data.getNewVoteTotal(vote, trackUri)
             .subscribe(success => {
                 if (success) {
-                    console.log(this.data.votes);
                     return this.data.votes;
                 }
             });

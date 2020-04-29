@@ -246,5 +246,24 @@ namespace youShouldCheckOutThisBand.Data
         //    return _context.Artists.Where(a => a.ArtistsGenres
         //                                        .Any(g => g.Genre.Name == genre));
         //}
+
+        public int AlterTrackVotes(int votes, string trackUri)
+        {
+            var track = _context.Tracks.Select(track => track)
+                .Where(track => track.Uri == trackUri)
+                .First();
+
+            if (votes < 0)
+            {
+                track.DownVotes--;
+            }
+            else
+            {
+                track.UpVotes++;
+            }
+            _context.SaveChanges();
+
+            return (track.UpVotes - track.DownVotes);
+        }
     }
 }

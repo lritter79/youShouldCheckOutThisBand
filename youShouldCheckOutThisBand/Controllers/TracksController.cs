@@ -58,6 +58,24 @@ namespace youShouldCheckOutThisBand.Controllers
                 return BadRequest("failed to get track " + ex.Message);
             }
         }
+        
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult subtractVotes([FromBody] int votes, string trackUri)
+        {
+            //try adding logic here to get data via spotify api
+            try
+            {
+
+                var newTotal = _repo.AlterTrackVotes(votes, trackUri);
+
+                return Ok("");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("failed to get track " + ex.Message);
+            }
+        }
 
         // POST: api/Tracks
         //[HttpPost]

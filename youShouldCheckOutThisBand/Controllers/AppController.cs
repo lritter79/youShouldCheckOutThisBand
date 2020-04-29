@@ -104,6 +104,7 @@ namespace youShouldCheckOutThisBand.Controllers
             return View();
         }
 
+
         [HttpGet("Artists")]
         public IActionResult Artists()
         {
@@ -113,7 +114,8 @@ namespace youShouldCheckOutThisBand.Controllers
                                      .ToList();
             return View(results);
         }
-        
+
+        [Authorize]
         [HttpGet("Tracks")]
         public IActionResult Tracks()
         {

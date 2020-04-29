@@ -74,7 +74,7 @@ namespace youShouldCheckOutThisBand.Controllers
                 bool vote = Boolean.Parse(dict["vote"]);
                 var newTotal = _repo.AlterTrackVotes(vote, dict["trackUri"]);
 
-                return Ok($"new total: {newTotal}");
+                return Ok(newTotal);
             }
             catch (Exception ex)
             {

@@ -1,0 +1,23 @@
+﻿<div class="card bg-light m-1">
+    <div class="m-1">
+        <div class="divCounter" [style.color]="totalVotes > 0 ? 'lightblue' : 'red'">
+            {{ totalVotes }}
+        </div>
+        <div class="divNameContainer">
+            <p>{{  this.track.name  }} by {{ this.artists }}</p>
+        </div>
+
+
+        <votes [upVotes]="this.track.upVotes"
+               [downVotes]="this.track.downVotes"
+               [uri]="this.track.uri"
+               (newTotal)="getVoteTotal($event)">
+        </votes>
+
+        <div class="m-1" style="height:300px;">
+            <iframe [src]="('https://open.spotify.com/embed/track/' + this.track.uri.substring(14)) | safe: 'resourceUrl'" frameborder="0" allowtransparency="true" allow="encrypted-media" height="300"></iframe>
+        </div>
+    </div>
+
+
+</div>      

@@ -1,9 +1,8 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../shared/data/dataService';
 //import track interface so we can use it
 import { Track } from '../../shared/track';
-import { Artist } from '../../shared/artist';
-import { Votes } from './votes.component';
+
 import * as _ from "lodash";
 
 @Component({
@@ -22,7 +21,8 @@ export class TrackList implements OnInit {
 
                    //make sure that an array of tracks is getting returned
     public tracks: Track[] = [];
-    //public totalVotes: number;
+
+    public totalVotes: number
 
     ngOnInit(): void {
         //once the load products happens, we want to get the data that's being passed back in
@@ -35,39 +35,44 @@ export class TrackList implements OnInit {
             });
     }
 
-    getColor(totalVotes: number): string {
-        if (totalVotes > 0) {
-            return "blue;"
-        }
-        else if (totalVotes < 0) {
-            return "red"
-        }
-    }
-
-    getArtistNames(track: Track): string {
-        let returnString = "";
-
-        if (track.artists.length > 1) {
-            track.artists.forEach(function (artist: Artist) {
+//    getVoteTotal($event) {
+//        this.totalVotes = $event;
+//    }
 
 
-                if (artist.uri == track.artists[track.artists.length - 2].uri) {
-                    returnString += artist.name + ", and ";
-                }
-                else if (artist.uri == track.artists[track.artists.length - 1].uri) {
-                    returnString += artist.name;
-                }
-                else {
-                    returnString += artist.name + ", ";
-                }
+//    getColor(totalVotes: number): string {
+//        if (totalVotes > 0) {
+//            return "blue";
+//        }
+//        else if (totalVotes < 0) {
+//            return "red";
+//        }
+//    }
 
-            });
-        }
-        else {
-            returnString = track.artists[0].name;
-        }
+//    getArtistNames(track: Track): string {
+//        let returnString = "";
+
+//        if (track.artists.length > 1) {
+//            track.artists.forEach(function (artist: Artist) {
+
+
+//                if (artist.uri == track.artists[track.artists.length - 2].uri) {
+//                    returnString += artist.name + ", and ";
+//                }
+//                else if (artist.uri == track.artists[track.artists.length - 1].uri) {
+//                    returnString += artist.name;
+//                }
+//                else {
+//                    returnString += artist.name + ", ";
+//                }
+
+//            });
+//        }
+//        else {
+//            returnString = track.artists[0].name;
+//        }
         
 
-        return returnString;
-    }
+//        return returnString;
+//    }
 }

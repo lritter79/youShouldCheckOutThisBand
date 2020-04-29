@@ -17,6 +17,7 @@ export class DataService {
     }
                  //add interface for type safety
     public tracks: Track[] = [];
+    public votes: number
 
     loadTracks(): Observable<boolean> {
         //use http to get our api
@@ -34,4 +35,15 @@ export class DataService {
                 }));
         //this should allow us to assign the tracks tp the track list
     }
+
+    getNewVoteTotal(voteStatus: boolean, uri: string): Observable<boolean> {
+        return this.http.post<number>("api/Tracks/Vote", {
+            vote: voteStatus,
+            trackUri: uri
+        }).pipe(
+            map((data: number) => {
+                this.votes = data;
+                    return true;
+            }));
+    }  
 }

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 //change this to include external template, maybe use polymer for this later
 let AppComponent = class AppComponent {
     constructor() {
-        this.title = 'Votes on your favorite songs';
+        this.title = 'Vote on the songs you like or dislike';
     }
 };
 AppComponent = __decorate([

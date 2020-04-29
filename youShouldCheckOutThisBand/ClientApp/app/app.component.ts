@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
     styles: [ ]
 })
 export class AppComponent {
-  title = 'Votes on your favorite songs';
+  title = 'Vote on the songs you like or dislike';
 }

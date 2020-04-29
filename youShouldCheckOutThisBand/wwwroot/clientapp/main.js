@@ -38,7 +38,7 @@ const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular
 //change this to include external template, maybe use polymer for this later
 let AppComponent = class AppComponent {
     constructor() {
-        this.title = 'Votes on your favorite songs';
+        this.title = 'Vote on the songs you like or dislike';
     }
 };
 AppComponent = tslib_1.__decorate([
@@ -312,33 +312,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 const dataService_1 = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
-//import { DataService } from '../../shared/data/dataService';
-//import track interface so we can use it
-//import { Track } from '../../shared/track';
-//import { Artist } from '../../shared/artist';
 let Votes = class Votes {
     constructor(data) {
         this.data = data;
-        this.newTotal = new core_1.EventEmitter();
+        this.voteEvent = new core_1.EventEmitter();
     }
     ngOnInit() {
-        this.newTotal.emit(this.upVotes - this.downVotes);
+        this.voteEvent.emit(this.upVotes - this.downVotes);
+        this.upClicked = false;
+        this.downClicked = false;
     }
     subtractVotes(uri) {
         this.downVotes += 1;
+        if (this.upClicked) {
+            this.upVotes--;
+        }
         this.changeVotesInRepo(false, uri);
-        this.newTotal.emit(this.changeVotesInRepo(true, uri));
+        this.voteEvent.emit(this.upVotes - this.downVotes);
         //return downVotes;
     }
     addVotes(uri) {
         this.upVotes += 1;
-        this.newTotal.emit(this.changeVotesInRepo(true, uri));
+        if (this.downClicked) {
+            this.downVotes--;
+        }
+        this.changeVotesInRepo(true, uri);
+        this.voteEvent.emit(this.upVotes - this.downVotes);
     }
     changeVotesInRepo(vote, trackUri) {
         let newTotal = this.data.getNewVoteTotal(vote, trackUri)
             .subscribe(success => {
             if (success) {
-                console.log(this.data.votes);
                 return this.data.votes;
             }
         });
@@ -358,7 +362,7 @@ tslib_1.__decorate([
 ], Votes.prototype, "uri", void 0);
 tslib_1.__decorate([
     core_1.Output()
-], Votes.prototype, "newTotal", void 0);
+], Votes.prototype, "voteEvent", void 0);
 Votes = tslib_1.__decorate([
     core_1.Component({
         selector: "votes",
@@ -519,7 +523,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card bg-light m-1\">\r\n    <div class=\"m-1\">\r\n        <div class=\"divCounter\" [style.color]=\"totalVotes > 0 ? 'lightblue' : 'red'\">\r\n            {{ totalVotes }}\r\n        </div>\r\n        <div class=\"divNameContainer\">\r\n            <p>{{  this.track.name  }} by {{ this.artists }}</p>\r\n        </div>\r\n\r\n\r\n        <votes [upVotes]=\"this.track.upVotes\"\r\n               [downVotes]=\"this.track.downVotes\"\r\n               [uri]=\"this.track.uri\"\r\n               (newTotal)=\"getVoteTotal($event)\">\r\n        </votes>\r\n\r\n        <div class=\"m-1\" style=\"height:300px;\">\r\n            <iframe [src]=\"('https://open.spotify.com/embed/track/' + this.track.uri.substring(14)) | safe: 'resourceUrl'\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\" height=\"300\"></iframe>\r\n        </div>\r\n    </div>\r\n\r\n\r\n</div>      ");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card bg-light m-1\">\r\n    <div class=\"m-1\">\r\n        <div class=\"divCounter\" [style.color]=\"totalVotes > 0 ? 'lightblue' : 'red'\">\r\n            {{ totalVotes }}\r\n        </div>\r\n        <div class=\"divNameContainer\">\r\n            <p>{{  this.track.name  }} by {{ this.artists }}</p>\r\n        </div>\r\n\r\n\r\n        <votes [upVotes]=\"this.track.upVotes\"\r\n               [downVotes]=\"this.track.downVotes\"\r\n               [uri]=\"this.track.uri\"\r\n               (voteEvent)=\"getVoteTotal($event)\">\r\n        </votes>\r\n\r\n        <div class=\"m-1\" style=\"height:300px;\">\r\n            <iframe [src]=\"('https://open.spotify.com/embed/track/' + this.track.uri.substring(14)) | safe: 'resourceUrl'\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\" height=\"300\"></iframe>\r\n        </div>\r\n    </div>\r\n\r\n\r\n</div>      ");
 
 /***/ }),
 
@@ -545,7 +549,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <p><button id=\"btnUpVote\" class=\"success\" (click)=\"addVotes(uri)\"><i class=\"fa fa-arrow-up\"></i></button> {{ upVotes }}</p>\r\n    <p><button id=\"btnDownVote\" class=\"danger\" (click)=\"subtractVotes(uri)\"><i class=\"fa fa-arrow-down\"></i></button> {{ downVotes }}</p>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <p><button id=\"btnUpVote\" class=\"success\" [disabled]=\"upClicked\" (click)=\"addVotes(uri);downClicked=false;upClicked=true;\"><i class=\"fa fa-arrow-up\"></i></button> {{ upVotes }}</p>\r\n    <p><button id=\"btnDownVote\" class=\"danger\" [disabled]=\"downClicked\" (click)=\"subtractVotes(uri);downClicked=true;upClicked=false;\"><i class=\"fa fa-arrow-down\"></i></button> {{ downVotes }}</p>\r\n</div>");
 
 /***/ }),
 

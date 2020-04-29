@@ -11,7 +11,7 @@
         <votes [upVotes]="this.track.upVotes"
                [downVotes]="this.track.downVotes"
                [uri]="this.track.uri"
-               (newTotal)="getVoteTotal($event)">
+               (voteEvent)="getVoteTotal($event)">
         </votes>
 
         <div class="m-1" style="height:300px;">

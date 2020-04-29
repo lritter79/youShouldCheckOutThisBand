@@ -65,14 +65,5 @@ export class TrackCard implements OnInit {
 
         return returnString;
     } 
-    //
-    //    
 
-    //    if (this.track.artists.length > 1) {
-
-
-
-
-    //    return returnString;
-    //}
 }

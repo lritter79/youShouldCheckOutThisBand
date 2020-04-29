@@ -19,6 +19,6 @@ namespace youShouldCheckOutThisBand.Data
         IEnumerable<ArtistEntity> GetArtistsByGenre(int genreId);
         bool SaveAll();
         IEnumerable<TrackEntity> GetTracksByUser(string username, bool includeArtists);
-        int AlterTrackVotes(int votes, string trackUri);
+        int AlterTrackVotes(bool vote, string trackUri);
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using youShouldCheckOutThisBand.Data;
 using youShouldCheckOutThisBand.Entities;
 using youShouldCheckOutThisBand.Models;
@@ -61,15 +62,19 @@ namespace youShouldCheckOutThisBand.Controllers
         
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult subtractVotes([FromBody] int votes, string trackUri)
+        [Route("~/api/Tracks/Vote")]
+        [HttpPost]
+        public ActionResult Votes([FromBody] object request)
         {
             //try adding logic here to get data via spotify api
             try
             {
+                var jsonString = JsonConvert.SerializeObject(request);
+                var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
+                int vote = Int32.Parse(dict["vote"]);
+                var newTotal = _repo.AlterTrackVotes(vote, dict["trackUri"]);
 
-                var newTotal = _repo.AlterTrackVotes(votes, trackUri);
-
-                return Ok("");
+                return Ok($"new total: {newTotal}");
             }
             catch (Exception ex)
             {

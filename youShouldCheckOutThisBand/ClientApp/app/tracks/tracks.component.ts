@@ -15,7 +15,7 @@ export class TrackList implements OnInit {
     //private makes private member of the class
     //injects it into track list
     constructor(private data: DataService) {
-        this.tracks = data.tracks;
+        //this.tracks = data.tracks;
         
     }
 

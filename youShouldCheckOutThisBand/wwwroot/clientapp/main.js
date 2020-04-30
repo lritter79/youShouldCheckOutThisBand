@@ -75,6 +75,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
 /* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
 
 
@@ -88,11 +89,21 @@ __webpack_require__.r(__webpack_exports__);
 
 //support using http client module to make api requests
 
+//support routing
+
 //we need a collection of routes like our mvc routes that form paths 
 //and a component thats like a view that says "if you math this path, show this componenent"
+//angular assumes slashes are in the path name, so for path you dont have to add a slash
+//so "/tracks" == "tracks"
+//path: '**' is a wildcard route. The Angular router selects this route any time the requested URL doesn't match any router paths
+//path: '' is the default route.
+//the redirect route that translates the initial relative URL ('') to the desired default path (/tracks).
+//A redirect route requires a pathMatch property to tell the router how to match a URL to the path of a route. In this app, the router should select the route to the HeroListComponent only when the entire URL matches '', so set the pathMatch value to 'full'.
 let routes = [
-//{ path: "/tracks", component: Tracks },
-//{ path: "/artists", component: Artists }
+    { path: "tracks", component: _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__["TrackList"] },
+    { path: "artists", component: _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__["ArtistList"] },
+    { path: '', redirectTo: '/tracks', pathMatch: 'full' },
+    { path: '**', component: _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__["TrackList"] }
 ];
 //the purpose of angular is basically dependency inejction for your site
 //so that's what a lot of this stuff pertains to
@@ -112,6 +123,10 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
             safe_pipe__WEBPACK_IMPORTED_MODULE_3__["SafePipeModule"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"].forRoot(routes, {
+                useHash: true,
+                enableTracing: false //for debugging
+            })
         ],
         providers: [
             //add data service here for dependency injection
@@ -121,10 +136,6 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     })
 ], AppModule);
 
-//RouterModule.forRoot(routes, {
-//    useHash: true,
-//    enableTracing: false //for debugging
-//})
 
 
 /***/ }),
@@ -599,7 +610,7 @@ DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-12\">\r\n        <h3>{{  title  }}</h3>\r\n        <tracks></tracks>\r\n        <br/>\r\n        <artists></artists>\r\n    </div>\r\n    \r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<router-outlet></router-outlet>\r\n");
 
 /***/ }),
 
@@ -612,7 +623,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-3 col-md-4  col-sm-6\" *ngFor=\"let a of artists\">\r\n        <div class=\"card bg-light m-1\">\r\n            <div class=\"m-1\">\r\n                <div class=\"divNameContainer\">\r\n                    <p>{{  a.name  }}</p>\r\n                </div>\r\n\r\n                <div class=\"m-1 mx-auto text-center\" style=\"width:200px\">\r\n                    <img class=\"img-fluid\" [src]=\" getImageUrl(a) | safe: 'resourceUrl'\" />\r\n                </div>\r\n            </div>\r\n\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n<a routerLink=\"../tracks\" class=\"btn-dark\" *ngIf=\"true\"> see Tracks</a>\r\n<div class=\"row\">\r\n    <div class=\"col-lg-3 col-md-4  col-sm-6\" *ngFor=\"let a of artists\">\r\n        <div class=\"card bg-light m-1\">\r\n            <div class=\"m-1\">\r\n                <div class=\"divNameContainer\">\r\n                    <p>{{  a.name  }}</p>\r\n                </div>\r\n\r\n                <div class=\"m-1 mx-auto text-center\" style=\"width:200px\">\r\n                    <img class=\"img-fluid\" [src]=\" getImageUrl(a) | safe: 'resourceUrl'\" alt=\"no picture found\" />\r\n                </div>\r\n            </div>\r\n\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n");
 
 /***/ }),
 
@@ -638,7 +649,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-3 col-md-4  col-sm-6\" *ngFor=\"let t of tracks\">\r\n        <track-card [track]=\"t\"></track-card>\r\n    </div>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<a routerLink=\"../artists\" class=\"btn-light\" *ngIf=\"true\">see Artists</a>\r\n    <div class=\"row\">\r\n        \r\n        <div class=\"col-lg-3 col-md-4  col-sm-6\" *ngFor=\"let t of tracks\">\r\n            <track-card [track]=\"t\"></track-card>\r\n        </div>\r\n    </div>\r\n\r\n");
 
 /***/ }),
 
@@ -651,7 +662,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <p><button id=\"btnUpVote\" class=\"success\" [disabled]=\"upClicked\" (click)=\"addVotes(uri);downClicked=false;upClicked=true;\"><i class=\"fa fa-arrow-up\"></i></button> {{ upVotes }}</p>\r\n    <p><button id=\"btnDownVote\" class=\"danger\" [disabled]=\"downClicked\" (click)=\"subtractVotes(uri);downClicked=true;upClicked=false;\"><i class=\"fa fa-arrow-down\"></i></button> {{ downVotes }}</p>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card\">\r\n    <p><button id=\"btnUpVote\" class=\"success\" [disabled]=\"upClicked\" (click)=\"addVotes(uri);downClicked=false;upClicked=true;\"><i class=\"fa fa-arrow-up\"></i></button> {{ upVotes }}</p>\r\n    <p><button id=\"btnDownVote\" class=\"danger\" [disabled]=\"downClicked\" (click)=\"subtractVotes(uri);downClicked=true;upClicked=false;\"><i class=\"fa fa-arrow-down\"></i></button> {{ downVotes }}</p>\r\n</div>\r\n");
 
 /***/ }),
 

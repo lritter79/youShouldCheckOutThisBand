@@ -1,6 +1,8 @@
-﻿<div class="row">
-    <div class="col-lg-3 col-md-4  col-sm-6" *ngFor="let t of tracks">
-        <track-card [track]="t"></track-card>
+﻿<a routerLink="../artists" class="btn-light" *ngIf="true">see Artists</a>
+    <div class="row">
+        
+        <div class="col-lg-3 col-md-4  col-sm-6" *ngFor="let t of tracks">
+            <track-card [track]="t"></track-card>
+        </div>
     </div>
-</div>
 

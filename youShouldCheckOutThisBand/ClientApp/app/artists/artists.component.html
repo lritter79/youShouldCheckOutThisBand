@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿
+<a routerLink="../tracks" class="btn-dark" *ngIf="true"> see Tracks</a>
+<div class="row">
     <div class="col-lg-3 col-md-4  col-sm-6" *ngFor="let a of artists">
         <div class="card bg-light m-1">
             <div class="m-1">
@@ -7,7 +9,7 @@
                 </div>
 
                 <div class="m-1 mx-auto text-center" style="width:200px">
-                    <img class="img-fluid" [src]=" getImageUrl(a) | safe: 'resourceUrl'" />
+                    <img class="img-fluid" [src]=" getImageUrl(a) | safe: 'resourceUrl'" alt="no picture found" />
                 </div>
             </div>
 

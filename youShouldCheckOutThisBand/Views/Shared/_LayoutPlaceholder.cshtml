@@ -2,10 +2,13 @@
 <html>
 <head>
 
-    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/StyleSheet.scss" asp-append-version="true" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/site.css"  />
+        <link rel="stylesheet" href="~/css/StyleSheet.scss" />
+
+    
+
 
     <style>
         body {
@@ -68,8 +71,35 @@
     <footer class="container">
         <div class="text-center">Copyright 2020 Levon Ritter</div>
     </footer>
-    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <environment names="Development">
+        <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/js/site.js"></script>
+    </environment>
+    @*what ever name you use here will be omitted when the file is running with that environment*@
+<environment names="Staging, Production">
+    @*cdns = content distribution networks for getting things like jquery and bootstrap
+        the benefit of using them is another website has used jquery or bootsrap, you dont have to dowload it
+
+        this is the link to the cdn*@
+
+    @*test to see after itemid loadied manifest jquery exists
+        else fall back to our version*@
+    <script type="text/javascript" 
+            src="//ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery"></script>
+    @*the fall back test is more complicated since it extends jquery*@
+    <script type="text/javascript" 
+            src="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/js/bootstrap.min.js"
+            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
+    @*this will apennd a version after this as a query string, so that it can solve some problems with dealing with
+        users qlearing theire cache*@
+    <script type="text/javascript" 
+            src="~/dist/yscotb.min.js" asp-append-version="true"></script>
+</environment>
+    
     @RenderSection("scripts", false)
 </body>
 </html>

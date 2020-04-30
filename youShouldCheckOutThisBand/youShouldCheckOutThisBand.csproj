@@ -654,4 +654,10 @@
     <TypeScriptCompile Include="ClientApp\shared\artist.ts" />
   </ItemGroup>
 
+  <Target Name="MyPublishScripts" BeforeTargets="BeforePublish">
+    <Exec Command="npm install" />
+    <Exec Command="gulp" />
+    <Exec Command="ng build" />
+  </Target>
+
 </Project>

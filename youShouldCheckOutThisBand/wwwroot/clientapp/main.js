@@ -27,27 +27,29 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*!****************************************!*\
   !*** ./ClientApp/app/app.component.ts ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: AppComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
 //change this to include external template, maybe use polymer for this later
 let AppComponent = class AppComponent {
     constructor() {
         this.title = 'Vote on the songs you like or dislike';
     }
 };
-AppComponent = tslib_1.__decorate([
-    core_1.Component({
+AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-model',
-        template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/app.component.html")).default
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/app.component.html")).default
     })
 ], AppComponent);
-exports.AppComponent = AppComponent;
+
 
 
 /***/ }),
@@ -56,52 +58,87 @@ exports.AppComponent = AppComponent;
 /*!*************************************!*\
   !*** ./ClientApp/app/app.module.ts ***!
   \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: AppModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var safe_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! safe-pipe */ "./node_modules/safe-pipe/__ivy_ngcc__/fesm2015/safe-pipe.js");
+/* harmony import */ var _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./artists/artists.component */ "./ClientApp/app/artists/artists.component.ts");
+/* harmony import */ var _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tracks/tracks.component */ "./ClientApp/app/tracks/tracks.component.ts");
+/* harmony import */ var _tracks_trackCard_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tracks/trackCard.component */ "./ClientApp/app/tracks/trackCard.component.ts");
+/* harmony import */ var _tracks_votes_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tracks/votes.component */ "./ClientApp/app/tracks/votes.component.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-const platform_browser_1 = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
 //see documentation on safe pipe here: https://www.npmjs.com/package/safe-pipe
-const safe_pipe_1 = __webpack_require__(/*! safe-pipe */ "./node_modules/safe-pipe/__ivy_ngcc__/fesm2015/safe-pipe.js");
-const artists_component_1 = __webpack_require__(/*! ./artists/artists.component */ "./ClientApp/app/artists/artists.component.ts");
-const tracks_component_1 = __webpack_require__(/*! ./tracks/tracks.component */ "./ClientApp/app/tracks/tracks.component.ts");
-const trackCard_component_1 = __webpack_require__(/*! ./tracks/trackCard.component */ "./ClientApp/app/tracks/trackCard.component.ts");
-const votes_component_1 = __webpack_require__(/*! ./tracks/votes.component */ "./ClientApp/app/tracks/votes.component.ts");
-const app_component_1 = __webpack_require__(/*! ./app.component */ "./ClientApp/app/app.component.ts");
-const dataService_1 = __webpack_require__(/*! ../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
+
+
+
+
+
+
+
 //support using http client module to make api requests
-const http_1 = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
+//we need a collection of routes like our mvc routes that form paths 
+//and a component thats like a view that says "if you math this path, show this componenent"
+let routes = [
+//{ path: "/tracks", component: Tracks },
+//{ path: "/artists", component: Artists }
+];
 //the purpose of angular is basically dependency inejction for your site
 //so that's what a lot of this stuff pertains to
+//"use hash" makes it so that the path is after a # in the url
 let AppModule = class AppModule {
 };
-AppModule = tslib_1.__decorate([
-    core_1.NgModule({
+AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            app_component_1.AppComponent,
-            artists_component_1.ArtistList,
-            tracks_component_1.TrackList,
-            trackCard_component_1.TrackCard,
-            votes_component_1.Votes
+            _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
+            _artists_artists_component__WEBPACK_IMPORTED_MODULE_4__["ArtistList"],
+            _tracks_tracks_component__WEBPACK_IMPORTED_MODULE_5__["TrackList"],
+            _tracks_trackCard_component__WEBPACK_IMPORTED_MODULE_6__["TrackCard"],
+            _tracks_votes_component__WEBPACK_IMPORTED_MODULE_7__["Votes"]
         ],
         imports: [
-            platform_browser_1.BrowserModule,
-            http_1.HttpClientModule,
-            safe_pipe_1.SafePipeModule
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
+            safe_pipe__WEBPACK_IMPORTED_MODULE_3__["SafePipeModule"],
         ],
         providers: [
             //add data service here for dependency injection
-            dataService_1.DataService
+            _shared_data_dataService__WEBPACK_IMPORTED_MODULE_9__["DataService"]
         ],
-        bootstrap: [app_component_1.AppComponent]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     })
 ], AppModule);
-exports.AppModule = AppModule;
 
+//RouterModule.forRoot(routes, {
+//    useHash: true,
+//    enableTracing: false //for debugging
+//})
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/artists/artists.component.scss":
+/*!******************************************************!*\
+  !*** ./ClientApp/app/artists/artists.component.scss ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".card {\n  height: 445px;\n}\n\nimg {\n  max-width: 100%;\n  max-height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvYXJ0aXN0cy9DOlxcVXNlcnNcXGxyaXR0ZXJcXERlc2t0b3BcXHlvdVNob3VsZENoZWNrT3V0VGhpc0JhbmRcXHlvdVNob3VsZENoZWNrT3V0VGhpc0JhbmQvQ2xpZW50QXBwXFxhcHBcXGFydGlzdHNcXGFydGlzdHMuY29tcG9uZW50LnNjc3MiLCJDbGllbnRBcHAvYXBwL2FydGlzdHMvYXJ0aXN0cy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQUE7QUNDSjs7QURHQTtFQUNJLGVBQUE7RUFDQSxnQkFBQTtBQ0FKIiwiZmlsZSI6IkNsaWVudEFwcC9hcHAvYXJ0aXN0cy9hcnRpc3RzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNhcmQge1xyXG4gICAgaGVpZ2h0OiA0NDVweDtcclxufVxyXG5cclxuXHJcbmltZyB7XHJcbiAgICBtYXgtd2lkdGg6IDEwMCU7XHJcbiAgICBtYXgtaGVpZ2h0OiAxMDAlO1xyXG59IiwiLmNhcmQge1xuICBoZWlnaHQ6IDQ0NXB4O1xufVxuXG5pbWcge1xuICBtYXgtd2lkdGg6IDEwMCU7XG4gIG1heC1oZWlnaHQ6IDEwMCU7XG59Il19 */");
 
 /***/ }),
 
@@ -109,30 +146,61 @@ exports.AppModule = AppModule;
 /*!****************************************************!*\
   !*** ./ClientApp/app/artists/artists.component.ts ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: ArtistList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArtistList", function() { return ArtistList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
 let ArtistList = class ArtistList {
-    constructor() {
-        this.artists = [{
-                name: "Fi"
-            }, {
-                name: "Fio"
-            }];
+    constructor(data) {
+        //this.artists = data.artists;
+        this.data = data;
+        this.artists = [];
+    }
+    ngOnInit() {
+        this.data.loadArtists()
+            //calls success because the shared component returns a bool
+            .subscribe(success => {
+            if (success) {
+                this.artists = this.data.artists;
+            }
+        });
+    }
+    getImageUrl(a) {
+        if (a.images.length > 1) {
+            if (a.images.find(image => (image.width > 199 && image.width < 401)).url != null) {
+                return a.images.find(image => (image.width > 199 && image.width < 401)).url;
+            }
+            else {
+                return (a.images.find(image => image.width > 199).url != null) ? a.images.find(image => image.width > 199).url : "";
+            }
+        }
+        else if (a.images.length > 1) {
+            return a.images[0].url;
+        }
+        else {
+            return "";
+        }
     }
 };
-ArtistList = tslib_1.__decorate([
-    core_1.Component({
+ArtistList.ctorParameters = () => [
+    { type: _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
+];
+ArtistList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "artists",
-        template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./artists.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/artists/artists.component.html")).default
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./artists.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/artists/artists.component.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./artists.component.scss */ "./ClientApp/app/artists/artists.component.scss")).default]
     })
 ], ArtistList);
-exports.ArtistList = ArtistList;
+
 
 
 /***/ }),
@@ -154,14 +222,16 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./ClientApp/app/tracks/trackCard.component.ts ***!
   \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: TrackCard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrackCard", function() { return TrackCard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
 let TrackCard = 
 //interface that says once you're ready, call a method
 class TrackCard {
@@ -206,18 +276,18 @@ class TrackCard {
         return returnString;
     }
 };
-tslib_1.__decorate([
-    core_1.Input()
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], TrackCard.prototype, "track", void 0);
-TrackCard = tslib_1.__decorate([
-    core_1.Component({
+TrackCard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "track-card",
-        template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./trackCard.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/trackCard.component.html")).default,
-        styles: [tslib_1.__importDefault(__webpack_require__(/*! ./trackCard.component.scss */ "./ClientApp/app/tracks/trackCard.component.scss")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./trackCard.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/trackCard.component.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./trackCard.component.scss */ "./ClientApp/app/tracks/trackCard.component.scss")).default]
     })
     //interface that says once you're ready, call a method
 ], TrackCard);
-exports.TrackCard = TrackCard;
+
 
 
 /***/ }),
@@ -239,25 +309,28 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./ClientApp/app/tracks/tracks.component.ts ***!
   \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: TrackList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrackList", function() { return TrackList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-const dataService_1 = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
+
+
 let TrackList = 
 //interface that says once you're ready, call a method
 class TrackList {
     //private makes private member of the class
     //injects it into track list
     constructor(data) {
+        //this.tracks = data.tracks;
         this.data = data;
         //make sure that an array of tracks is getting returned
         this.tracks = [];
-        this.tracks = data.tracks;
     }
     ngOnInit() {
         //once the load products happens, we want to get the data that's being passed back in
@@ -271,17 +344,17 @@ class TrackList {
     }
 };
 TrackList.ctorParameters = () => [
-    { type: dataService_1.DataService }
+    { type: _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
 ];
-TrackList = tslib_1.__decorate([
-    core_1.Component({
+TrackList = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "tracks",
-        template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./tracks.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html")).default,
-        styles: [tslib_1.__importDefault(__webpack_require__(/*! ./tracks.component.css */ "./ClientApp/app/tracks/tracks.component.css")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./tracks.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/tracks.component.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./tracks.component.css */ "./ClientApp/app/tracks/tracks.component.css")).default]
     })
     //interface that says once you're ready, call a method
 ], TrackList);
-exports.TrackList = TrackList;
+
 
 
 /***/ }),
@@ -303,19 +376,22 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./ClientApp/app/tracks/votes.component.ts ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Votes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Votes", function() { return Votes; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-const dataService_1 = __webpack_require__(/*! ../../shared/data/dataService */ "./ClientApp/shared/data/dataService.ts");
+
+
 let Votes = class Votes {
     constructor(data) {
         this.data = data;
-        this.voteEvent = new core_1.EventEmitter();
+        this.voteEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ngOnInit() {
         this.voteEvent.emit(this.upVotes - this.downVotes);
@@ -349,28 +425,28 @@ let Votes = class Votes {
     }
 };
 Votes.ctorParameters = () => [
-    { type: dataService_1.DataService }
+    { type: _shared_data_dataService__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
 ];
-tslib_1.__decorate([
-    core_1.Input()
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], Votes.prototype, "upVotes", void 0);
-tslib_1.__decorate([
-    core_1.Input()
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], Votes.prototype, "downVotes", void 0);
-tslib_1.__decorate([
-    core_1.Input()
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], Votes.prototype, "uri", void 0);
-tslib_1.__decorate([
-    core_1.Output()
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
 ], Votes.prototype, "voteEvent", void 0);
-Votes = tslib_1.__decorate([
-    core_1.Component({
+Votes = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "votes",
-        template: tslib_1.__importDefault(__webpack_require__(/*! raw-loader!./votes.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/votes.component.html")).default,
-        styles: [tslib_1.__importDefault(__webpack_require__(/*! ./votes.component.scss */ "./ClientApp/app/tracks/votes.component.scss")).default]
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./votes.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/tracks/votes.component.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./votes.component.scss */ "./ClientApp/app/tracks/votes.component.scss")).default]
     })
 ], Votes);
-exports.Votes = Votes;
+
 
 
 /***/ }),
@@ -379,17 +455,18 @@ exports.Votes = Votes;
 /*!***********************************************!*\
   !*** ./ClientApp/environments/environment.ts ***!
   \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: environment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-exports.environment = {
+
+const environment = {
     production: false
 };
 /*
@@ -408,21 +485,25 @@ exports.environment = {
 /*!***************************!*\
   !*** ./ClientApp/main.ts ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/__ivy_ngcc__/fesm2015/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.module */ "./ClientApp/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environments/environment */ "./ClientApp/environments/environment.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-const platform_browser_dynamic_1 = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/__ivy_ngcc__/fesm2015/platform-browser-dynamic.js");
-const app_module_1 = __webpack_require__(/*! ./app/app.module */ "./ClientApp/app/app.module.ts");
-const environment_1 = __webpack_require__(/*! ./environments/environment */ "./ClientApp/environments/environment.ts");
-if (environment_1.environment.production) {
-    core_1.enableProdMode();
+
+
+
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
 }
-platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule)
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
     .catch(err => console.error(err));
 
 
@@ -432,17 +513,21 @@ platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1
 /*!**********************************************!*\
   !*** ./ClientApp/shared/data/dataService.ts ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: DataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 //support using http client to make api requests
-const http_1 = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-const operators_1 = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-const core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+
 //we have to decorate to tell the dependency injection serivce that it's part of the chain of injection
 //this part is for if it requires other dependencies
 let DataService = class DataService {
@@ -450,6 +535,7 @@ let DataService = class DataService {
         this.http = http;
         //add interface for type safety
         this.tracks = [];
+        this.artists = [];
     }
     loadTracks() {
         //use http to get our api
@@ -460,8 +546,24 @@ let DataService = class DataService {
             //what we want to do is intercept the call and change the data
             .pipe(
         //this way we call subscribe by the client
-        operators_1.map((data) => {
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((data) => {
             this.tracks = data;
+            //return true to say it did what we wanted it to do
+            return true;
+        }));
+        //this should allow us to assign the tracks tp the track list
+    }
+    loadArtists() {
+        //use http to get our api
+        return this.http.get("/api/Artists")
+            // subscribe() says when this is done i want to know the response
+            // and kicks of the beginning of this request
+            //.subscribe()
+            //what we want to do is intercept the call and change the data
+            .pipe(
+        //this way we call subscribe by the client
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((data) => {
+            this.artists = data;
             //return true to say it did what we wanted it to do
             return true;
         }));
@@ -471,19 +573,19 @@ let DataService = class DataService {
         return this.http.post("api/Tracks/Vote", {
             vote: voteStatus,
             trackUri: uri
-        }).pipe(operators_1.map((data) => {
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((data) => {
             this.votes = data;
             return true;
         }));
     }
 };
 DataService.ctorParameters = () => [
-    { type: http_1.HttpClient }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
 ];
-DataService = tslib_1.__decorate([
-    core_1.Injectable()
+DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])()
 ], DataService);
-exports.DataService = DataService;
+
 
 
 /***/ }),
@@ -497,7 +599,7 @@ exports.DataService = DataService;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-12\">\r\n        <h3>{{  title  }}</h3>\r\n        <tracks></tracks>\r\n    </div>\r\n    \r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-12\">\r\n        <h3>{{  title  }}</h3>\r\n        <tracks></tracks>\r\n        <br/>\r\n        <artists></artists>\r\n    </div>\r\n    \r\n</div>");
 
 /***/ }),
 
@@ -510,7 +612,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let a of artists\">{{  a.name  }}: {{ 1 + 1}}</li>\r\n    </ul>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-lg-3 col-md-4  col-sm-6\" *ngFor=\"let a of artists\">\r\n        <div class=\"card bg-light m-1\">\r\n            <div class=\"m-1\">\r\n                <div class=\"divNameContainer\">\r\n                    <p>{{  a.name  }}</p>\r\n                </div>\r\n\r\n                <div class=\"m-1 mx-auto text-center\" style=\"width:200px\">\r\n                    <img class=\"img-fluid\" [src]=\" getImageUrl(a) | safe: 'resourceUrl'\" />\r\n                </div>\r\n            </div>\r\n\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n");
 
 /***/ }),
 

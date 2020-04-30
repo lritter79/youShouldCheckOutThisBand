@@ -6,10 +6,10 @@ class TrackList {
     //private makes private member of the class
     //injects it into track list
     constructor(data) {
+        //this.tracks = data.tracks;
         this.data = data;
         //make sure that an array of tracks is getting returned
         this.tracks = [];
-        this.tracks = data.tracks;
     }
     ngOnInit() {
         //once the load products happens, we want to get the data that's being passed back in

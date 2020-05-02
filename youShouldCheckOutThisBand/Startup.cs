@@ -46,20 +46,37 @@ namespace youShouldCheckOutThisBand
                 //maps the users to our contexts
                 .AddEntityFrameworkStores<YSCOTBContext>();
 
+            //commented out to use spotify account authentication instead
             //configure the tokens we want to use
             services.AddAuthentication()
-                .AddCookie()
-                //tell start up to use our json token
-                .AddJwtBearer(cfg =>
+                .AddSpotify(options =>
                 {
-                    //params that need to be used to validate th etoken we sent in
-                    cfg.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ValidIssuer = _config["Tokens:Issuer"],
-                        ValidAudience = _config["Tokens:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
-                    };
+                    
+                    
+                    options.ClientId = _config.GetValue<string>("SpotifyApiTokens:ClientId");
+                    options.ClientSecret = _config.GetValue<string>("SpotifyApiTokens:ClientSecret");
+                    options.CallbackPath = "https://localhost:44306/Account/callback/";
+                    //Handle failed login attempts here
+                    //options.Events.OnRemoteFailure = (context) =>
+                    //{
+
+                    //    return "";//Task.CompletedTask;
+                    //};
                 });
+
+            //commented out to use spotify account authentication instead
+            //    .AddCookie()
+            //    //tell start up to use our json token
+            //    .AddJwtBearer(cfg =>
+            //    {
+            //        //params that need to be used to validate th etoken we sent in
+            //        cfg.TokenValidationParameters = new TokenValidationParameters()
+            //        {
+            //            ValidIssuer = _config["Tokens:Issuer"],
+            //            ValidAudience = _config["Tokens:Audience"],
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+            //        };
+            //    });
 
             //make db context part of services collection so we can inject it where we need it
             services.AddDbContext<YSCOTBContext>(cfg =>

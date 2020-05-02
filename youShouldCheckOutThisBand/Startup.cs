@@ -55,7 +55,7 @@ namespace youShouldCheckOutThisBand
                     
                     options.ClientId = _config.GetValue<string>("SpotifyApiTokens:ClientId");
                     options.ClientSecret = _config.GetValue<string>("SpotifyApiTokens:ClientSecret");
-                    options.CallbackPath = "https://localhost:44306/Account/callback/";
+                    options.CallbackPath = "/callback/";
                     //Handle failed login attempts here
                     //options.Events.OnRemoteFailure = (context) =>
                     //{

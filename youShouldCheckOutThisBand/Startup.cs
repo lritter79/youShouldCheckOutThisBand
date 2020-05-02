@@ -38,13 +38,13 @@ namespace youShouldCheckOutThisBand
         public void ConfigureServices(IServiceCollection services)
         {
             //identity roll is incase we're configuring roles, it can be a type of data that's about a user
-            services.AddIdentity<AppUser, IdentityRole>(cfg => 
-            {
-                //let's you set rules for user logins and such
-                cfg.User.RequireUniqueEmail = true;
-            })
-                //maps the users to our contexts
-                .AddEntityFrameworkStores<YSCOTBContext>();
+            //services.AddIdentity<AppUser, IdentityRole>(cfg => 
+            //{
+            //    //let's you set rules for user logins and such
+            //    cfg.User.RequireUniqueEmail = true;
+            //})
+            //    //maps the users to our contexts
+            //    .AddEntityFrameworkStores<YSCOTBContext>();
 
             //commented out to use spotify account authentication instead
             //configure the tokens we want to use
@@ -55,7 +55,7 @@ namespace youShouldCheckOutThisBand
                     
                     options.ClientId = _config.GetValue<string>("SpotifyApiTokens:ClientId");
                     options.ClientSecret = _config.GetValue<string>("SpotifyApiTokens:ClientSecret");
-                    options.CallbackPath = "https://localhost:44306/Account/callback/";
+                    options.CallbackPath = "/Account/callback/";
                     //Handle failed login attempts here
                     //options.Events.OnRemoteFailure = (context) =>
                     //{

@@ -19,6 +19,6 @@ namespace youShouldCheckOutThisBand.Models
         public ICollection<string> ImageUrls { get; set; }
         public ICollection<TrackDto> Tracks { get; set; }
         public ICollection<string> TrackUris { get; set; }
-        public int Id { get; set; }
+        
     }
 }

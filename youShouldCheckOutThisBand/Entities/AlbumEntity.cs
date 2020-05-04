@@ -39,7 +39,7 @@ namespace youShouldCheckOutThisBand.Entities
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public new int Id { get; set; }
+        public int Id { get; set; }
 
         [Column("ReleaseDatePrecision")]
         public new string Release_Date_Precision { get; set; }

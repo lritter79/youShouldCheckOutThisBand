@@ -1,31 +1,20 @@
-﻿@model IEnumerable<ArtistEntity>
+﻿@model IEnumerable<Artist>
 @{
     ViewBag.Title = "Artists";
 }
+@section Scripts {
+    <script src="~/clientapp/runtime.js" ></script>  
+   
+    <script src="~/clientapp/polyfills.js" ></script>  
+  
+    <script src="~/clientapp/styles.js" ></script>  
+  
+    <script src="~/clientapp/vendor.js" ></script>
+ 
+    <script src="~/clientapp/main.js" ></script>
 
-<p>Counts: @Model.Count()</p>
-@*rows will treat ehats in a row as a  grid of 12*@
-<div class="row">
-    @foreach (var b in Model)
-    {
-    <div class="col-md-3">
-        <div class="table-bordered bg-info rounded p-1 artist">
-            <p>
-                @b.Name
-            <p>
 
+}
 
-            <p>Genres:</p>
-            <ul>
-                @foreach (var g in b.ArtistsGenres)
-                {
-                    <li>@g.Genre.Name</li>
-                }
-            </ul>
-            <br />
-            @*image-fluid is for dealing with image sizing*@
-            <img src="@((b.Images.Count != 0) ? b.Images.First().Url : "")" class="image-fluid" />
-        </div>       
-     </div>
-    }
-</div>
+<h1>Here are some suggested artists</h1>
+<app-model></app-model>

@@ -19,6 +19,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.StaticFiles;
+using youShouldCheckOutThisBand.CustomServices;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace youShouldCheckOutThisBand
 {
@@ -48,7 +50,7 @@ namespace youShouldCheckOutThisBand
             {
                 //let's you set rules for user logins and such
                 cfg.User.RequireUniqueEmail = true;
-                cfg.SignIn.RequireConfirmedEmail = true;
+                cfg.SignIn.RequireConfirmedAccount = true;
             })
                 //maps the users to our contexts
                 .AddEntityFrameworkStores<YSCOTBContext>();
@@ -95,6 +97,8 @@ namespace youShouldCheckOutThisBand
 
             services.AddScoped<SpotifyToken>();
 
+            
+
             services.AddScoped<ISpotifyApiRepository, SpotifyApiRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -108,6 +112,9 @@ namespace youShouldCheckOutThisBand
 
             //this tell automapper to look for prfiles for mapping that we need
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.AddSingleton<AuthMessageSenderOptions>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)

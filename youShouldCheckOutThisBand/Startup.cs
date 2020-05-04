@@ -37,22 +37,28 @@ namespace youShouldCheckOutThisBand
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //make db context part of services collection so we can inject it where we need it
+            services.AddDbContext<YSCOTBContext>(cfg =>
+            {
+                cfg.UseSqlServer(_config.GetConnectionString("AppConnectionString"));
+            });
+
             //identity roll is incase we're configuring roles, it can be a type of data that's about a user
-            services.AddIdentity<AppUser, IdentityRole>(cfg => 
+            services.AddDefaultIdentity<AppUser>(cfg =>
             {
                 //let's you set rules for user logins and such
                 cfg.User.RequireUniqueEmail = true;
+                cfg.SignIn.RequireConfirmedEmail = true;
             })
                 //maps the users to our contexts
                 .AddEntityFrameworkStores<YSCOTBContext>();
-
+                //.AddDefaultUI();
             //commented out to use spotify account authentication instead
             //configure the tokens we want to use
             services.AddAuthentication()
                 .AddSpotify(options =>
                 {
-                    
-                    
+                                     
                     options.ClientId = _config.GetValue<string>("SpotifyApiTokens:ClientId");
                     options.ClientSecret = _config.GetValue<string>("SpotifyApiTokens:ClientSecret");
                     options.CallbackPath = "/callback/";
@@ -78,11 +84,7 @@ namespace youShouldCheckOutThisBand
             //        };
             //    });
 
-            //make db context part of services collection so we can inject it where we need it
-            services.AddDbContext<YSCOTBContext>(cfg =>
-            {
-                cfg.UseSqlServer(_config.GetConnectionString("AppConnectionString"));
-            });
+            
 
             //makes it so that appseeder can be created through the service layer
             services.AddTransient<YSCOTBSeeder>();
@@ -165,13 +167,15 @@ namespace youShouldCheckOutThisBand
             //end points allows a bunch of different technogoies to use different end points
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllerRoute(
                     "default",
                     //pattern to look for to tell the system to find a controller
                     pattern: "{controller}/{action}/{id?}",
                     //anonymous objects with defaults if pattern isnt specified
                     new { controller = "App", action = "Index" });
-              
+                //The Identity UI is implemented using Razor Pages
+                endpoints.MapRazorPages();
             });
         }
     }

@@ -20,7 +20,13 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
 
             CreateMap<Track, TrackEntity>()           
                 .ForMember(entity => entity.Album, opts => opts.MapFrom(model => model.Album))
+                .ForMember(entity => entity.TracksArtists, opts => opts.MapFrom(model => model.Artists))
                 .ReverseMap();
+
+            CreateMap<Artist, TrackArtistJoinEntity>()
+                .ForMember(entity => entity.Artist, opts => opts.MapFrom(model => model))              
+                .ReverseMap();
+
 
             //CreateMap<string, GenreEntity>()
             //    .ForMember(entity => entity.Name, opts => opts.MapFrom(model => model))
@@ -59,6 +65,7 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
                 .ForMember(entity => entity.ArtistId, opts => opts.MapFrom(model => model.Item2.Id))
                 .ReverseMap();
 
+            
 
 
         }

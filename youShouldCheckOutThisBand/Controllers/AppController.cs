@@ -104,12 +104,24 @@ namespace youShouldCheckOutThisBand.Controllers
             return View();
         }
 
+
         [HttpGet("Artists")]
         public IActionResult Artists()
         {
             //return the bands people suggested
-            var results = _repository.GetAllArtistEntities();
-            return View(results.ToList());
+            var results = _repository.GetAllArtistEntities()
+                                     .Select(entity => _mapper.Map<ArtistEntity, Artist>(entity))
+                                     .ToList();
+            return View(results);
+        }
+
+        [Authorize]
+        [HttpGet("Tracks")]
+        public IActionResult Tracks()
+        {
+            //return the bands people suggested
+            
+            return View();
         }
     }
 }

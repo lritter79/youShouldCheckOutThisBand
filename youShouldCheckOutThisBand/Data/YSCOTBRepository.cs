@@ -54,16 +54,13 @@ namespace youShouldCheckOutThisBand.Data
             _context.ArtistsAlbums.Add(artistAlbumJoinEntity);
         }
 
-        public void AddGenreAlbumJoinEntity(GenreAlbumJoinEntity genreAlbumJoinEntity)
-        {
-            _context.GenresAlbums.Add(genreAlbumJoinEntity);
-        }
-
         public IEnumerable<ArtistEntity> GetAllArtistEntities()
         {
-
-            return _context.Artists.Include(g => g.ArtistsGenres).ThenInclude(ag => ag.Genre).Include(g => g.Images).ToList();
-
+            return _context.Artists
+                .Include(g => g.ArtistsGenres)
+                .ThenInclude(ag => ag.Genre)
+                .Include(g => g.Images)
+                .ToList();
         }
 
         public IEnumerable<TrackEntity> GetAllTracks(bool includeArtist = true)
@@ -82,8 +79,6 @@ namespace youShouldCheckOutThisBand.Data
             }
             
         }
-        
-
 
         public ArtistEntity GetArtistById(int id)
         {
@@ -121,12 +116,10 @@ namespace youShouldCheckOutThisBand.Data
             return _context.SaveChanges() > 1;
         }
 
-        public IEnumerable<TrackEntity> GetByTracksByUser(string username, bool includeArtists = true)
+        public IEnumerable<TrackEntity> GetTracksByUser(string username, bool includeArtists = true)
         {
             if (includeArtists)
             {
-
-
 
                 var query = from TrackEntity in _context.Tracks
                             join RecommendationEntity in _context.Recommendations on TrackEntity.Id equals RecommendationEntity.Track.Id
@@ -175,7 +168,6 @@ namespace youShouldCheckOutThisBand.Data
 
                 }
 
-                //var album = recommendation.Track.Album;
                 if (_context.Albums.Any(album => album.Uri == recommendation.Track.Album.Uri))
                 {
                     recommendation.Track.Album = _context.Albums.Select(album => album)
@@ -205,29 +197,13 @@ namespace youShouldCheckOutThisBand.Data
                 {
                     _context.Recommendations.Add(recommendation);
                 }
-
-                    //var trackArtists = recommendation.Track.TracksArtists;
-
-
-                    //recommendation.Track.TracksArtists = null;
-
                 
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            //foreach (TrackArtistJoinEntity artist in recommendation.Track.TracksArtists)
-            //{
-            //    if (IsItNew(ar))
-            //}
-            
 
-
-            //if (context.ObjectStateManager.GetObjectStateEntry(myEntity).State == EntityState.Detached)
-            //{
-            //    context.MyEntities.AddObject(myEntity);
-            //}
         }
 
 
@@ -242,11 +218,24 @@ namespace youShouldCheckOutThisBand.Data
                 return false;
             }
         }
-                                  
-        //public ArtistEntity GetArtistById(9string genre)
-        //{
-        //    return _context.Artists.Where(a => a.ArtistsGenres
-        //                                        .Any(g => g.Genre.Name == genre));
-        //}
+
+        public int AlterTrackVotes(bool vote, string trackUri)
+        {
+            var track = _context.Tracks.Select(track => track)
+                .Where(track => track.Uri == trackUri)
+                .First();
+
+            if (vote)
+            {
+                track.UpVotes++;
+            }
+            else
+            {
+                track.DownVotes++;
+            }
+            _context.SaveChanges();
+
+            return (track.UpVotes - track.DownVotes);
+        }
     }
 }

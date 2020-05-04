@@ -1,0 +1,4 @@
+﻿<div class="card">
+    <p><button id="btnUpVote" class="success" [disabled]="upClicked" (click)="addVotes(uri);downClicked=false;upClicked=true;"><i class="fa fa-arrow-up"></i></button> {{ upVotes }}</p>
+    <p><button id="btnDownVote" class="danger" [disabled]="downClicked" (click)="subtractVotes(uri);downClicked=true;upClicked=false;"><i class="fa fa-arrow-down"></i></button> {{ downVotes }}</p>
+</div>

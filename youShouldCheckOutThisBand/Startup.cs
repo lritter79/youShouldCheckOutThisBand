@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using youShouldCheckOutThisBand.Data;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using youShouldCheckOutThisBand.Models;
 using AutoMapper;
 using System.Reflection;
@@ -65,11 +67,7 @@ namespace youShouldCheckOutThisBand
                     options.ClientSecret = _config.GetValue<string>("SpotifyApiTokens:ClientSecret");
                     options.CallbackPath = "/callback/";
                     //Handle failed login attempts here
-                    //options.Events.OnRemoteFailure = (context) =>
-                    //{
-
-                    //    return "";//Task.CompletedTask;
-                    //};
+                 
                 });
 
             //commented out to use spotify account authentication instead

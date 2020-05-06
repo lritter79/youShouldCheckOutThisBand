@@ -32,7 +32,7 @@ namespace youShouldCheckOutThisBand.Entities
         [Ignore]
         public virtual ICollection<GenreAlbumJoinEntity> AlbumsGenres { get; set; }
         public ICollection<TrackEntity> Tracks { get; set; }
-        public virtual ICollection<AlbumCoverEntity> Images { get; set; }
+        public ICollection<AlbumCoverEntity> Images { get; set; }
 
         /// <summary>
         /// The Spotify ID for the album.

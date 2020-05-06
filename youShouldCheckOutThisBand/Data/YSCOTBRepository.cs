@@ -63,6 +63,16 @@ namespace youShouldCheckOutThisBand.Data
                 .ToList();
         }
 
+        public IEnumerable<AlbumCoverEntity> GetTopThreeAlbumCoverEntities()
+        {
+            return _context.AlbumCovers
+                .Include(ac => ac.Album)
+                .Distinct()
+                .Where(ac => ac.Width >= 500)
+                .OrderByDescending(cover => cover.Width)
+                .Take(3);
+        }
+
         public IEnumerable<TrackEntity> GetAllTracks(bool includeArtist = true)
         {
             if (includeArtist)

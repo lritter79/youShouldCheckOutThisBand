@@ -2,7 +2,36 @@
 
 }
 
-img {
+/*img {
     max-height:100%;
     max-width:100%;
+}*/
+
+.carousel-caption {
+    border-radius: 25px;
+    background-color: lightgray;
+}
+
+.top-picks {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 15;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-left: 0;
+    padding-top: 10px;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top:10px;
+    list-style: none;
+    background-color: lightgrey;
+    border-radius: 25px;
+}
+
+.top-picks > h5 {
+    color:darkgrey;
+    
 }

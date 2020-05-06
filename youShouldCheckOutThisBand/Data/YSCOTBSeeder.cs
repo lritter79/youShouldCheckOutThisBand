@@ -41,7 +41,7 @@ namespace youShouldCheckOutThisBand.Data
                     FirstName = "Biff",
                     LastName = "Boof",
                     Email = "foo@bar.com",
-                    UserName = "Test"
+                    UserName = "foo@bar.com"
                 };
 
                 //asyncly created user
@@ -55,7 +55,7 @@ namespace youShouldCheckOutThisBand.Data
 
             if (!_context.Artists.Any())
             {
-                InsertNewAlbumWithTrack();
+                //InsertNewAlbumWithTrack();
             }
             //{
             //    //if artists is empty, create sample data

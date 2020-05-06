@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using SpotifyAPI.Web.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using youShouldCheckOutThisBand.Models;
+
 
 namespace youShouldCheckOutThisBand.Entities
 {
@@ -16,12 +17,7 @@ namespace youShouldCheckOutThisBand.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public new int Id { get; set; }
-
-        
-
-        public int AlbumId { get; set; }
-
-        [ForeignKey("AlbumId")]
+       
         public virtual AlbumEntity Album { get; set; }
     }
 }

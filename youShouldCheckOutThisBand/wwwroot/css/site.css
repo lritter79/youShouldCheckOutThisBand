@@ -16,7 +16,12 @@ body {
 .carousel-caption p {
     font-size: 20px;
     line-height: 1.4;
+    color: gray;
 }
+.carousel-caption h5 {
+    color: gray;
+}
+
 
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {

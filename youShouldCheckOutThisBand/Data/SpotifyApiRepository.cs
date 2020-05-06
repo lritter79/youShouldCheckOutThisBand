@@ -52,11 +52,11 @@ namespace youShouldCheckOutThisBand.Data
             }
             catch (WebException ex)
             {
-                Console.WriteLine("Track Request Error: " + ex.Status);
+                Console.WriteLine("Artist Request Error: " + ex.Status);
             }
             catch (TaskCanceledException tex)
             {
-                Console.WriteLine("Track Request Error: " + tex.Message);
+                Console.WriteLine("Artist Request Error: " + tex.Message);
             }
 
             var artist = JsonConvert.DeserializeObject<Artist>(webResponse);
@@ -96,11 +96,11 @@ namespace youShouldCheckOutThisBand.Data
             }
             catch (WebException ex)
             {
-                Console.WriteLine("Track Request Error: " + ex.Status);
+                Console.WriteLine("Album Request Error: " + ex.Status);
             }
             catch (TaskCanceledException tex)
             {
-                Console.WriteLine("Track Request Error: " + tex.Message);
+                Console.WriteLine("Album Request Error: " + tex.Message);
             }
 
             var album = JsonConvert.DeserializeObject<Album>(webResponse);

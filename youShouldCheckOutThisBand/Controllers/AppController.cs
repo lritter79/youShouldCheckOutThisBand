@@ -35,7 +35,8 @@ namespace youShouldCheckOutThisBand.Controllers
         public IActionResult Index()
         {
             ViewBag.Title = "You Should Check Out This Band";
-            return View();
+            IEnumerable<AlbumCoverEntity> albumCovers = _repository.GetTopThreeAlbumCoverEntities().ToList();
+            return View(albumCovers);
         }
 
         //specify routing

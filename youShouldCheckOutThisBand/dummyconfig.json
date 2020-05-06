@@ -1,0 +1,25 @@
+{
+  "ConnectionStrings": {
+    "AppConnectionString": "server=(redacted)\\ProjectsV13;Database=YSCOTBDB;Integrated Security=True;MultipleActiveResultSets=True;"
+  },
+  "SpotifyApiTokens": {
+    "ClientId": "redacted",
+    "ClientSecret": "redacted"
+  },
+  "SendGridTokens": {
+    "SendGridUser": "redacted",
+    "ClientSecret": "redacted"
+  },
+  "MarketCode": "US",
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning"
+    }
+  },
+  "Tokens": {
+    "Key": "whatever",
+    "Issuer": "https://localhost:44306",
+    "Audience": "users"
+  }
+}

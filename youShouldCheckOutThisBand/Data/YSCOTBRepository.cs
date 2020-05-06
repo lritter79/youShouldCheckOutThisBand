@@ -201,6 +201,18 @@ namespace youShouldCheckOutThisBand.Data
                         artistJoinEntity.Track.UpVotes += 1;
                         artistJoinEntity.TrackId = artistJoinEntity.Track.Id;
                     }
+
+                    foreach (GenreArtistJoinEntity genreArtistJoin in artistJoinEntity.Artist.ArtistsGenres)
+                    {
+                        if (_context.Genres.Any(genre => genre.Name != genreArtistJoin.Genre.Name)) {
+                            var genreEntity = new GenreEntity()
+                            {
+                                Name = genreArtistJoin.Genre.Name
+                            };
+                            _context.Genres.Add(genreEntity);
+                        }
+                    }
+                    
                 }
 
                 if (!_context.Recommendations.Any(rec => rec.User == recommendation.User && rec.Track == recommendation.Track))

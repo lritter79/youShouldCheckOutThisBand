@@ -66,7 +66,18 @@ namespace youShouldCheckOutThisBand.Controllers
                     var trackEntity = _mapper.Map<Track, TrackEntity>(spotifyTrack);
                     trackEntity.TracksArtists = spotifyTrack.Artists
                                                         .Select(a => _mapper.Map<Tuple<Track, Artist>, TrackArtistJoinEntity>(new Tuple<Track, Artist>(spotifyTrack, a))).ToList();
-                    
+                    foreach (TrackArtistJoinEntity trackArtistJoin in trackEntity.TracksArtists)
+                    {
+                        var artist = spotifyTrack.Artists.First(artist => artist.Id == trackArtistJoin.ArtistId);
+
+                        if (artist != null)
+                        {
+                            trackArtistJoin.Artist.ArtistsGenres = artist.Genres
+                                                                         .Select(g => _mapper.Map<Tuple<string, Artist>, GenreArtistJoinEntity>(new Tuple<string, Artist>(g, artist))).ToList();
+                        }
+
+                         
+                    }
                     var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
 
                     var recEntity = new RecommendationEntity()

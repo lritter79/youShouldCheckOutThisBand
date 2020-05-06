@@ -43,7 +43,6 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
                                                                                         .Select(track => track)))
                 .ForMember(entity => entity.Images, opts => opts.MapFrom(model => model.Images
                                                                                        .Select(image => image)))
-
                 .ReverseMap();
 
             CreateMap<Album, AlbumEntity>()
@@ -63,6 +62,12 @@ namespace youShouldCheckOutThisBand.Data.YSCOTBMappingProfile
                 .ForMember(entity => entity.TrackId, opts => opts.MapFrom(model => model.Item1.Id))
                 .ForMember(entity => entity.Artist, opts => opts.MapFrom(model => model.Item2))
                 .ForMember(entity => entity.ArtistId, opts => opts.MapFrom(model => model.Item2.Id))
+                .ReverseMap();
+            
+            CreateMap<Tuple<string, Artist>, GenreArtistJoinEntity>()
+                .ForMember(entity => entity.Artist, opts => opts.MapFrom(model => model.Item2))
+                .ForMember(entity => entity.ArtistId, opts => opts.MapFrom(model => model.Item2.Id))
+                .ForPath(entity => entity.Genre.Name, opts => opts.MapFrom(model => model.Item1))              
                 .ReverseMap();
 
             
